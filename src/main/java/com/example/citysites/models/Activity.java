@@ -1,6 +1,7 @@
 package com.example.citysites.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "activities")
@@ -27,6 +28,23 @@ public class Activity {
 
     @Column
     private long yelp_id;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
+    private List<ActivityImage> activityImages;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
+    private List<Review> activityReviews;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "activity_category",
+            joinColumns = {@JoinColumn(name = "activity_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
+
+    @ManyToMany(mappedBy = "favoriteActivities")
+    private List<User> userFavorites;
 
     public Activity() {
     }
@@ -85,5 +103,21 @@ public class Activity {
 
     public void setYelp_id(long yelp_id) {
         this.yelp_id = yelp_id;
+    }
+
+    public List<ActivityImage> getActivityImages() {
+        return activityImages;
+    }
+
+    public void setActivityImages(List<ActivityImage> activityImages) {
+        this.activityImages = activityImages;
+    }
+
+    public List<Review> getActivityReviews() {
+        return activityReviews;
+    }
+
+    public void setActivityReviews(List<Review> activityReviews) {
+        this.activityReviews = activityReviews;
     }
 }

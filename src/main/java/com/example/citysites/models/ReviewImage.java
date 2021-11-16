@@ -13,7 +13,9 @@ public class ReviewImage {
     @Column
     private String imageUrl;
 
-//    Rating_ID here
+    @ManyToOne
+    @JoinColumn (name = "review_id")
+    private Review reviewImage;
 
 
     public ReviewImage() {
@@ -33,5 +35,13 @@ public class ReviewImage {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Review getReviewImage() {
+        return reviewImage;
+    }
+
+    public void setReviewImage(Review reviewImage) {
+        this.reviewImage = reviewImage;
     }
 }
