@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CitySites Login</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="partials/partials.html :: head('Login')"></head>
 <body>
 
-  <h1>CitySites</h1>
+  <header th:insert="partials/partials.html :: header('CitySites')"></header>
 
 <!--  username input-->
 
@@ -20,5 +17,6 @@
 
 <!--    don't have account link-->
 
+  <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>
