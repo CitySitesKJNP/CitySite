@@ -13,7 +13,9 @@ public class ActivityImage {
     @Column
     private String imageUrl;
 
-//    Activity_ID here
+    @ManyToOne
+    @JoinColumn (name = "activity_id")
+    private Activity activityImage;
 
 
     public ActivityImage() {
@@ -33,5 +35,13 @@ public class ActivityImage {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Activity getActivity() {
+        return activityImage;
+    }
+
+    public void setActivity(Activity activity) {
+        this.activityImage = activity;
     }
 }

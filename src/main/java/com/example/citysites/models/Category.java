@@ -1,6 +1,7 @@
 package com.example.citysites.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -15,6 +16,9 @@ public class Category {
 
     @Column
     private String description;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Activity> activities;
 
     public Category() {
     }
