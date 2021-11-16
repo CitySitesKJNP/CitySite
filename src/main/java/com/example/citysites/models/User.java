@@ -95,4 +95,12 @@ public class User {
     public void setUserReviews(List<Review> userReviews) {
         this.userReviews = userReviews;
     }
+
+    public List<Activity> getFavoriteActivities() {
+        return favoriteActivities;
+    }
+
+    public void setFavoriteActivities(List<Activity> favoriteActivities) {
+        this.favoriteActivities = favoriteActivities;
+    }
 }

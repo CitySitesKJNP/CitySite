@@ -44,4 +44,12 @@ public class ActivityImage {
     public void setActivity(Activity activity) {
         this.activityImage = activity;
     }
+
+    public Activity getActivityImage() {
+        return activityImage;
+    }
+
+    public void setActivityImage(Activity activityImage) {
+        this.activityImage = activityImage;
+    }
 }
