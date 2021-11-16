@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CitySites</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="partials/partials.html :: head('CitySites')"></head>
 <body>
 
-    <h1>CitySites</h1>
+    <header th:insert="partials/partials.html :: header('CitySites')"></header>
 
     <button>Back</button>
 
@@ -22,5 +19,6 @@
 
     <button>See All Reviews</button>
 
+    <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>
