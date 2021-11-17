@@ -19,6 +19,7 @@
 <!-- ================== NAVBAR -->
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/home}">CitySites</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,9 +27,6 @@
             <ul class="navbar-nav d-flex">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" th:href="@{/welcome}">Welcome</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" th:href="@{/home}">CitySites</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex">
