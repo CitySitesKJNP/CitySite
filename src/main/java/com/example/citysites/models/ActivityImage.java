@@ -10,7 +10,7 @@ public class ActivityImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String imageUrl;
 
     @ManyToOne

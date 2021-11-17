@@ -11,10 +11,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private int rating;
 
-    @Column
+    @Column(nullable = false)
     private String content;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewImage")

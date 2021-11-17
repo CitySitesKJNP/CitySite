@@ -11,10 +11,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false, length = 25)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String description;
 
     @ManyToMany(mappedBy = "categories")
