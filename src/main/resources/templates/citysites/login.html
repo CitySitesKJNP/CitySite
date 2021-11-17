@@ -5,13 +5,28 @@
 
   <header th:insert="partials/partials.html :: header('CitySites')"></header>
 
-<!--  username input-->
+  <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<!--  password input-->
+  <h3>Log In</h3>
+
+  <div th:if="${param.error}">
+    Invalid Username and Password.
+  </div>
+
+  <div th:if="${param.logout}">
+    You have been logged out.
+  </div>
+
+
+  <form th:action="@{/login}" method="post">
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" />
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" />
+    <input type="submit" value="Log In" />
+  </form>
 
 <!--  save username feature-->
-
-    <button>Login</button>
 
 <!--    forgot password link-->
 
