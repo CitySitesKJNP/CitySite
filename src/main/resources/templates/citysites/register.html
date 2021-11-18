@@ -7,15 +7,24 @@
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<!--    input username-->
+    <h1>Create an Account</h1>
+    <form th:action="@{/register}" method="POST" th:object="${user}">
+        <label for="name">Name</label>
+        <input id="name" th:field="*{name}" />
 
-<!--email input-->
+        <label for="username">Username</label>
+        <input id="username" th:field="*{username}" />
 
-<!--password input-->
+        <label for="email">Email</label>
+        <input id="email" th:field="*{email}" />
 
-<!--confirm password input-->
+        <label for="password">Password</label>
+        <input id="password" type="password" th:field="*{password}" />
 
-    <button>Sign Up</button>
+        <input value="Sign me up!" type="submit" />
+    </form>
+
+    <button>Register</button>
 
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>

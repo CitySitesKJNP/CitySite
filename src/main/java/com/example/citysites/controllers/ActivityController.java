@@ -9,4 +9,9 @@ public class ActivityController {
     public String singleActivityDetails() {
         return "citysites/details";
     }
+
+    @GetMapping("/activity/create")
+    public String activityCreationPage() {
+        return "citysites/add-activity";
+    }
 }
