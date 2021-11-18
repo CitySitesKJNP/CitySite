@@ -5,16 +5,27 @@
 
     <header th:insert="partials/partials.html :: header('CitySites')"></header>
 
-    <nav th:insert="partials/partials.html :: navbar"></nav>
+<!--    <nav th:insert="partials/partials.html :: navbar"></nav>-->
+<div>
+    <h2 class="display-4 text-center my-5" >Know Where to Go</h2>
+<div class="d-flex justify-content-center row col-12 text-center p-0 m-0">
+    <p>Description of App: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam fuga hic odio suscipit voluptas? Asperiores aut culpa, eum mollitia nemo nihil odio pariatur quaerat sapiente sequi ut velit vero vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernatur at consequatur culpa cum deserunt excepturi ipsa iure molestias pariatur, possimus quaerat quam quisquam repellendus saepe tempore velit veritatis voluptatibus. </p>
+</div>
 
-    <p>Description of App</p>
+    <a class="btn btn-outline-primary btn-lg center my-5" th:href="@{/home}">Go To Map</a>
 
-    <button>Go to Map</button>
+    <form th:action="@{/login}" method="post">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" />
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+        <input type="submit" value="Log In" />
+    </form>
 
-    <button>Register</button>
-
-    <button>Login</button>
+    <a class="nav-link" >Forgot Password?</a>
+    <a class="nav-link" th:href="@{/register}">Register</a>
 
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
+    </div>
 </body>
 </html>
