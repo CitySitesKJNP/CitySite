@@ -12,6 +12,9 @@ public class User {
     private long id;
 
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false, length = 25)
@@ -40,8 +43,16 @@ public class User {
     public User() {
     }
 
+    public User(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        name = copy.name;
         email = copy.email;
         username = copy.username;
         password = copy.password;
@@ -53,6 +64,14 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
