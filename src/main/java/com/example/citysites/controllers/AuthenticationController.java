@@ -9,5 +9,7 @@ public class AuthenticationController {
     public String showLoginForm(){return "citysites/login";}
 
     @GetMapping("/profile")
-    public String profile(){return "citysites/profile";}
+    public String profile(){
+
+        return "citysites/profile";}
 }
