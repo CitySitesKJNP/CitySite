@@ -7,6 +7,8 @@
 
   <nav th:insert="partials/partials.html :: navbar"></nav>
 
+  <button onclick="goBack()">Back</button>
+
   <h1 class="d-flex justify-content-center">Log In</h1>
 
   <form th:action="@{/login}" method="post" class="col-lg-4 offset-lg-4 col-sm-10 offset-sm-1">
