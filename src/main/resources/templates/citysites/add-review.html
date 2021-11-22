@@ -9,16 +9,29 @@
 
     <button>Back</button>
 
-<!--    Site profile pic-->
+    <h1>Add a Review</h1>
 
-<!--    user star rating-->
+    <h3>*ENTER ACTIVITY BEING REVIEWED HERE*</h3>
 
-<!--    description of user experience-->
-
-    <button>Submit Review</button>
+    <form th:method="POST" th:action="@{/reviews/create}" th:object="${review}">
+        <div>
+            <label for="rating">Choose a Rating (1-5)</label>
+            <select th:field="*{rating}" id="rating" name="rating">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="5">Five</option>
+            </select>
+        </div>
+        <div>
+            <label for="content">Content</label>
+            <br>
+            <textarea th:field="*{content}" name="content" id="content" cols="30" rows="10" placeholder="Please Enter Your Review... "></textarea>
+        </div>
+        <button type="submit">Submit Review</button>
+    </form>
 
     <button>Cancel</button>
-
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>

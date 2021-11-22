@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="partials/partials.html :: head('Add Review')"></head>
+<head th:insert="partials/partials.html :: head('Add Activity')"></head>
 <body>
 
     <header th:insert="partials/partials.html :: header"></header>
@@ -9,15 +9,46 @@
 
     <button>Back</button>
 
-<!--    users can add picture-->
+    <h1>Create an Activity</h1>
 
-<!--    user starts rating-->
+    <h3>*MAP WILL GO HERE*</h3>
 
-<!--    user gives description of place-->
-
-    <button>Add Review</button>
+    <form th:method="POST" th:action="@{/activity/create}" th:object="${activity}">
+        <div>
+            <label for="name">Name</label>
+            <br>
+            <input th:field="*{name}" name="name" id="name" type="text" placeholder="Please Enter the Name of the Activity... ">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <br>
+            <textarea th:field="*{description}" name="description" id="description" cols="30" rows="10" placeholder="Please Enter a Description... "></textarea>
+        </div>
+        <div>
+            <label for="hours">Hours of Operation</label>
+            <br>
+            <input th:field="*{hours}" name="hours" id="hours" type="text" placeholder="Please Enter Hours of Operation... ">
+        </div>
+        <div>
+            <label for="image">Image(s)</label>
+            <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
+            <button type="button" id="create-an-element">Add Another Image?</button>
+        </div>
+        <button>Create Activity</button>
+    </form>
 
     <button>Cancel</button>
+
+<!--    UNDER CONSTRUCTION-->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#create-an-element").click(function () {
+                $(this).after('<br><input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">');
+            });
+        });
+    </script>
 
 </body>
 </html>
