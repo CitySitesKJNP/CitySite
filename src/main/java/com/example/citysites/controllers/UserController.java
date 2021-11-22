@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+
 @Controller
 public class UserController {
     private UserRepository userDao;
@@ -40,9 +42,10 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile/{id}")
-    public String profilePage(@PathVariable long id, Model model) {
-        model.addAttribute("user", userDao.getById(id));
+    @GetMapping("/profile")
+    public String profilePage(Model model, Principal principal) {
+        String un = principal.getName();
+        model.addAttribute("user", userDao.findByUsername(un));
         return "citysites/profile";
     }
 
