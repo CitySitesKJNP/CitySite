@@ -21,6 +21,10 @@ public class ActivityImage {
     public ActivityImage() {
     }
 
+    public ActivityImage(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public long getId() {
         return id;
     }

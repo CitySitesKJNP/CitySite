@@ -7,27 +7,38 @@
 
   <nav th:insert="partials/partials.html :: navbar"></nav>
 
-  <h3>Log In</h3>
+  <h1 class="d-flex justify-content-center">Log In</h1>
 
-  <div th:if="${param.error}">
-    Invalid Username and Password.
-  </div>
+  <form th:action="@{/login}" method="post" class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" class="form-control"/>
+    </div>
+    <button type="submit" class="btn btn-primary" value="Log In">Log In</button>
 
-  <div th:if="${param.logout}">
-    You have been logged out.
-  </div>
+    <br>
+    <br>
 
-
-  <form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
     <div>
       <a href="/register">Don't have an account? Register here!</a>
     </div>
+
   </form>
+
+  <br>
+  <br>
+
+  <div th:if="${param.error}" class="d-flex justify-content-center">
+    Invalid Username and Password.
+  </div>
+
+  <div th:if="${param.logout}" class="d-flex justify-content-center">
+    You have been logged out.
+  </div>
 
 <!--  save username feature-->
 
@@ -35,6 +46,6 @@
 
 <!--    don't have account link-->
 
-  <th:block th:insert="partials/partials.html :: bootstrap-js" />
+<!--  <th:block th:insert="partials/partials.html :: bootstrap-js" />-->
 </body>
 </html>
