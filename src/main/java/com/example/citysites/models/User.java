@@ -61,13 +61,6 @@ public class User {
         password = copy.password;
     }
 
-    public String foo(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = user.getUsername();
-        model.addAttribute("user", user);
-        return "";
-    }
-
     public long getId() {
         return id;
     }

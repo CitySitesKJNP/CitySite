@@ -22,10 +22,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    @GetMapping("/login")
-//    public String loginPage() {
-//        return "citysites/login";
-//    }
 
     @GetMapping("/register")
     public String registrationPage(Model model) {
