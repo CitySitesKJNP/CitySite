@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="partials/partials.html :: head('Add Review')"></head>
+<head th:insert="partials/partials.html :: head('Add Activity')"></head>
 <body>
 
     <header th:insert="partials/partials.html :: header"></header>
@@ -32,7 +32,7 @@
         <div>
             <label for="image">Image(s)</label>
             <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
-<!--            <button type="button" id="create-an-element">Add Another Image?</button>-->
+            <button type="button" id="create-an-element">Add Another Image?</button>
         </div>
         <button>Create Activity</button>
     </form>
@@ -41,14 +41,14 @@
 
 <!--    UNDER CONSTRUCTION-->
 
-<!--    <script src="/static/jquery-3.6.0.min.js"></script>-->
-<!--    <script>-->
-<!--        $(document).ready(function () {-->
-<!--            $("#create-an-element").click(function (e) {-->
-<!--                $(this).after('<input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">' + '<button type="button" id="create-an-element">Add Another Image?</button>');-->
-<!--            });-->
-<!--        });-->
-<!--    </script>-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("#create-an-element").click(function () {
+                $(this).after('<br><input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">');
+            });
+        });
+    </script>
 
 </body>
 </html>
