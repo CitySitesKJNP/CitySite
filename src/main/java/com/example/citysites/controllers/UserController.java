@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -19,10 +22,6 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "citysites/login";
-    }
 
     @GetMapping("/register")
     public String registrationPage(Model model) {
@@ -40,7 +39,9 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profilePage() {
+    public String profilePage(Model model, Principal principal) {
+        String un = principal.getName();
+        model.addAttribute("user", userDao.findByUsername(un));
         return "citysites/profile";
     }
 
