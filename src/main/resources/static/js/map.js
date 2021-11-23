@@ -28,6 +28,7 @@ function codeAddress() {
             window.alert('Geocode was not successful for the following reason: ' + status);
         }
     });
+    console.log(codeAddress(status));
 }
 
 // This example adds a search box to a map, using the Google Place Autocomplete
@@ -40,7 +41,7 @@ function initAutocomplete() {
     const map = new google.maps.Map(document.getElementById("map"), {
         mapId: "2b964882efa1deff",
         center: { lat: 29.424349, lng: -98.491142 },
-        zoom: 13,
+        zoom: 11,
         mapTypeId: "roadmap",
     });
     // Create the search box and link it to the UI element.
