@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Add Activity')"></head>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<link rel="stylesheet" href="/css/citysites.css">
+<link rel="stylesheet" href="/css/activity-creation-map.css">
 <body>
 
     <header th:insert="partials/partials.html :: header"></header>
@@ -13,7 +13,14 @@
 
     <h1>Create an Activity</h1>
 
-    <div id="map">MAP SHOULD BE HERE</div>
+    <input
+            id="pac-input"
+            class="controls"
+            type="text"
+            placeholder="Search Box"
+    />
+
+    <div id="map"></div>
 
     <form th:method="POST" th:action="@{/activity/create}" th:object="${activity}">
         <div>
@@ -52,7 +59,11 @@
         });
     </script>
     <script src="/js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <!--                                      DEPLOY KEY-->
+    <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
+    <!--                                          MAIN KEY-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>
 
 </body>
 </html>
