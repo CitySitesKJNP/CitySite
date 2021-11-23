@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,9 @@ public class ActivityController {
     }
 
     @GetMapping("/activity/details")
-    public String singleActivityDetails() {
+    public String singleActivityDetails(Model model, Principal principal) {
+        String un = principal.getName();
+        model.addAttribute("user", userDao.findByUsername(un));
         return "citysites/details";
     }
 

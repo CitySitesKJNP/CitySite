@@ -46,7 +46,9 @@ public class UserController {
     }
 
     @GetMapping("/user/favorites")
-    public String userFavoritesPage() {
+    public String userFavoritesPage(Model model, Principal principal) {
+
+
         return "citysites/favorites";
     }
 }
