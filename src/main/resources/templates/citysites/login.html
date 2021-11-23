@@ -9,9 +9,9 @@
 
   <button onclick="goBack()">Back</button>
 
-  <h1 class="d-flex justify-content-center">Log In</h1>
+  <h1 class="d-flex justify-content-center" style="font-size: 3rem">Log In</h1>
 
-  <form th:action="@{/login}" method="post" class="col-lg-4 offset-lg-4 col-sm-10 offset-sm-1">
+  <form th:action="@{/login}" method="post" class="col-lg-4 offset-lg-4 col-sm-10 offset-sm-1" style="font-size: 2rem">
     <div class="form-group">
       <label for="username">Username</label>
       <input id="username" name="username" type="text" class="form-control"/>
@@ -25,8 +25,9 @@
     <br>
     <br>
 
+    <!--    don't have account link-->
     <div>
-      <a href="/register">Don't have an account? Register here!</a>
+      <a href="/register" style="font-size: 1rem">Don't have an account? Register here!</a>
     </div>
 
   </form>
@@ -34,11 +35,11 @@
   <br>
   <br>
 
-  <div th:if="${param.error}" class="d-flex justify-content-center">
+  <div th:if="${param.error}" class="d-flex justify-content-center" style="font-size: 2rem">
     Invalid Username and Password.
   </div>
 
-  <div th:if="${param.logout}" class="d-flex justify-content-center">
+  <div th:if="${param.logout}" class="d-flex justify-content-center" style="font-size: 2rem">
     You have been logged out.
   </div>
 
@@ -46,8 +47,8 @@
 
 <!--    forgot password link-->
 
-<!--    don't have account link-->
 
-<!--  <th:block th:insert="partials/partials.html :: bootstrap-js" />-->
+  <th:block th:insert="partials/partials.html :: jquery" />
+  <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>
