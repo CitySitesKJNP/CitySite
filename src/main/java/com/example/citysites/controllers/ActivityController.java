@@ -31,6 +31,7 @@ public class ActivityController {
     public String singleActivityDetails(Model model, Principal principal) {
         String un = principal.getName();
         model.addAttribute("user", userDao.findByUsername(un));
+
         return "citysites/details";
     }
 
