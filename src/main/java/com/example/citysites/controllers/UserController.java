@@ -1,5 +1,6 @@
 package com.example.citysites.controllers;
 
+import com.example.citysites.models.Activity;
 import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class UserController {

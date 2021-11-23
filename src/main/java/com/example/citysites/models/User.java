@@ -1,9 +1,10 @@
 package com.example.citysites.models;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.ui.Model;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -40,8 +41,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "activity_id")}
     )
-    private Set<Activity> favoriteActivities = new HashSet<>();
-//    private List<Activity> favoriteActivities;
+    private List<Activity> favoriteActivities;
 
     public User() {
     }
@@ -129,11 +129,11 @@ public class User {
         this.userReviews = userReviews;
     }
 
-    public Set<Activity> getFavoriteActivities() {
+    public List<Activity> getFavoriteActivities() {
         return favoriteActivities;
     }
 
-    public void setFavoriteActivities(Set<Activity> favoriteActivities) {
+    public void setFavoriteActivities(List<Activity> favoriteActivities) {
         this.favoriteActivities = favoriteActivities;
     }
 }

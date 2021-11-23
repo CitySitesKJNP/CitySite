@@ -1,9 +1,7 @@
 package com.example.citysites.models;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "activities")
@@ -46,8 +44,7 @@ public class Activity {
     private List<Category> categories;
 
     @ManyToMany(mappedBy = "favoriteActivities")
-    private Set<User> userFavorites = new HashSet<>();
-//    private List<User> userFavorites;
+    private List<User> userFavorites;
 
     public Activity() {
     }
@@ -132,11 +129,11 @@ public class Activity {
         this.categories = categories;
     }
 
-    public Set<User> getUserFavorites() {
+    public List<User> getUserFavorites() {
         return userFavorites;
     }
 
-    public void setUserFavorites(Set<User> userFavorites) {
+    public void setUserFavorites(List<User> userFavorites) {
         this.userFavorites = userFavorites;
     }
 }
