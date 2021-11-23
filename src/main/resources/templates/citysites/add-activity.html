@@ -48,9 +48,8 @@
 
     <button>Cancel</button>
 
-<!--    UNDER CONSTRUCTION-->
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <th:block th:insert="partials/partials.html :: jquery" />
+    <th:block th:insert="partials/partials.html :: bootstrap-js" />
     <script>
         $(document).ready(function () {
             $("#create-an-element").click(function () {
