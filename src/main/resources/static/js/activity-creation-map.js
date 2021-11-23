@@ -50,6 +50,14 @@ function initAutocomplete() {
         draggable: true,
         map: map,
     });
+
+    // Under Construction
+
+    // google.maps.event.addListener(marker, 'dragend', function (event) {
+    //     console.log(document.getElementById('latitude').value = this.getPosition().latitude);
+    //     console.log(document.getElementById('longitude').value = this.getPosition().longitude);
+    // })
+
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);

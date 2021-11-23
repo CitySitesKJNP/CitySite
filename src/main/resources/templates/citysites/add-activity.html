@@ -23,6 +23,13 @@
     <div id="map"></div>
 
     <form th:method="POST" th:action="@{/activity/create}" th:object="${activity}">
+
+<!--        Under Construction-->
+
+        <div>
+            <input th:field="*{latitude}" name="latitude" id="latitude" type="hidden">
+            <input th:field="*{longitude}" name="longitude" id="longitude" type="hidden">
+        </div>
         <div>
             <label for="name">Name</label>
             <br>
@@ -60,7 +67,8 @@
     <script src="/js/activity-creation-map.js"></script>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!--                                      DEPLOY KEY-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+<!--        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl5LGCtjZ3qKZJ0Z45lIJ6Fcz4gP-I4Dc&callback=initAutocomplete&libraries=places&v=weekly" async></script>
     <!--                                          MAIN KEY-->
 <!--    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
 
