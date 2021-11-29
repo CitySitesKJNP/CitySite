@@ -50,6 +50,14 @@ public class UserController {
         model.addAttribute("activity", activityDao.findAll());
         return "citysites/profile";
     }
+    @PostMapping("/profile")
+    public String editProfile(@ModelAttribute User user){
+        User editedUser = userDao.getById(user.getId());
+        editedUser.setUsername(user.getUsername());
+        editedUser.setEmail(user.getEmail());
+        userDao.save(editedUser);
+        return "redirect:/profile";
+    }
 
     @GetMapping("/user/favorites")
     public String userFavoritesPage(Model model, Principal principal) {
