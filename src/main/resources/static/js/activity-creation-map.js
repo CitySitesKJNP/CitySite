@@ -53,10 +53,10 @@ function initAutocomplete() {
 
     // Under Construction
 
-    // google.maps.event.addListener(marker, 'dragend', function (event) {
-    //     console.log(document.getElementById('latitude').value = this.getPosition().latitude);
-    //     console.log(document.getElementById('longitude').value = this.getPosition().longitude);
-    // })
+    google.maps.event.addListener(marker, 'dragend', function (event) {
+        document.getElementById('latitude').value = event.latLng.lat();
+        document.getElementById('longitude').value = event.latLng.lng();
+    })
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
