@@ -29,6 +29,17 @@
             placeholder="Search Box"
     />
 
+<!--    Find out how to get the information from the HTML below into Variables on map.js in order to add multiple custom markers-->
+
+    <ul>
+        <li th:each="activity : ${activities}">
+            <h2 th:text="${activity.name}"></h2>
+            <h2 th:text="${activity.description}"></h2>
+            <h2 th:text="${activity.longitude}"></h2>
+            <h2 th:text="${activity.latitude}"></h2>
+        </li>
+    </ul>
+
     <script src="/js/map.js"></script>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
