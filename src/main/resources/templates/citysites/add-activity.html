@@ -23,6 +23,13 @@
     <div id="map"></div>
 
     <form th:method="POST" th:action="@{/activity/create}" th:object="${activity}">
+
+<!--        Under Construction-->
+
+        <div>
+            <input th:field="*{latitude}" name="latitude" id="latitude" type="hidden">
+            <input th:field="*{longitude}" name="longitude" id="longitude" type="hidden">
+        </div>
         <div>
             <label for="name">Name</label>
             <br>
@@ -48,9 +55,8 @@
 
     <button>Cancel</button>
 
-<!--    UNDER CONSTRUCTION-->
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <th:block th:insert="partials/partials.html :: jquery" />
+    <th:block th:insert="partials/partials.html :: bootstrap-js" />
     <script>
         $(document).ready(function () {
             $("#create-an-element").click(function () {
@@ -58,7 +64,7 @@
             });
         });
     </script>
-    <script src="/js/map.js"></script>
+    <script src="/js/activity-creation-map.js"></script>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!--                                      DEPLOY KEY-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>
