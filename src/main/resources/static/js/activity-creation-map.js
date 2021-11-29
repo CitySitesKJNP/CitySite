@@ -51,6 +51,10 @@ function initAutocomplete() {
         map: map,
     });
 
+    // Initial Lat/Lng of Marker
+    document.getElementById('latitude').value = 29.424349;
+    document.getElementById('longitude').value = -98.491142;
+
     // Under Construction
 
     google.maps.event.addListener(marker, 'dragend', function (event) {
@@ -112,6 +116,19 @@ function initAutocomplete() {
                     position: place.geometry.location,
                 })
             );
+
+            // Under Construction
+
+            marker.setPosition(place.geometry.location);
+
+            let lat = marker.getPosition().lat();
+            let lng = marker.getPosition().lng();
+
+            document.getElementById('latitude').value = lat;
+            console.log("Latitude: " + lat);
+            document.getElementById('longitude').value = lng;
+            console.log("Longitude: " + lng);
+
             if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
