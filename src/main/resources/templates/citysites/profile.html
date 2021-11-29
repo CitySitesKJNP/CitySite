@@ -10,14 +10,23 @@
     <button onclick="goBack()">Back</button>
 
 <!--    profile picture-->
-    <span th:text="${user.name}"></span>
-    <span th:text="${user.username}"></span>
-    <span th:text="${user.email}"></span>
+   <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
+    <p>Your current username is <span th:text="${user.username}"></span></p>
+    <p>The current active email address we have for you is<span th:text="${user.email}"></span></p>
 
 
 <!--    details of user input?-->
 
     <button>Favorites</button>
+
+    <div th:each="favorite: ${favorites}">
+        <div th:if="${user.id == favorite.user_id && activity.id == favorite.activity_id}">
+            <h3 th:text="activity.name"></h3>
+            <p th:text="activity.description"></p>
+
+        </div>
+
+    </div>
 
     <div>
 
