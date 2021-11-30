@@ -61,9 +61,24 @@ function initAutocomplete() {
                 // Under Construction...
                 // Current Error: Geocoder failed due to: MapsRequestError: GEOCODER_GEOCODE: OVER_QUERY_LIMIT: The webpage has gone over the requests limit in too short a period of time.
 
-                geocoder.geocode({location: {lng: activity.longitude, lat: activity.latitude}}).then((response) => {
-                    console.log(response.results[0]);
-                })
+                // setTimeout(function () {
+                //     geocoder.geocode({location: {lng: activity.longitude, lat: activity.latitude}}).then((response) => {
+                //         if (response.results[0]) {
+                //             popup += '<div>';
+                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                //             popup += '<p>' + "Location: " + response.results[0] + '</p>';
+                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
+                //             popup += '</div>';
+                //         } else {
+                //             popup += '<div>';
+                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                //             popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
+                //             popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
+                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
+                //             popup += '</div>';
+                //         }
+                //     })
+                // }, 1000);
 
                 popup += '<div>';
                 popup += '<h1>' + "Name: " + activity.name + '</h1>';
