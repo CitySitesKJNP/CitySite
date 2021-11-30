@@ -48,13 +48,34 @@ function initAutocomplete() {
 
         var request = $.ajax({'url': '/api/map'});
         request.done(function (activities) {
+            var popup = '';
             activities.forEach(function (activity) {
-                console.log(activity);
-                new google.maps.Marker({
+                var marker = new google.maps.Marker({
                     map: map,
                     position: {lat: activity.latitude, lng: activity.longitude}
                 })
-            })
+
+                popup += '<div>';
+                popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
+                popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
+                popup += '<p>' + "Activity ID: " + activity.id + '</p>';
+                popup += '</div>';
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: popup
+                })
+
+                marker.addListener("click", () => {
+                    infoWindow.open({
+                        anchor: marker,
+                        map,
+                        shouldFocus: false
+                    })
+                });
+
+                popup = '';
+            });
         })
 
     // Create the search box and link it to the UI element.
