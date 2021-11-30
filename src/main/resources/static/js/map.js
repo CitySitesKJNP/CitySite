@@ -44,6 +44,19 @@ function initAutocomplete() {
         zoom: 11,
         mapTypeId: "roadmap",
     });
+
+
+        var request = $.ajax({'url': '/api/map'});
+        request.done(function (activities) {
+            activities.forEach(function (activity) {
+                console.log(activity);
+                new google.maps.Marker({
+                    map: map,
+                    position: {lat: activity.latitude, lng: activity.longitude}
+                })
+            })
+        })
+
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);
