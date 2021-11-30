@@ -84,7 +84,7 @@ function initAutocomplete() {
                 popup += '<h1>' + "Name: " + activity.name + '</h1>';
                 popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
                 popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                popup += '<p>' + "Activity ID: " + activity.id + '</p>';
+                popup += '<a href="#">' + "Details for Activity: " + activity.id + '</a>';
                 popup += '</div>';
 
                 var infoWindow = new google.maps.InfoWindow({
