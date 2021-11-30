@@ -1,6 +1,5 @@
 package com.example.citysites.controllers;
 
-import com.example.citysites.models.Activity;
 import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 public class UserController {
@@ -43,20 +40,20 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/profile/{id}/{userid}")
     public String profilePage(Model model, Principal principal) {
-        String un = principal.getName();
-        model.addAttribute("user", userDao.findByUsername(un));
+        User loggedInUser = userDao.findByUsername(principal.getName());
+        model.addAttribute("user", loggedInUser);
         model.addAttribute("activity", activityDao.findAll());
         return "citysites/profile";
     }
     @PostMapping("/profile")
-    public String editProfile(@ModelAttribute User user){
-        User editedUser = userDao.getById(user.getId());
+    public String editProfile(@ModelAttribute User user, Principal principal){
+        User editedUser = userDao.findByUsername(principal.getName());
         editedUser.setUsername(user.getUsername());
         editedUser.setEmail(user.getEmail());
         userDao.save(editedUser);
-        return "redirect:/profile";
+        return "redirect:/profile/{id}";
     }
 
     @GetMapping("/user/favorites")
@@ -65,4 +62,5 @@ public class UserController {
 
         return "citysites/favorites";
     }
+
 }
