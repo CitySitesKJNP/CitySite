@@ -8,9 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -40,20 +42,24 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile/{id}/{userid}")
+    @GetMapping("/profile")
     public String profilePage(Model model, Principal principal) {
         User loggedInUser = userDao.findByUsername(principal.getName());
         model.addAttribute("user", loggedInUser);
         model.addAttribute("activity", activityDao.findAll());
         return "citysites/profile";
     }
+
     @PostMapping("/profile")
     public String editProfile(@ModelAttribute User user, Principal principal){
         User editedUser = userDao.findByUsername(principal.getName());
         editedUser.setUsername(user.getUsername());
         editedUser.setEmail(user.getEmail());
         userDao.save(editedUser);
-        return "redirect:/profile/{id}";
+        if(!Objects.equals(principal.getName(), editedUser.getUsername())) {
+            return "redirect:/login?logout";
+        }
+        return "redirect:/profile";
     }
 
     @GetMapping("/user/favorites")
