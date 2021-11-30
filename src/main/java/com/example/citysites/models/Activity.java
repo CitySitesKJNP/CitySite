@@ -1,5 +1,7 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -30,12 +32,15 @@ public class Activity {
     private long yelp_id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
+    @JsonIgnore
     private List<ActivityImage> activityImages;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
+    @JsonIgnore
     private List<Review> activityReviews;
 
     @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinTable(
             name = "activity_category",
             joinColumns = {@JoinColumn(name = "activity_id")},
@@ -44,6 +49,7 @@ public class Activity {
     private List<Category> categories;
 
     @ManyToMany(mappedBy = "favoriteActivities")
+    @JsonIgnore
     private List<User> userFavorites;
 
     public Activity() {
