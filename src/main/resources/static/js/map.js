@@ -1,7 +1,6 @@
 var map;
 var service;
 var infowindow;
-var geocoder;
 
 // function initMap() {
 //     // var san_antonio = new google.maps.LatLng(29.424349, -98.491142);
@@ -39,7 +38,7 @@ var geocoder;
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initAutocomplete() {
-    geocoder = new google.maps.Geocoder;
+    // mapboxgl.accessToken = MAPBOX_API_TOKEN_PERSONAL;
 
     const map = new google.maps.Map(document.getElementById("map"), {
         mapId: "2b964882efa1deff",
@@ -62,29 +61,24 @@ function initAutocomplete() {
                 // Current Error: Geocoder failed due to: MapsRequestError: GEOCODER_GEOCODE: OVER_QUERY_LIMIT: The webpage has gone over the requests limit in too short a period of time.
 
                 // setTimeout(function () {
-                //     geocoder.geocode({location: {lng: activity.longitude, lat: activity.latitude}}).then((response) => {
+                //     reverseGeocode({location: {lng: activity.longitude, lat: activity.latitude}}, MAPBOX_API_TOKEN_PERSONAL).then((response) => {
                 //         if (response.results[0]) {
                 //             popup += '<div>';
                 //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
                 //             popup += '<p>' + "Location: " + response.results[0] + '</p>';
                 //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
                 //             popup += '</div>';
-                //         } else {
-                //             popup += '<div>';
-                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                //             popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
-                //             popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
-                //             popup += '</div>';
-                //         }
                 //     })
-                // }, 1000);
+
+                // Under Construction...
+                // Working to route href to /activity/{id} using activity.id as the ID of the activity.
 
                 popup += '<div>';
                 popup += '<h1>' + "Name: " + activity.name + '</h1>';
                 popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
                 popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                popup += '<a href="#">' + "Details for Activity: " + activity.id + '</a>';
+                popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
+                // <a th:href="@{'/activity/' + ${activity.id}}">Click me!!!!</a>
                 popup += '</div>';
 
                 var infoWindow = new google.maps.InfoWindow({

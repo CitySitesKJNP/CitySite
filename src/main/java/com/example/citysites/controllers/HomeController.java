@@ -26,6 +26,7 @@ public class HomeController {
     @GetMapping("/home")
     public String homePage(Model model) {
         model.addAttribute("activities", activityDao.findAll());
+//        model.addAttribute("activity", activityDao.getById(1L));
         return "citysites/home";
     }
 }
