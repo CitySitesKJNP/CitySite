@@ -6,10 +6,7 @@ import com.example.citysites.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Objects;
@@ -55,6 +52,10 @@ public class UserController {
         User editedUser = userDao.findByUsername(principal.getName());
         editedUser.setUsername(user.getUsername());
         editedUser.setEmail(user.getEmail());
+        editedUser.setProfileImageUrl(user.getProfileImageUrl());
+        editedUser.setName(user.getName());
+//        String hash = passwordEncoder.encode(user.getPassword());
+//        editedUser.setPassword(hash);
         userDao.save(editedUser);
         if(!Objects.equals(principal.getName(), editedUser.getUsername())) {
             return "redirect:/login?logout";
