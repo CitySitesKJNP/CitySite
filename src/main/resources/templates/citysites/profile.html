@@ -17,17 +17,18 @@
 <!--    profile picture-->
     <button id="hide">Edit Profile</button>
     <div>
-   <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
+    <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
     <p>Your current username is <span th:text="${user.username}"></span></p>
     <p>The current active email address we have for you is<span th:text="${user.email}"></span></p>
     </div>
-    <form id="edit" th:method="POST" th:object="${user}">
+
+    <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
         <div>
             <label for="username"></label>
-            <input class="invisible" th:field="username" id="username" type="text" placeholder="Change your username" th:value="${user.username}">
+            <input  th:field="*{username}" name="username" id="username" type="text" placeholder="Change your username" th:value="${user.username}">
         </div>
         <div>
-            <input class="invisible" th:field="email" id="email" type="text" placeholder="Edit your email" th:text="${user.email}">
+            <input th:field="*{email}" name="emai" id="email" type="text" placeholder="Edit your email" th:value="${user.email}">
         </div>
         <button>Submit</button>
 

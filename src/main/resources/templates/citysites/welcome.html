@@ -1,70 +1,80 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:insert="partials/partials.html :: head('CitySites')"></head>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CitySites</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee&amp;display=swap">
+</head>
+
 <body>
-
-    <header th:insert="partials/partials.html :: header"></header>
-
-<!--    <nav th:insert="partials/partials.html :: navbar"></nav>-->
-<div>
-    <h2 class="display-4 text-center my-5" >Know Where to Go</h2>
-<div class="d-flex justify-content-center row col-12 text-center p-0 m-0">
-    <p>Description of App: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam fuga hic odio suscipit voluptas? Asperiores aut culpa, eum mollitia nemo nihil odio pariatur quaerat sapiente sequi ut velit vero vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernatur at consequatur culpa cum deserunt excepturi ipsa iure molestias pariatur, possimus quaerat quam quisquam repellendus saepe tempore velit veritatis voluptatibus. </p>
-</div>
-
-<!--    <a class="btn btn-outline-primary btn-lg center my-5" th:href="@{/home}">Go To Map</a>-->
-
-<!--    <form th:action="@{/login}" method="post">-->
-<!--        <label for="username">Username</label>-->
-<!--        <input id="username" name="username" type="text" />-->
-<!--        <label for="password">Password</label>-->
-<!--        <input id="password" name="password" type="password" />-->
-<!--        <input type="submit" value="Log In" />-->
-<!--    </form>-->
-
-<!--    <a class="nav-link" >Forgot Password?</a>-->
-<!--    <a class="nav-link" th:href="@{/register}">Register</a>-->
-
-    <div class="card-deck mx-3">
-        <div class="card" style="width: 20rem; height: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Sign In/Sign Up</h5>
-                <p class="card-text">Sign in to your account or create an account with us.</p>
-                <a href="/login" class="btn btn-primary">Sign Up/Sign In</a>
-            </div>
+<header class="text-center text-white masthead" style="background: url(&quot;https://images.unsplash.com/photo-1484627147104-f5197bcd6651?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1000&quot;) left / cover no-repeat;height: 627px;">
+    <div class="row" style="margin-top: -99px;height: 128px;">
+        <div class="col-sm-6 col-md-5 col-lg-4 offset-sm-1 flex-column" style="margin-top: -0px;">
+            <h1 class="d-flex justify-content-center" style="color: rgb(0,0,0);font-family: Handlee, serif;">CitySites</h1>
+            <h3 class="d-flex justify-content-center" style="color: rgb(0,0,0);opacity: 0.43;">Know Where To Go</h3>
         </div>
-        <div class="card" style="width: 20rem; height: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Map</h5>
-                <p class="card-text">Head over to our home page! Here you can see our map with many activities:</p>
-                <a href="/home" class="btn btn-primary">Go to Map</a>
+    </div>
+    <div class="row text-center d-flex justify-content-start">
+        <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 offset-0 offset-sm-1">
+            <p style="color: rgb(0,0,0);">Description of App: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam fuga hic odio suscipit voluptas? Asperiores aut culpa, eum mollitia nemo nihil odio pariatur quaerat sapiente sequi ut velit vero vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernatur at consequatur culpa cum deserunt excepturi ipsa iure molestias pariatur, possimus quaerat quam quisquam repellendus saepe tempore velit veritatis voluptatibus. .</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-4 offset-0 offset-sm-1 flex-column justify-content-center">
+            <div class="row">
+                <div class="col">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-primary" role="button" style="margin-right: 10px;border-style: none;background: rgb(247,215,204);color: rgb(0,0,0);border-radius: 10px;" href="/home">Map</a>
+                        <a class="btn btn-primary" role="button" style="margin-right: 10px;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;border-style: none;" href="/login">Sign In/Sign Up</a>
+                        <a class="btn btn-primary" role="button" style="background: #f7d7cc;border-style: none;border-radius: 10px;color: rgb(0,0,0);" href="/activity/create">Create Activity</a></div>
+                </div>
+            </div>
+            <form class="d-flex justify-content-center">
+                <input class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;background: rgba(255,255,255,0);border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
+                <button class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button></form>
+        </div>
+    </div>
+</header>
+<section class="text-center bg-light features-icons" style="height: 502.203px;">
+    <div class="container d-lg-flex justify-content-lg-center align-items-lg-start" style="margin-bottom: 54px;height: 77px;">
+        <div class="row">
+            <div class="col">
+                <h3 class="d-lg-flex">Most Famous Places</h3>
+                <h4 style="opacity: 0.44;">Recommended&nbsp;</h4>
             </div>
         </div>
     </div>
-    <div class="card-deck mt-3 mx-3">
-        <div class="card" style="width: 20rem; height: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Looking to Create an Activity?</h5>
-                <p class="card-text">Go to our activity creation form here:</p>
-                <a href="/activity/create" class="btn btn-primary">Create an Activity</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4" style="border-style: none;">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="assets/img/dallas.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
+                    <h5>Dallas</h5>
+                    <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
+                </div>
             </div>
-        </div>
-        <div class="card" style="width: 20rem; height: 20rem;">
-            <div class="card-body">
-                <h5 class="card-title">Search</h5>
-                <div class="form-group">
-                    <form action="/welcome" method="POST">
-                        <input type="text" class="form-control input-lg mt-4 mb-3" placeholder="Enter a City Here..." name="homeInput">
-                        <br>
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="assets/img/sana.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
+                    <h5>San Antonio</h5>
+                    <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="assets/img/hou.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
+                    <h5>Houston</h5>
+                    <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
                 </div>
             </div>
         </div>
     </div>
-
-    <th:block th:insert="partials/partials.html :: jquery" />
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
-    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
+
 </html>
