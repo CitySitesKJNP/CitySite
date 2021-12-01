@@ -10,9 +10,16 @@
     <button onclick="goBack()">Back</button>
 
     <div>
-
 <!--        other user reviews-->
-
+        <h2>Other Reviews:</h2>
+        <ul>
+           <li th:each="review : ${reviews}">
+               <img th:src="${user.profileImageUrl}">
+               <h4 th:text="${user.username}"></h4>
+               <span th:text="${review.rating}"></span>
+               <p th:text="${review.description}"></p>
+           </li>
+        </ul>
     </div>
 
     <th:block th:insert="partials/partials.html :: jquery" />
