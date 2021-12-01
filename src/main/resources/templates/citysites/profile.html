@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Profile')"></head>
 <body>
+<style>
+    .invisible {
+        display: none
+    }
+</style>
 
     <header th:insert="partials/partials.html :: header"></header>
 
@@ -10,9 +15,24 @@
     <button onclick="goBack()">Back</button>
 
 <!--    profile picture-->
-   <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
+    <button id="hide">Edit Profile</button>
+    <div>
+    <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
     <p>Your current username is <span th:text="${user.username}"></span></p>
     <p>The current active email address we have for you is<span th:text="${user.email}"></span></p>
+    </div>
+
+    <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
+        <div>
+            <label for="username"></label>
+            <input  th:field="*{username}" name="username" id="username" type="text" placeholder="Change your username" th:value="${user.username}">
+        </div>
+        <div>
+            <input th:field="*{email}" name="emai" id="email" type="text" placeholder="Edit your email" th:value="${user.email}">
+        </div>
+        <button>Submit</button>
+
+    </form>
 
 
 <!--    details of user input?-->
@@ -40,7 +60,14 @@
 
     </div>
 
+
     <th:block th:insert="partials/partials.html :: jquery" />
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
+    <script>
+        $('#hide').click(function(event) {
+            event.preventDefault();
+            $('#edit').toggleClass('invisible');
+        });
+    </script>
 </body>
 </html>
