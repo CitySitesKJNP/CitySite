@@ -80,6 +80,9 @@ function initAutocomplete() {
                 //     })
                 // }, 1000);
 
+                // Under Construction...
+                // Working to route href to /activity/{id} using activity.id as the ID of the activity.
+
                 popup += '<div>';
                 popup += '<h1>' + "Name: " + activity.name + '</h1>';
                 popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
