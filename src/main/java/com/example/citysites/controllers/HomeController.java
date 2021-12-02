@@ -5,6 +5,7 @@ import com.example.citysites.repositories.ActivityRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -21,6 +22,12 @@ public class HomeController {
     @ResponseBody
     public List<Activity> allActivitiesInJSON() {
         return activityDao.findAll();
+    }
+
+    @GetMapping("/api/activity/{id}")
+    @ResponseBody
+    public Activity singleActivityJSON(@PathVariable long id) {
+        return activityDao.getById(id);
     }
 
     @GetMapping("/home")
