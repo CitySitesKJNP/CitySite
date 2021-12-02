@@ -19,49 +19,49 @@ function initAutocomplete() {
     });
 
 
-    var request = $.ajax({'url': '/api/map'});
-    request.done(function (activities) {
-        var popup = '';
-        Promise.all(
-            activities.map(function (activity) {
-                return new Promise(((resolve, reject) => {
-                    reverseGeocode({lat: activity.latitude, lng: activity.longitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (addresses){
-                        resolve(addresses);
-                    })
-                }))
-            })
-        ).then(function (results){
-            activities.forEach(function (currentActivity, index) {
-                currentActivity.address = results[index];
-            })
-            activities.forEach(function (activity) {
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: activity.latitude, lng: activity.longitude}
+        var request = $.ajax({'url': '/api/map'});
+        request.done(function (activities) {
+            var popup = '';
+            Promise.all(
+                activities.map(function (activity) {
+                    return new Promise(((resolve, reject) => {
+                        reverseGeocode({lat: activity.latitude, lng: activity.longitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (addresses){
+                            resolve(addresses);
+                        })
+                    }))
                 })
-
-                popup += '<div>';
-                popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                popup += '<p>' + "Address: " + activity.address + '</p>';
-                popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
-                popup += '</div>';
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: popup
+            ).then(function (results){
+                activities.forEach(function (currentActivity, index) {
+                    currentActivity.address = results[index];
                 })
-
-                marker.addListener("click", () => {
-                    infoWindow.open({
-                        anchor: marker,
-                        map,
-                        shouldFocus: false
+                activities.forEach(function (activity) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: {lat: activity.latitude, lng: activity.longitude}
                     })
+
+                    popup += '<div>';
+                    popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                    popup += '<p>' + "Address: " + activity.address + '</p>';
+                    popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
+                    popup += '</div>';
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: popup
+                    })
+
+                    marker.addListener("click", () => {
+                        infoWindow.open({
+                            anchor: marker,
+                            map,
+                            shouldFocus: false
+                        })
+                    });
+
+                    popup = '';
                 });
-
-                popup = '';
             });
-        });
-    })
+        })
 
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
