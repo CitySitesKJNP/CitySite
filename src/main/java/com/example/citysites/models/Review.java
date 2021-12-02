@@ -15,7 +15,7 @@ public class Review {
     private int rating;
 
     @Column(nullable = false)
-    private String content;
+    private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewImage")
     private List<ReviewImage> reviewImages;
@@ -28,6 +28,11 @@ public class Review {
     @JoinColumn(name = "activity_id")
     private Activity activityReview;
 
+    public Review(long id, int rating, String description) {
+        this.id = id;
+        this.rating = rating;
+        this.description = description;
+    }
 
     public Review() {
     }
@@ -48,12 +53,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<ReviewImage> getReviewImages() {
