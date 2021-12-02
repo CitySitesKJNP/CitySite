@@ -15,16 +15,14 @@
 
         <h3>Favorites</h3>
 
-        <div>
-
-<!--            favorites-->
-<!--
-        need to use th: each to iterate over the user.favoriteActivities and for each activity
-        define how you want to display each activity
-
--->
-
-        </div>
+        <ul>
+            <li th:each="favorite : ${favorites}">
+                <h1><span th:text="${favorite.name}"></span></h1>
+                <p th:text="${favorite.longitude}"></p>
+                <p th:text="${favorite.latitude}"></p>
+                <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
+            </li>
+        </ul>
 
     </div>
 
