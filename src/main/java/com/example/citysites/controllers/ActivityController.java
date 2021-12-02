@@ -25,12 +25,19 @@ public class ActivityController {
     }
 
     @GetMapping("/activity/{id}")
-    public String singleActivityDetails(@PathVariable long id, Model model, Principal principal) {
-        String un = principal.getName();
-        model.addAttribute("user", userDao.findByUsername(un));
-        model.addAttribute("activity", activityDao.findById(id));
+    public String singleActivityDetails(@PathVariable long id, Model model) {
+        model.addAttribute("activity", activityDao.getById(id));
         return "citysites/details";
     }
+
+
+//    @PostMapping("activity/{id}")
+//    public String activityDetailPage(@PathVariable long id, Model model, Principal principal) {
+//        String un = principal.getName();
+//        model.addAttribute("user", userDao.findByUsername(un));
+//        model.addAttribute("activity", activityDao.findById(id));
+//        return "redirect: /details";
+//    }
 
     @GetMapping("/activity/create")
     public String activityCreationPage(Model model) {

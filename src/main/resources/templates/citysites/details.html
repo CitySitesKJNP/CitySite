@@ -7,7 +7,9 @@
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
+    <button>Add a Review</button>
+
+    <button>See All Reviews</button>
 
 <!--    Site profile pic-->
 
@@ -17,9 +19,16 @@
 
 <!--    description of site-->
 
-    <button>Add a Review</button>
 
-    <button>See All Reviews</button>
+    <div>
+        <h1> <span th:text="${activity.name}"></span></h1>
+        <p th:text="${activity.hours}"></p>
+        <p th:text="${activity.description}"></p>
+        <p th:text="${activity.longitude}"></p>
+        <p th:text="${activity.latitude}"></p>
+    </div>
+
+    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
     <th:block th:insert="partials/partials.html :: jquery" />
