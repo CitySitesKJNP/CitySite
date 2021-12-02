@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Profile')"></head>
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
+
 <body>
 <style>
     .invisible {
@@ -11,11 +13,9 @@
     }
 </style>
 
-    <header th:insert="partials/partials.html :: header"></header>
-
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()">Back</button>
+    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
 <!-- User information appended to the page-->
     <button id="hide">Edit Profile</button>

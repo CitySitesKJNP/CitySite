@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>CitySites</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee&amp;display=swap">
-</head>
+<head th:insert="partials/partials.html :: head('CitySites')"></head>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.welcome.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee&amp;display=swap">
 
 <body>
 <header class="text-center text-white masthead" style="background: url(&quot;https://images.unsplash.com/photo-1484627147104-f5197bcd6651?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1000&quot;) left / cover no-repeat;height: 627px;">
@@ -36,8 +29,9 @@
                 </div>
             </div>
             <form class="d-flex justify-content-center">
-                <input class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;background: rgba(255,255,255,0);border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
-                <button class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button></form>
+                <input class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
+                <button class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button>
+            </form>
         </div>
     </div>
 </header>
@@ -73,7 +67,7 @@
         </div>
     </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<th:block th:insert="partials/partials.html :: jquery" />
 <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 

@@ -3,13 +3,13 @@
 <head th:insert="partials/partials.html :: head('Add Activity')"></head>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" href="/css/activity-creation-map.css">
-<body>
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
 
-    <header th:insert="partials/partials.html :: header"></header>
+<body>
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()">Back</button>
+    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
     <h1>Create an Activity</h1>
 
