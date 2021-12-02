@@ -2,34 +2,6 @@ var map;
 var service;
 var infowindow;
 
-function initMap() {
-    // var san_antonio = new google.maps.LatLng(29.424349, -98.491142);
-
-    infowindow = new google.maps.InfoWindow();
-
-    // map = new google.maps.Map(
-    //     document.getElementById('map'), {center: san_antonio, zoom: 11});
-}
-
-function codeAddress() {
-    geocoder.geocode({
-        componentRestrictions: {
-            country: 'US',
-            postalCode: '78000, 78299'
-        }
-    }, function(results, status) {
-        if (status == 'OK') {
-            map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
-        } else {
-            window.alert('Geocode was not successful for the following reason: ' + status);
-        }
-    });
-}
-
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
@@ -37,12 +9,60 @@ function codeAddress() {
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initAutocomplete() {
+    // mapboxgl.accessToken = MAPBOX_API_TOKEN_PERSONAL;
+
     const map = new google.maps.Map(document.getElementById("map"), {
         mapId: "2b964882efa1deff",
         center: { lat: 29.424349, lng: -98.491142 },
-        zoom: 13,
+        zoom: 11,
         mapTypeId: "roadmap",
     });
+
+
+    var request = $.ajax({'url': '/api/map'});
+    request.done(function (activities) {
+        var popup = '';
+        Promise.all(
+            activities.map(function (activity) {
+                return new Promise(((resolve, reject) => {
+                    reverseGeocode({lat: activity.latitude, lng: activity.longitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (addresses){
+                        resolve(addresses);
+                    })
+                }))
+            })
+        ).then(function (results){
+            activities.forEach(function (currentActivity, index) {
+                currentActivity.address = results[index];
+            })
+            activities.forEach(function (activity) {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: {lat: activity.latitude, lng: activity.longitude}
+                })
+
+                popup += '<div>';
+                popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                popup += '<p>' + "Address: " + activity.address + '</p>';
+                popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
+                popup += '</div>';
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: popup
+                })
+
+                marker.addListener("click", () => {
+                    infoWindow.open({
+                        anchor: marker,
+                        map,
+                        shouldFocus: false
+                    })
+                });
+
+                popup = '';
+            });
+        });
+    })
+
     // Create the search box and link it to the UI element.
     const input = document.getElementById("pac-input");
     const searchBox = new google.maps.places.SearchBox(input);
