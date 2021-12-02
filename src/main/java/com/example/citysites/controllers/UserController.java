@@ -1,5 +1,6 @@
 package com.example.citysites.controllers;
 
+import com.example.citysites.models.Activity;
 import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -65,9 +67,23 @@ public class UserController {
 
     @GetMapping("/user/favorites")
     public String userFavoritesPage(Model model, Principal principal) {
-
-
+        User loggedInUser = userDao.findByUsername(principal.getName());
+        model.addAttribute("user", loggedInUser);
         return "citysites/favorites";
+    }
+
+    @PostMapping("/activity/{id}/favorite")
+    public String userFavorites(Principal principal) {
+        User loggedInUser = userDao.findByUsername(principal.getName());
+        Activity favorited = 
+//        need to pull out the id from the pathvariable
+//        with that path variable retrieve that specific activity from the database by id
+//        from the logged in userobject pull out the list of favorite activities and store it in a list of activities variable
+//        add the activity object from the path variable to the list of favorites activities from the user
+//        then youll need to set the value of the list of favorite activities on the user object that you added an activity to
+//        persist the change by saving the user record with the user dao
+//
+        return "redirect:/home";
     }
 
 }
