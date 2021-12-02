@@ -7,7 +7,11 @@
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button>Add a Review</button>
+<!--    Under Construction-->
+
+    <form th:action="@{/reviews/create}" th:method="GET">
+        <button type="submit">Add a Review</button>
+    </form>
 
     <button>See All Reviews</button>
 
