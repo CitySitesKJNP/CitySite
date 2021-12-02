@@ -2,35 +2,6 @@ var map;
 var service;
 var infowindow;
 
-// function initMap() {
-//     // var san_antonio = new google.maps.LatLng(29.424349, -98.491142);
-//
-//     infowindow = new google.maps.InfoWindow();
-//
-//     // map = new google.maps.Map(
-//     //     document.getElementById('map'), {center: san_antonio, zoom: 11});
-// }
-
-// function codeAddress() {
-//     geocoder.geocode({
-//         componentRestrictions: {
-//             country: 'US',
-//             postalCode: '78000, 78299'
-//         }
-//     }, function(results, status) {
-//         if (status == 'OK') {
-//             map.setCenter(results[0].geometry.location);
-//             var marker = new google.maps.Marker({
-//                 map: map,
-//                 position: results[0].geometry.location
-//             });
-//         } else {
-//             window.alert('Geocode was not successful for the following reason: ' + status);
-//         }
-//     });
-//     console.log(codeAddress(status));
-// }
-
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
@@ -51,49 +22,44 @@ function initAutocomplete() {
         var request = $.ajax({'url': '/api/map'});
         request.done(function (activities) {
             var popup = '';
-            activities.forEach(function (activity) {
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: activity.latitude, lng: activity.longitude}
+            Promise.all(
+                activities.map(function (activity) {
+                    return new Promise(((resolve, reject) => {
+                        reverseGeocode({lat: activity.latitude, lng: activity.longitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (addresses){
+                            resolve(addresses);
+                        })
+                    }))
                 })
-
-                // Under Construction...
-                // Current Error: Geocoder failed due to: MapsRequestError: GEOCODER_GEOCODE: OVER_QUERY_LIMIT: The webpage has gone over the requests limit in too short a period of time.
-
-                // setTimeout(function () {
-                //     reverseGeocode({location: {lng: activity.longitude, lat: activity.latitude}}, MAPBOX_API_TOKEN_PERSONAL).then((response) => {
-                //         if (response.results[0]) {
-                //             popup += '<div>';
-                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                //             popup += '<p>' + "Location: " + response.results[0] + '</p>';
-                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
-                //             popup += '</div>';
-                //     })
-
-                // Under Construction...
-                // Working to route href to /activity/{id} using activity.id as the ID of the activity.
-
-                popup += '<div>';
-                popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
-                popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
-                // <a th:href="@{'/activity/' + ${activity.id}}">Click me!!!!</a>
-                popup += '</div>';
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: popup
+            ).then(function (results){
+                activities.forEach(function (currentActivity, index) {
+                    currentActivity.address = results[index];
                 })
-
-                marker.addListener("click", () => {
-                    infoWindow.open({
-                        anchor: marker,
-                        map,
-                        shouldFocus: false
+                activities.forEach(function (activity) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: {lat: activity.latitude, lng: activity.longitude}
                     })
-                });
 
-                popup = '';
+                    popup += '<div>';
+                    popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                    popup += '<p>' + "Address: " + activity.address + '</p>';
+                    popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
+                    popup += '</div>';
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: popup
+                    })
+
+                    marker.addListener("click", () => {
+                        infoWindow.open({
+                            anchor: marker,
+                            map,
+                            shouldFocus: false
+                        })
+                    });
+
+                    popup = '';
+                });
             });
         })
 
