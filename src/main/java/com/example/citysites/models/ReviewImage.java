@@ -21,6 +21,10 @@ public class ReviewImage {
     public ReviewImage() {
     }
 
+    public ReviewImage(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public long getId() {
         return id;
     }

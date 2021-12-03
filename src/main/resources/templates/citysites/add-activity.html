@@ -57,13 +57,7 @@
 
     <th:block th:insert="partials/partials.html :: jquery" />
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
-    <script>
-        $(document).ready(function () {
-            $("#create-an-element").click(function () {
-                $(this).after('<br><input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">');
-            });
-        });
-    </script>
+    <script src="/js/add-inputs.js"></script>
     <script src="/js/activity-creation-map.js"></script>
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <!--                                      DEPLOY KEY-->

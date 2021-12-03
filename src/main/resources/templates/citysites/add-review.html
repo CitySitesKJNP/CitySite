@@ -29,6 +29,11 @@
             <br>
             <textarea th:field="*{description}" name="content" id="description" cols="30" rows="10" placeholder="Please Enter Your Review... "></textarea>
         </div>
+        <div>
+            <label for="image">Image(s)</label>
+            <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
+            <button type="button" id="create-an-element">Add Another Image?</button>
+        </div>
         <button type="submit">Submit Review</button>
     </form>
 
@@ -36,5 +41,6 @@
 
     <th:block th:insert="partials/partials.html :: jquery" />
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
+    <script src="/js/add-inputs.js"></script>
 </body>
 </html>
