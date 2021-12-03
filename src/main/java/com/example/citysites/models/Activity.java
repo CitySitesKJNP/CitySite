@@ -41,15 +41,6 @@ public class Activity {
     @JsonIgnore
     private List<Review> activityReviews;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JoinTable(
-            name = "activity_category",
-            joinColumns = {@JoinColumn(name = "activity_id")},
-            inverseJoinColumns = {@JoinColumn(name = "category_id")}
-    )
-    private List<Category> categories;
-
     @ManyToMany(mappedBy = "favoriteActivities")
     @JsonIgnore
     private List<User> userFavorites;
@@ -127,14 +118,6 @@ public class Activity {
 
     public void setActivityReviews(List<Review> activityReviews) {
         this.activityReviews = activityReviews;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
     }
 
     public List<User> getUserFavorites() {
