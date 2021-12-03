@@ -31,10 +31,14 @@
             class="controls"
             type="text"
             placeholder="Search Box"
+            th:value="${userInput}"
     />
+
+    <th:block th:insert="partials/partials.html :: jquery" />
 
     <script src="/js/keys.js"></script>
     <script src="/js/geocode-mapbox-utils.js"></script>
+    <script src="/js/weather.js"></script>
     <script src="/js/map.js"></script>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
@@ -42,7 +46,7 @@
 <!--    <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
 <!--                                          MAIN KEY-->
     <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>
-    <th:block th:insert="partials/partials.html :: jquery" />
+
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>

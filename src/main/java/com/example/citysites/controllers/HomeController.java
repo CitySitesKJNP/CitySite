@@ -4,9 +4,7 @@ import com.example.citysites.models.Activity;
 import com.example.citysites.repositories.ActivityRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,9 +29,17 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String homePage(Model model) {
+    public String homePage(@RequestParam(name =  "userInput") String userInput, Model model) {
         model.addAttribute("activities", activityDao.findAll());
+        model.addAttribute("userInput", userInput);
 //        model.addAttribute("activity", activityDao.getById(1L));
         return "citysites/home";
+    }
+
+    @PostMapping("/search")
+    public String homePagePost(@RequestParam(name =  "userInput") String userInput) {
+        System.out.println(userInput);
+
+        return "redirect:/home?userInput=" + userInput;
     }
 }

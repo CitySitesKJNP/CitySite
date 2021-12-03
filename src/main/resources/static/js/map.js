@@ -1,6 +1,9 @@
 var map;
 var service;
 var infowindow;
+// var userInput = $('#userInput');
+var userInput = document.getElementById('userInput');
+
 
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
@@ -11,7 +14,7 @@ var infowindow;
 function initAutocomplete() {
     // mapboxgl.accessToken = MAPBOX_API_TOKEN_PERSONAL;
 
-    const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         mapId: "2b964882efa1deff",
         center: { lat: 29.424349, lng: -98.491142 },
         zoom: 11,
@@ -85,6 +88,12 @@ function initAutocomplete() {
 
         }
 
+        // MIGHT BE USEFUL BUT PROLLY NOT: FEEL FREE TO DELETE
+        // if (userInput != null) {
+        //     console.log(initAutocomplete());
+        //     return initAutocomplete();
+        // }
+
         // Clear out the old markers.
         markers.forEach((marker) => {
             marker.setMap(null);
@@ -126,4 +135,32 @@ function initAutocomplete() {
         });
         map.fitBounds(bounds);
     });
+
 }
+
+
+
+function searchInput() {
+    geocode(userInput.value, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
+
+        console.log(result);
+        longitude = result[0];
+        latitude = result[1];
+        var marker = new mapboxgl.Marker({draggable: true})
+            .setLngLat([longitude, latitude])
+            .addTo(map);
+        // marker.on('dragend', onDragEnd);
+        // $('#currentCity').html(userInput.val());
+        // map.flyTo({
+        //     center: [longitude, latitude],
+        //     zoom: 9
+        // });
+
+    });
+
+}
+
+document.getElementById("anything").addEventListener("click", function (event) {
+
+    searchInput();
+})

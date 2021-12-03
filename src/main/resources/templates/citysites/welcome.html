@@ -28,9 +28,9 @@
                         <a class="btn btn-primary" role="button" style="background: #f7d7cc;border-style: none;border-radius: 10px;color: rgb(0,0,0);" href="/activity/create">Create Activity</a></div>
                 </div>
             </div>
-            <form class="d-flex justify-content-center">
-                <input class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
-                <button class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button>
+            <form th:action="@{/search}" th:method="POST" class="d-flex justify-content-center">
+                <input name="userInput" id="userInput" class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
+                <button id="anything" class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button>
             </form>
         </div>
     </div>
@@ -67,6 +67,11 @@
         </div>
     </div>
 </section>
+
+<script src="/js/keys.js"></script>
+<script src="/js/geocode-mapbox-utils.js"></script>
+<script src="/js/map.js"></script>
+
 <th:block th:insert="partials/partials.html :: jquery" />
 <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
