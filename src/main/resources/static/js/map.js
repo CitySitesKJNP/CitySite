@@ -160,7 +160,36 @@ function searchInput() {
 
 }
 
-document.getElementById("anything").addEventListener("click", function (event) {
+setTimeout(function() {
+    console.log("test");
+    var input = document.querySelector("#pac-input");
+    input.focus();
+    var ev = document.createEvent('Event');
+    ev.initEvent('keypress');
+    ev.which = ev.keyCode = 13;
+    input.dispatchEvent(ev);
+    // google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+}, 5000);
 
-    searchInput();
-})
+google.maps.event.addListenerOnce(map, 'idle', function(){
+    // do something only the first time the map is loaded
+    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+
+});
+
+// window.onload = (event) => {
+//     document.getElementById("map").addEventListener('load', (event) => {
+//         console.log('map loaded!');
+//     });
+// };
+
+// document.getElementById("map").addEventListener('load', (event) => {
+//
+//     console.log('map loaded!');
+//
+// });
+
+// document.getElementById("anything").addEventListener("click", function (event) {
+
+    // searchInput();
+// })
