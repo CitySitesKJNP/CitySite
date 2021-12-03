@@ -75,6 +75,10 @@ function initAutocomplete() {
     map.addListener("bounds_changed", () => {
         searchBox.setBounds(map.getBounds());
     });
+    map.addListener('bounds_changed', function () {
+        // alert("map loaded");
+        google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+    });
 
     let markers = [];
 
@@ -164,17 +168,17 @@ setTimeout(function() {
     console.log("test");
     var input = document.querySelector("#pac-input");
     input.focus();
-    var ev = document.createEvent('Event');
-    ev.initEvent('keypress');
-    ev.which = ev.keyCode = 13;
-    input.dispatchEvent(ev);
-    // google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+    // var ev = document.createEvent('Event');
+    // ev.initEvent('keypress');
+    // ev.which = ev.keyCode = 13;
+    // input.dispatchEvent(ev);
+    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
 }, 5000);
 
 google.maps.event.addListenerOnce(map, 'idle', function(){
     // do something only the first time the map is loaded
-    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
-
+    // google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+    alert("map laoded");
 });
 
 // window.onload = (event) => {
