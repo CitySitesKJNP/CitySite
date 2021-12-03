@@ -9,10 +9,9 @@
 
 <!--    Under Construction-->
 
-    <form th:action="@{/reviews/create}" th:method="GET">
-        <button type="submit">Add a Review</button>
-    </form>
+    <a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
 
+<!--    Needs to go to /reviews/{id}-->
     <button>See All Reviews</button>
 
 <!--    Site profile pic-->

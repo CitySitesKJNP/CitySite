@@ -13,7 +13,7 @@
 
     <h3>*ENTER ACTIVITY BEING REVIEWED HERE*</h3>
 
-    <form th:method="POST" th:action="@{/reviews/create}" th:object="${review}">
+    <form th:method="POST" th:action="@{'/reviews/create/' + ${activity.id}}" th:object="${review}">
         <div>
             <label for="rating">Choose a Rating (1-5)</label>
             <select th:field="*{rating}" id="rating" name="rating">

@@ -1,5 +1,6 @@
 package com.example.citysites.controllers;
 
+import com.example.citysites.models.Activity;
 import com.example.citysites.models.Review;
 import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityRepository;
@@ -37,17 +38,20 @@ public class ReviewController {
         return "citysites/view-reviews";
     }
 
-    @GetMapping("/reviews/create")
-    public String reviewCreationPage(Model model) {
+    @GetMapping("/reviews/create/{activity_id}")
+    public String reviewCreationPage(@PathVariable long activity_id, Model model) {
+        model.addAttribute("activity", activityDao.getById(activity_id));
         model.addAttribute("review", new Review());
         return "citysites/add-review";
     }
 
-    @PostMapping("/reviews/create")
-    public String createReview(@ModelAttribute Review review) {
+    @PostMapping("/reviews/create/{activity_id}")
+    public String createReview(@PathVariable long activity_id, @ModelAttribute Review review) {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Activity activity = activityDao.getById(activity_id);
+        review.setActivityReview(activity);
         review.setUserReview(principal);
         reviewDao.save(review);
-        return "redirect:/view-reviews";
+        return "redirect:/reviews/" + review.getId();
     }
 }
