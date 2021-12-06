@@ -29,6 +29,7 @@ public class ReviewController {
     public String reviewsPage(@PathVariable long activity_id, Model model) {
         Activity activity = activityDao.getById(activity_id);
         List<Review> reviews = activity.getActivityReviews();
+        model.addAttribute("activity", activity);
         model.addAttribute("reviews", reviews);
         return "citysites/view-reviews";
     }
@@ -78,9 +79,9 @@ public class ReviewController {
         return "redirect:/reviews";
     }
 
-    @PostMapping("review/{id}/delete")
-    public String reviewDelete(@PathVariable long id){
+    @PostMapping("/review/{id}/delete/{activity_id}")
+    public String reviewDelete(@PathVariable long id, @PathVariable long activity_id){
         reviewDao.deleteById(id);
-        return "redirect:/view-reviews";
+        return "redirect:/reviews/" + activity_id;
     }
 }
