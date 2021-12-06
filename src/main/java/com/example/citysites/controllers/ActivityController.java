@@ -32,22 +32,22 @@ public class ActivityController {
 
 
     @PostMapping("activity/{id}")
-    public String activityDetailPage(@ModelAttribute Activity activity, Principal principal) {
-//        List<ActivityImage> images = new ArrayList<>();
-//        for (String url : urls) {
-//            ActivityImage activityImage = new ActivityImage(url);
-//            activityImage.setActivity(activity);
-//            images.add(activityImage);
-//        }
+    public String activityDetailPage(@ModelAttribute Activity activity, @RequestParam List<String> urls) {
+        List<ActivityImage> images = activity.getActivityImages();
+        for (String url : urls) {
+            ActivityImage activityImage = new ActivityImage(url);
+            activityImage.setActivity(activity);
+            images.add(activityImage);
+        }
         Activity editedActivity = activityDao.getById(activity.getId());
         editedActivity.setName(activity.getName());
         editedActivity.setDescription(activity.getDescription());
         editedActivity.setHours(activity.getHours());
-//        editedActivity.setActivityImages();
+        editedActivity.setActivityImages(images);
         activityDao.save(editedActivity);
-        String un = principal.getName();
         return "redirect:/activity/" + activity.getId();
     }
+
 
     @GetMapping("/activity/create")
     public String activityCreationPage(Model model) {
@@ -68,6 +68,12 @@ public class ActivityController {
         activity.setActivityImages(images);
 
         activityDao.save(activity);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/activity/{id}/delete")
+    public String deleteActivity(@PathVariable long id){
+        activityDao.deleteById(id);
         return "redirect:/home";
     }
 
