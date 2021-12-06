@@ -34,16 +34,25 @@ public class ActivityController {
     @PostMapping("activity/{id}")
     public String activityDetailPage(@ModelAttribute Activity activity, @RequestParam List<String> urls) {
         List<ActivityImage> images = activity.getActivityImages();
+        System.out.println(images);
+
+        if (images == null) {
+            images = new ArrayList<>();
+        }
+
         for (String url : urls) {
             ActivityImage activityImage = new ActivityImage(url);
             activityImage.setActivity(activity);
             images.add(activityImage);
         }
+
         Activity editedActivity = activityDao.getById(activity.getId());
+
         editedActivity.setName(activity.getName());
         editedActivity.setDescription(activity.getDescription());
         editedActivity.setHours(activity.getHours());
         editedActivity.setActivityImages(images);
+
         activityDao.save(editedActivity);
         return "redirect:/activity/" + activity.getId();
     }
@@ -76,6 +85,4 @@ public class ActivityController {
         activityDao.deleteById(id);
         return "redirect:/home";
     }
-
-//    PostMapping to add new Activity to DB
 }
