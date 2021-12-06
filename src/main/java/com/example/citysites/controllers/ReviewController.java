@@ -27,7 +27,8 @@ public class ReviewController {
 
     @GetMapping("/reviews/{activity_id}")
     public String reviewsPage(@PathVariable long activity_id, Model model) {
-        List<Review> reviews = reviewDao.findById(activity_id);
+        Activity activity = activityDao.getById(activity_id);
+        List<Review> reviews = activity.getActivityReviews();
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", principal);
         model.addAttribute("reviews", reviews);
@@ -58,6 +59,6 @@ public class ReviewController {
         review.setReviewImages(images);
 
         reviewDao.save(review);
-        return "redirect:/reviews/" + review.getId();
+        return "redirect:/reviews/" + activity.getId();
     }
 }
