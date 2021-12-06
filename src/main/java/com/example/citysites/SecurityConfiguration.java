@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/activity/create", // only authenticated users can create activities
                         "/user/favorites",
                         "/profile",
-                        "/reviews/create"
+                        "/reviews/create/{activity_id}"
                 )
                 .authenticated()
         ;

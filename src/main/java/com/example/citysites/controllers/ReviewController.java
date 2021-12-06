@@ -29,8 +29,6 @@ public class ReviewController {
     public String reviewsPage(@PathVariable long activity_id, Model model) {
         Activity activity = activityDao.getById(activity_id);
         List<Review> reviews = activity.getActivityReviews();
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", principal);
         model.addAttribute("reviews", reviews);
         return "citysites/view-reviews";
     }

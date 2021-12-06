@@ -12,8 +12,8 @@
         <h2>Other Reviews:</h2>
         <ul>
            <li th:each="review : ${reviews}">
-               <img th:src="${user.profileImageUrl}">
-               <h4 th:text="${user.username}"></h4>
+               <img th:src="${review.userReview.profileImageUrl}">
+               <h4 th:text="${review.userReview.username}"></h4>
                <span th:text="${review.rating}"></span>
                <p th:text="${review.description}"></p>
            </li>
