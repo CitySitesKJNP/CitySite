@@ -2,7 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('CitySites')"></head>
 <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
-
+<style>
+    .invisible{
+        display: none;
+    }
+</style>
 <body>
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -32,6 +36,30 @@
             <button type="submit">Favorite</button>
         </form>
     </div>
+    <button id="hide">Edit activity</button>
+    <div>
+        <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">
+            <div>
+                <label for="name"></label>
+                <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">
+            </div>
+            <div>
+                <label for="description">Change your email address</label>
+                <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">
+            </div>
+            <div>
+                <label for="hours">Edit Existing hou</label>
+                <input th:value="*{hours}" type="text" id="hours" name="hours">
+            </div>
+
+            <div>
+                <label for="image"> Profile Image</label>
+                <input th:field="*{activityImages}" name="image" id="image" type="url" placeholder="Enter your image url here">
+            </div>
+            <button>Submit</button>
+
+        </form>
+    </div>
 
     <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
@@ -49,6 +77,10 @@
                 document.getElementById("activityAddress").innerText = result;
             })
         })
+        $('#hide').click(function(event) {
+            event.preventDefault();
+            $('#edit').toggleClass('invisible');
+        });
     </script>
 </body>
 </html>
