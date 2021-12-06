@@ -76,6 +76,11 @@ public class UserController {
 
     @PostMapping("/activity/{id}/favorite")
     public String userFavorites(@PathVariable long id, Principal principal) {
+
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
 //        logged in user object
         User loggedInUser = userDao.findByUsername(principal.getName());
 
