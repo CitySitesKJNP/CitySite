@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Showing Reviews')"></head>
+<link rel="stylesheet" href="/css/citysites.css">
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
 <body>
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -16,6 +18,14 @@
                <h4 th:text="${review.userReview.username}"></h4>
                <span th:text="${review.rating}"></span>
                <p th:text="${review.description}"></p>
+<!--               <div sec:authorize="isAuthenticated()">-->
+<!--                   <div th:if="${#authentication.principal.id == review.user.id}">-->
+<!--                       <a th:href="@{'/reviews/' + ${review.id} + '/edit'}">Edit Post</a>-->
+                       <form th:action="@{'/reviews/' + ${review.id} + '/delete'}" th:method="POST">
+                           <button>Delete Post</button>
+                       </form>
+                   </div>
+               </div>
            </li>
         </ul>
     </div>

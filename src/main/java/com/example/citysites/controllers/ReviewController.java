@@ -59,4 +59,28 @@ public class ReviewController {
         reviewDao.save(review);
         return "redirect:/reviews/" + activity.getId();
     }
+
+    @GetMapping("/reviews/{id}/edit")
+    public String returnEditView(@PathVariable long id, Model model) {
+        model.addAttribute("post", reviewDao.getById(id));
+        return "reviews/edit";
+    }
+
+    @PostMapping("/reviews/{id}/edit")
+    public String updatePost(@ModelAttribute("post") Review review) {
+
+        Review editedReview = reviewDao.getById(review.getId());
+
+        editedReview.setActivityReview(review.getActivityReview());
+        editedReview.setDescription(review.getDescription());
+
+        reviewDao.save(editedReview);
+        return "redirect:/reviews";
+    }
+
+    @PostMapping("review/{id}/delete")
+    public String reviewDelete(@PathVariable long id){
+        reviewDao.deleteById(id);
+        return "redirect:/view-reviews";
+    }
 }
