@@ -12,7 +12,7 @@
     <a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
 
 <!--    Needs to go to /reviews/{id}-->
-    <button>See All Reviews</button>
+    <a th:href="@{'/reviews/' + ${activity.id}}"><button>See All Reviews</button></a>
 
 <!--    Site profile pic-->
 
@@ -38,7 +38,7 @@
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
     <th:block th:insert="partials/partials.html :: jquery" />
 
-    <script src="/js/keys.js"></script>
+    <script src="/keys.js"></script>
     <script src="/js/geocode-mapbox-utils.js"></script>
     <script th:inline="javascript">
         var activityId = [[${activity.id}]];
