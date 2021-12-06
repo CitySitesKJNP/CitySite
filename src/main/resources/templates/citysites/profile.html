@@ -83,6 +83,7 @@
 <!--            <input th:field="*{password}" type="text" name="confirm" id="confirm" placeholder="Confirm Your password">-->
 <!--        </div>-->
 
+<nav th:insert="partials/partials.html :: footer"></nav>
 
     <th:block th:insert="partials/partials.html :: jquery" />
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
@@ -92,5 +93,8 @@
             $('#edit').toggleClass('invisible');
         });
     </script>
+
+
+
 </body>
 </html>
