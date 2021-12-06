@@ -14,4 +14,9 @@ public class WelcomeController {
     public String redirectToWelcome() {
         return "redirect:/welcome";
     }
+
+    @GetMapping("/about-us")
+    public String aboutUs() {
+        return "citysites/about-us";
+    }
 }

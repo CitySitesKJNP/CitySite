@@ -29,15 +29,16 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String homePage(@RequestParam(name =  "userInput") String userInput, Model model) {
+    public String homePage(@RequestParam(name =  "userInput", defaultValue = "N/A",required = false) String userInput, Model model) {
         model.addAttribute("activities", activityDao.findAll());
-        model.addAttribute("userInput", userInput);
-//        model.addAttribute("activity", activityDao.getById(1L));
+        if (!userInput.equals("N/A")) {
+            model.addAttribute("userInput", userInput);
+        }
         return "citysites/home";
     }
 
     @PostMapping("/search")
-    public String homePagePost(@RequestParam(name =  "userInput") String userInput) {
+    public String homePagePost(@RequestParam(name =  "userInput", defaultValue = "N/A",required = false) String userInput) {
         System.out.println(userInput);
 
         return "redirect:/home?userInput=" + userInput;

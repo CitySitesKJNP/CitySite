@@ -76,6 +76,7 @@ function initAutocomplete() {
         searchBox.setBounds(map.getBounds());
     });
 
+
     let markers = [];
 
     // Listen for the event fired when the user selects a prediction and retrieve
@@ -87,12 +88,6 @@ function initAutocomplete() {
             return;
 
         }
-
-        // MIGHT BE USEFUL BUT PROLLY NOT: FEEL FREE TO DELETE
-        // if (userInput != null) {
-        //     console.log(initAutocomplete());
-        //     return initAutocomplete();
-        // }
 
         // Clear out the old markers.
         markers.forEach((marker) => {
@@ -160,36 +155,17 @@ function searchInput() {
 
 }
 
-setTimeout(function() {
-    console.log("test");
-    var input = document.querySelector("#pac-input");
-    input.focus();
-    var ev = document.createEvent('Event');
-    ev.initEvent('keypress');
-    ev.which = ev.keyCode = 13;
-    input.dispatchEvent(ev);
-    // google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
-}, 5000);
 
-google.maps.event.addListenerOnce(map, 'idle', function(){
-    // do something only the first time the map is loaded
-    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+const intervalId = setInterval(function() {
+    if (document.querySelector('#map #pac-input')) {
+        clearInterval(intervalId);
+        setTimeout(function() {
+            var input = document.querySelector("#map #pac-input");
+            input.focus();
+            google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+        }, 100);
+    }
+}, 10);
 
-});
+// separate script or inbeded on html page
 
-// window.onload = (event) => {
-//     document.getElementById("map").addEventListener('load', (event) => {
-//         console.log('map loaded!');
-//     });
-// };
-
-// document.getElementById("map").addEventListener('load', (event) => {
-//
-//     console.log('map loaded!');
-//
-// });
-
-// document.getElementById("anything").addEventListener("click", function (event) {
-
-    // searchInput();
-// })
