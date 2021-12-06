@@ -9,14 +9,14 @@
 </style>
 <body>
 
-    <nav th:insert="partials/partials.html :: navbar"></nav>
+<nav th:insert="partials/partials.html :: navbar"></nav>
 
 <!--    Under Construction-->
 
-    <a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
+<a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
 
 <!--    Needs to go to /reviews/{id}-->
-    <a th:href="@{'/reviews/' + ${activity.id}}"><button>See All Reviews</button></a>
+<a th:href="@{'/reviews/' + ${activity.id}}"><button>See All Reviews</button></a>
 
 <!--    Site profile pic-->
 
@@ -27,60 +27,65 @@
 <!--    description of site-->
 
 
-    <div>
-        <h1> <span th:text="${activity.name}"></span></h1>
-        <p th:text="${activity.hours}"></p>
-        <p th:text="${activity.description}"></p>
-        <p id="activityAddress"></p>
-        <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-            <button type="submit">Favorite</button>
-        </form>
-    </div>
-    <button id="hide">Edit activity</button>
-    <div>
-        <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">
-            <div>
-                <label for="name"></label>
-                <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">
-            </div>
-            <div>
-                <label for="description">Change your email address</label>
-                <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">
-            </div>
-            <div>
-                <label for="hours">Edit Existing hou</label>
-                <input th:value="*{hours}" type="text" id="hours" name="hours">
-            </div>
+<div>
+    <h1> <span th:text="${activity.name}"></span></h1>
+    <p th:text="${activity.hours}"></p>
+    <p th:text="${activity.description}"></p>
+<!--    <img id="images" th:src="${activity.getActivityImages()}">-->
+    <p id="activityAddress"></p>
+    <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
+        <button type="submit">Favorite</button>
+    </form>
+</div>
+<button id="hide">Edit activity</button>
+    <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
+        <button type="submit">Delete</button>
+    </form>
+<div>
+    <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">
+        <div>
+            <label for="name"></label>
+            <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">
+        </div>
+        <div>
+            <label for="description">Change your email address</label>
+            <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">
+        </div>
+        <div>
+            <label for="hours">Edit Existing hou</label>
+            <input th:value="*{hours}" type="text" id="hours" name="hours">
+        </div>
+        <div>
+            <label for="image">Image(s)</label>
+            <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
+            <button type="button" id="create-an-element">Add Another Image?</button>
+        </div>
+        <button>Submit</button>
 
-            <div>
-                <label for="image"> Profile Image</label>
-                <input th:field="*{activityImages}" name="image" id="image" type="url" placeholder="Enter your image url here">
-            </div>
-            <button>Submit</button>
+    </form>
+</div>
 
-        </form>
-    </div>
+<button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
-    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
+<th:block th:insert="partials/partials.html :: bootstrap-js" />
+<th:block th:insert="partials/partials.html :: jquery" />
 
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
-    <th:block th:insert="partials/partials.html :: jquery" />
+<script src="/keys.js"></script>
+<script src="/js/geocode-mapbox-utils.js"></script>
+<script src="/js/add-inputs.js"></script>
+<script th:inline="javascript">
+    var activityId = [[${activity.id}]];
 
-    <script src="/keys.js"></script>
-    <script src="/js/geocode-mapbox-utils.js"></script>
-    <script th:inline="javascript">
-        var activityId = [[${activity.id}]];
-
-        var request = $.ajax({'url': '/api/activity/' + activityId});
-        request.done(function (activity){
-            reverseGeocode({lng: activity.longitude, lat: activity.latitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
-                document.getElementById("activityAddress").innerText = result;
-            })
+    var request = $.ajax({'url': '/api/activity/' + activityId});
+    request.done(function (activity){
+        reverseGeocode({lng: activity.longitude, lat: activity.latitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
+            document.getElementById("activityAddress").innerText = result;
         })
-        $('#hide').click(function(event) {
-            event.preventDefault();
-            $('#edit').toggleClass('invisible');
-        });
-    </script>
+    })
+    $('#hide').click(function(event) {
+        event.preventDefault();
+        $('#edit').toggleClass('invisible');
+    });
+</script>
 </body>
 </html>
