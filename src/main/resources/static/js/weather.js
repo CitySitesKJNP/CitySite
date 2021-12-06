@@ -1,4 +1,4 @@
-$.get("https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/onecall", {
+$.get("https://api.openweathermap.org/data/2.5/onecall", {
         appid: OPEN_WEATHER_API_KEY,
         lat: 29.424349,
         lon: -98.491142,
