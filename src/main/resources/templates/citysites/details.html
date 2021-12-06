@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('CitySites')"></head>
-<body>
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
 
-    <header th:insert="partials/partials.html :: header"></header>
+<body>
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()">Back</button>
+<!--    Under Construction-->
+
+    <a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
+
+<!--    Needs to go to /reviews/{id}-->
+    <button>See All Reviews</button>
 
 <!--    Site profile pic-->
 
@@ -17,12 +22,33 @@
 
 <!--    description of site-->
 
-    <button>Add a Review</button>
 
-    <button>See All Reviews</button>
+    <div>
+        <h1> <span th:text="${activity.name}"></span></h1>
+        <p th:text="${activity.hours}"></p>
+        <p th:text="${activity.description}"></p>
+        <p id="activityAddress"></p>
+        <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
+            <button type="submit">Favorite</button>
+        </form>
+    </div>
+
+    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
     <th:block th:insert="partials/partials.html :: jquery" />
-<!--    <th:block th:insert="partials/partials.html :: bootstrap-js" />-->
+
+    <script src="/js/keys.js"></script>
+    <script src="/js/geocode-mapbox-utils.js"></script>
+    <script th:inline="javascript">
+        var activityId = [[${activity.id}]];
+
+        var request = $.ajax({'url': '/api/activity/' + activityId});
+        request.done(function (activity){
+            reverseGeocode({lng: activity.longitude, lat: activity.latitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
+                document.getElementById("activityAddress").innerText = result;
+            })
+        })
+    </script>
 </body>
 </html>

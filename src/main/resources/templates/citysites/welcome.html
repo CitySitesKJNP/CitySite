@@ -1,16 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>CitySites</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Architects+Daughter&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee&amp;display=swap">
-</head>
+<head th:insert="partials/partials.html :: head('CitySites')"></head>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.welcome.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Handlee&amp;display=swap">
 
 <body>
 <header class="text-center text-white masthead" style="background: url(&quot;https://images.unsplash.com/photo-1484627147104-f5197bcd6651?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb&amp;w=1000&quot;) left / cover no-repeat;height: 627px;">
@@ -22,7 +15,7 @@
     </div>
     <div class="row text-center d-flex justify-content-start">
         <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4 offset-0 offset-sm-1">
-            <p style="color: rgb(0,0,0);">Description of App: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam fuga hic odio suscipit voluptas? Asperiores aut culpa, eum mollitia nemo nihil odio pariatur quaerat sapiente sequi ut velit vero vitae? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aspernatur at consequatur culpa cum deserunt excepturi ipsa iure molestias pariatur, possimus quaerat quam quisquam repellendus saepe tempore velit veritatis voluptatibus. .</p>
+            <p style="color: rgb(0,0,0);">Description of App: CitySites is an app for those looking for more to do in our great city of San Antonio and soon, a city near you! Powered by Google and the great minds of the CitySites development team, you, the user, will be able to find fun activities, save your favorite places and even add your own activities. Have a public function you want the populace to know about, make an account and add it to the map! See what other users have going on and go make some new friends! There is a fantastic city of wonders out there just waiting for you to explore. CitySites will show you where to go!</p>
         </div>
     </div>
     <div class="row">
@@ -35,9 +28,10 @@
                         <a class="btn btn-primary" role="button" style="background: #f7d7cc;border-style: none;border-radius: 10px;color: rgb(0,0,0);" href="/activity/create">Create Activity</a></div>
                 </div>
             </div>
-            <form class="d-flex justify-content-center">
-                <input class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;background: rgba(255,255,255,0);border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
-                <button class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button></form>
+            <form th:action="@{/search}" th:method="POST" class="d-flex justify-content-center">
+                <input name="userInput" id="userInput" class="form-control" type="text" style="margin-right: 10px;margin-top: 13px;border-radius: 10px;border-width: 4px;border-color: #f7d7cc;width: 230.656px;" placeholder="Search">
+                <button id="anything" class="btn btn-primary" type="submit" style="margin-top: 10px;border-style: none;border-color: #f7d7cc;border-radius: 10px;color: rgb(0,0,0);background: #f7d7cc;">Search</button>
+            </form>
         </div>
     </div>
 </header>
@@ -73,7 +67,12 @@
         </div>
     </div>
 </section>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="/js/keys.js"></script>
+<script src="/js/geocode-mapbox-utils.js"></script>
+<script src="/js/map.js"></script>
+
+<th:block th:insert="partials/partials.html :: jquery" />
 <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 

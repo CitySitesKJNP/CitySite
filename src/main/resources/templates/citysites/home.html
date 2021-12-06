@@ -3,22 +3,26 @@
 <head th:insert="partials/partials.html :: head('Home')"></head>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" href="/css/citysites.css">
+<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.home.css">
 
 <body>
 
-    <header th:insert="partials/partials.html :: header"></header>
-
     <nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()">Back</button>
+    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
 <!--    searchbar?-->
-    <div style="border: 1px solid blue;">
-        <div class="gcse-searchbox"></div>
-    </div>
+<!--    <div style="border: 1px solid blue;">-->
+<!--        <div class="gcse-searchbox"></div>-->
+<!--    </div>-->
 
     <!--        Map-->
-    <div id="map"></div>
+<!--    <div ></div>-->
+    <div class="row" style="margin-top: 23px;">
+        <div class="col-lg-10 offset-lg-1 d-flex justify-content-center">
+            <div id="map" style="height: 600px;width: 100%;"></div>
+        </div>
+    </div>
 
 <!--search bar probs-->
 
@@ -27,8 +31,14 @@
             class="controls"
             type="text"
             placeholder="Search Box"
+            th:value="${userInput}"
     />
 
+    <th:block th:insert="partials/partials.html :: jquery" />
+
+    <script src="/js/keys.js"></script>
+    <script src="/js/geocode-mapbox-utils.js"></script>
+    <script src="/js/weather.js"></script>
     <script src="/js/map.js"></script>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
@@ -36,7 +46,7 @@
 <!--    <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
 <!--                                          MAIN KEY-->
     <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>
-    <th:block th:insert="partials/partials.html :: jquery" />
+
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
 </body>
 </html>

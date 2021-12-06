@@ -1,36 +1,9 @@
 var map;
 var service;
 var infowindow;
-var geocoder;
+// var userInput = $('#userInput');
+var userInput = document.getElementById('userInput');
 
-// function initMap() {
-//     // var san_antonio = new google.maps.LatLng(29.424349, -98.491142);
-//
-//     infowindow = new google.maps.InfoWindow();
-//
-//     // map = new google.maps.Map(
-//     //     document.getElementById('map'), {center: san_antonio, zoom: 11});
-// }
-
-// function codeAddress() {
-//     geocoder.geocode({
-//         componentRestrictions: {
-//             country: 'US',
-//             postalCode: '78000, 78299'
-//         }
-//     }, function(results, status) {
-//         if (status == 'OK') {
-//             map.setCenter(results[0].geometry.location);
-//             var marker = new google.maps.Marker({
-//                 map: map,
-//                 position: results[0].geometry.location
-//             });
-//         } else {
-//             window.alert('Geocode was not successful for the following reason: ' + status);
-//         }
-//     });
-//     console.log(codeAddress(status));
-// }
 
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
@@ -39,9 +12,9 @@ var geocoder;
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initAutocomplete() {
-    geocoder = new google.maps.Geocoder;
+    // mapboxgl.accessToken = MAPBOX_API_TOKEN_PERSONAL;
 
-    const map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
         mapId: "2b964882efa1deff",
         center: { lat: 29.424349, lng: -98.491142 },
         zoom: 11,
@@ -52,54 +25,44 @@ function initAutocomplete() {
         var request = $.ajax({'url': '/api/map'});
         request.done(function (activities) {
             var popup = '';
-            activities.forEach(function (activity) {
-                var marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: activity.latitude, lng: activity.longitude}
+            Promise.all(
+                activities.map(function (activity) {
+                    return new Promise(((resolve, reject) => {
+                        reverseGeocode({lat: activity.latitude, lng: activity.longitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (addresses){
+                            resolve(addresses);
+                        })
+                    }))
                 })
-
-                // Under Construction...
-                // Current Error: Geocoder failed due to: MapsRequestError: GEOCODER_GEOCODE: OVER_QUERY_LIMIT: The webpage has gone over the requests limit in too short a period of time.
-
-                // setTimeout(function () {
-                //     geocoder.geocode({location: {lng: activity.longitude, lat: activity.latitude}}).then((response) => {
-                //         if (response.results[0]) {
-                //             popup += '<div>';
-                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                //             popup += '<p>' + "Location: " + response.results[0] + '</p>';
-                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
-                //             popup += '</div>';
-                //         } else {
-                //             popup += '<div>';
-                //             popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                //             popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
-                //             popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                //             popup += '<p>' + "Activity ID: " + activity.id + '</p>';
-                //             popup += '</div>';
-                //         }
-                //     })
-                // }, 1000);
-
-                popup += '<div>';
-                popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                popup += '<p>' + "Longitude: " + activity.longitude + '</p>';
-                popup += '<p>' + "Latitude: " + activity.latitude + '</p>';
-                popup += '<a href="#">' + "Details for Activity: " + activity.id + '</a>';
-                popup += '</div>';
-
-                var infoWindow = new google.maps.InfoWindow({
-                    content: popup
+            ).then(function (results){
+                activities.forEach(function (currentActivity, index) {
+                    currentActivity.address = results[index];
                 })
-
-                marker.addListener("click", () => {
-                    infoWindow.open({
-                        anchor: marker,
-                        map,
-                        shouldFocus: false
+                activities.forEach(function (activity) {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: {lat: activity.latitude, lng: activity.longitude}
                     })
-                });
 
-                popup = '';
+                    popup += '<div>';
+                    popup += '<h1>' + "Name: " + activity.name + '</h1>';
+                    popup += '<p>' + "Address: " + activity.address + '</p>';
+                    popup += `<a href="/activity/${activity.id}"> Details for Activity: ${activity.id} </a>`;
+                    popup += '</div>';
+
+                    var infoWindow = new google.maps.InfoWindow({
+                        content: popup
+                    })
+
+                    marker.addListener("click", () => {
+                        infoWindow.open({
+                            anchor: marker,
+                            map,
+                            shouldFocus: false
+                        })
+                    });
+
+                    popup = '';
+                });
             });
         })
 
@@ -124,6 +87,12 @@ function initAutocomplete() {
             return;
 
         }
+
+        // MIGHT BE USEFUL BUT PROLLY NOT: FEEL FREE TO DELETE
+        // if (userInput != null) {
+        //     console.log(initAutocomplete());
+        //     return initAutocomplete();
+        // }
 
         // Clear out the old markers.
         markers.forEach((marker) => {
@@ -166,4 +135,61 @@ function initAutocomplete() {
         });
         map.fitBounds(bounds);
     });
+
 }
+
+
+
+function searchInput() {
+    geocode(userInput.value, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
+
+        console.log(result);
+        longitude = result[0];
+        latitude = result[1];
+        var marker = new mapboxgl.Marker({draggable: true})
+            .setLngLat([longitude, latitude])
+            .addTo(map);
+        // marker.on('dragend', onDragEnd);
+        // $('#currentCity').html(userInput.val());
+        // map.flyTo({
+        //     center: [longitude, latitude],
+        //     zoom: 9
+        // });
+
+    });
+
+}
+
+setTimeout(function() {
+    console.log("test");
+    var input = document.querySelector("#pac-input");
+    input.focus();
+    var ev = document.createEvent('Event');
+    ev.initEvent('keypress');
+    ev.which = ev.keyCode = 13;
+    input.dispatchEvent(ev);
+    // google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+}, 5000);
+
+google.maps.event.addListenerOnce(map, 'idle', function(){
+    // do something only the first time the map is loaded
+    google.maps.event.trigger(input, 'keydown', { keyCode: 13 });
+
+});
+
+// window.onload = (event) => {
+//     document.getElementById("map").addEventListener('load', (event) => {
+//         console.log('map loaded!');
+//     });
+// };
+
+// document.getElementById("map").addEventListener('load', (event) => {
+//
+//     console.log('map loaded!');
+//
+// });
+
+// document.getElementById("anything").addEventListener("click", function (event) {
+
+    // searchInput();
+// })
