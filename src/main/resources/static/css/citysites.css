@@ -1,18 +1,10 @@
-body {
-   color: rgb(250, 215, 204);
-}
-
-/*header {*/
-/*   background: linear-gradient(to right, rgba(246,210,198), rgba(247,215,204));*/
-/*}*/
-
 /*----SEARCH BOX STYLING----*/
 
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-/*#map {*/
-/*   height: 100%;*/
-/*}*/
+#map {
+   height: 100%;
+}
 
 /* Optional: Makes the sample page fill the window. */
 /*html,*/
