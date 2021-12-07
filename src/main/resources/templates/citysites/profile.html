@@ -51,29 +51,9 @@
 
 
 <!--    details of user input?-->
-
-    <button>Favorites</button>
-
-    <div th:each="favorite: ${favorites}">
-<!--        <div th:if="${user.id == favorite.userId}">-->
-            <h3 th:text="favorite.name"></h3>
-            <p th:text="favorite.description"></p>
-
-        </div>
-
-    </div>
-
-    <div>
-
-        <h3>Places Searched</h3>
-
-        <div>
-
-<!--            places searched-->
-
-        </div>
-
-    </div>
+    <form th:action="@{/user/favorites}" th:method="GET">
+        <button>Favorites</button>
+    </form>
 <!--Working on edit password logic-->
 
 <!--        <div>-->
