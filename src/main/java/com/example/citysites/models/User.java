@@ -35,12 +35,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userReview")
     private List<Review> userReviews;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "favorites",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "activity_id")}
-    )
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "userFavorites")
     private List<Activity> favoriteActivities;
 
     public User() {

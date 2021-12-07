@@ -41,9 +41,15 @@ public class Activity {
     @JsonIgnore
     private List<Review> activityReviews;
 
-    @ManyToMany(mappedBy = "favoriteActivities")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "favorites",
+            joinColumns = {@JoinColumn(name = "activity_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
     @JsonIgnore
     private List<User> userFavorites;
+
 
     public Activity() {
     }

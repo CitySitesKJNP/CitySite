@@ -41,6 +41,7 @@
     <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
         <button type="submit">Delete</button>
     </form>
+
 <div>
     <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">
         <div>
