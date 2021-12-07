@@ -89,16 +89,20 @@ public class UserController {
         Activity activity = activityDao.getById(id);
 
 //        from the logged in userobject pull out the list of favorite activities and store it in a list of activities variable
-        List<Activity> activityList = loggedInUser.getFavoriteActivities();
+//        List<Activity> activityList = loggedInUser.getFavoriteActivities();
+        List<User> userList = activity.getUserFavorites();
 
 //        add the activity object from the path variable to the list of favorites activities from the user
-        activityList.add(activity);
+//        activityList.add(activity);
+        userList.add(loggedInUser);
 
 //        then youll need to set the value of the list of favorite activities on the user object that you added an activity to
-        loggedInUser.setFavoriteActivities(activityList);
+//        loggedInUser.setFavoriteActivities(activityList);
+        activity.setUserFavorites(userList);
 
 //        persist the change by saving the user record with the user dao
-        userDao.save(loggedInUser);
+//        userDao.save(loggedInUser);
+        activityDao.save(activity);
         return "redirect:/user/favorites";
     }
 

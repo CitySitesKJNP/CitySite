@@ -82,6 +82,10 @@ public class ActivityController {
 
     @PostMapping("/activity/{id}/delete")
     public String deleteActivity(@PathVariable long id){
+//        Activity activity = activityDao.getById(id);
+//        List<User> userList = new ArrayList<>();
+//        activity.setUserFavorites(userList);
+//        activityDao.save(activity);
         activityDao.deleteById(id);
         return "redirect:/home";
     }
