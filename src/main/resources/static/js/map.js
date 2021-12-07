@@ -49,7 +49,7 @@ function initAutocomplete() {
                     popup += '<h1>' + "Name: " + activity.name + '</h1>';
                     popup += '<p>' + "Address: " + activity.address + '</p>';
                     // Average of review for Activity (1-5)
-                    popup += '<p>' + "Review: " +  + '</p>';
+                    // popup += '<p>' + "Review: " +  + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 
