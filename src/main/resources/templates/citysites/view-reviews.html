@@ -20,7 +20,6 @@
                <p th:text="${review.description}"></p>
                <div sec:authorize="isAuthenticated()">
                    <div th:if="${#authentication.principal.id == review.userReview.id}">
-                       <a th:href="@{'/reviews/' + ${review.id} + '/edit'}">Edit Post</a>
                        <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
                            <button>Delete Post</button>
                        </form>
