@@ -44,8 +44,9 @@ public class UserController {
     @GetMapping("/profile")
     public String profilePage(Model model, Principal principal) {
         User loggedInUser = userDao.findByUsername(principal.getName());
+        List<Activity> activityList = loggedInUser.getFavoriteActivities();
         model.addAttribute("user", loggedInUser);
-        model.addAttribute("activity", activityDao.findAll());
+        model.addAttribute("favorites", activityList);
         return "citysites/profile";
     }
 

@@ -3,6 +3,7 @@
 <head th:insert="partials/partials.html :: head('Profile')"></head>
 
 <body>
+<link rel="stylesheet" href="/css/citysites.css">
 <style>
     .invisible {
         display: none
@@ -49,31 +50,24 @@
         <button>Submit</button>
     </form>
 
+<div>
+
+    <h3>Favorites</h3>
+
+    <ul>
+        <li th:each="favorite, stat : ${favorites}" th:unless="${stat.index < stat.size -3}">
+            <h1><span th:text="${favorite.name}"></span></h1>
+            <p th:text="${favorite.description}"></p>
+            <p th:text="${favorite.latitude}"></p>
+            <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
+        </li>
+    </ul>
+</div>
 
 <!--    details of user input?-->
-
-    <button>Favorites</button>
-
-    <div th:each="favorite: ${favorites}">
-<!--        <div th:if="${user.id == favorite.userId}">-->
-            <h3 th:text="favorite.name"></h3>
-            <p th:text="favorite.description"></p>
-
-        </div>
-
-    </div>
-
-    <div>
-
-        <h3>Places Searched</h3>
-
-        <div>
-
-<!--            places searched-->
-
-        </div>
-
-    </div>
+    <form th:action="@{/user/favorites}" th:method="GET">
+        <button>Favorites</button>
+    </form>
 <!--Working on edit password logic-->
 
 <!--        <div>-->
