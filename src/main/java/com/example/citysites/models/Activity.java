@@ -1,5 +1,6 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,15 +31,14 @@ public class Activity {
     @Column
     private float latitude;
 
-    @Column
-    private long yelp_id;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
     @JsonIgnore
+//    @JsonBackReference("activity_images")
     private List<ActivityImage> activityImages;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
     @JsonIgnore
+//    @JsonBackReference("activity_reviews")
     private List<Review> activityReviews;
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -100,14 +100,6 @@ public class Activity {
 
     public void setLatitude(float latitude) {
         this.latitude = latitude;
-    }
-
-    public long getYelp_id() {
-        return yelp_id;
-    }
-
-    public void setYelp_id(long yelp_id) {
-        this.yelp_id = yelp_id;
     }
 
     public List<ActivityImage> getActivityImages() {
