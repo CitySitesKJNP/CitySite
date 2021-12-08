@@ -1,5 +1,8 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,6 +28,7 @@ public class Review {
     private User userReview;
 
     @ManyToOne
+//    @JsonManagedReference("activity_reviews")
     @JoinColumn(name = "activity_id")
     private Activity activityReview;
 
