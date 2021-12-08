@@ -2,6 +2,7 @@ package com.example.citysites.controllers;
 
 import com.example.citysites.models.Activity;
 import com.example.citysites.models.User;
+import com.example.citysites.repositories.ActivityImageRepository;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,7 @@ public class UserController {
     private UserRepository userDao;
     private PasswordEncoder passwordEncoder;
     private ActivityRepository activityDao;
+    private ActivityImageRepository activityImageDao;
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ActivityRepository activityDao) {
         this.userDao = userDao;
