@@ -3,6 +3,7 @@ package com.example.citysites.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -33,12 +34,11 @@ public class Activity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
     @JsonIgnore
-//    @JsonBackReference("activity_images")
+//    @JsonManagedReference(value = "activity-images")
     private List<ActivityImage> activityImages;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
-    @JsonIgnore
-//    @JsonBackReference("activity_reviews")
+    @JsonManagedReference(value = "activity-reviews")
     private List<Review> activityReviews;
 
     @ManyToMany(cascade = CascadeType.ALL)

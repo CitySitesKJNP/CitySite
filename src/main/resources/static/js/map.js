@@ -48,8 +48,9 @@ function initAutocomplete() {
                     // popup += `<img src="${}">`;
                     popup += '<h1>' + "Name: " + activity.name + '</h1>';
                     popup += '<p>' + "Address: " + activity.address + '</p>';
-                    // Average of review for Activity (1-5)
-                    // popup += '<p>' + "Review: " +  + '</p>';
+                    // Average of review for Activity (1-5). Maybe use filter?
+                    // console.log(activity.activityReviews[0])
+                    // popup += '<p>' + "Review: " + activity.activityReviews.rating + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 
