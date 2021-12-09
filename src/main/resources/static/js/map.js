@@ -63,6 +63,15 @@ function initAutocomplete() {
 
                     // Activity Review in Popup
                     // Work in Progress: If no reviews, return "No Review(s) Found"
+                    var reduceFxn;
+                    if (activity.activityReviews[0]) {
+                        reduceFxn = activity.activityReviews.reduce(function (accumulator, currentValue) {
+                            accumulator += currentValue.rating;
+                            return accumulator;
+                        }, 0) / activity.activityReviews.length
+                    } else {
+                        reduceFxn = "No Review(s) Found";
+                    }
 
                     // Popup
 
@@ -76,10 +85,7 @@ function initAutocomplete() {
                     // console.log(activity.activityReviews[0])
                     // console.log(activity.activityReviews[0] === undefined)
                     // console.log("Index = " + index);
-                    popup += '<p>' + "Average Review: " + (activity.activityReviews[0] && activity.activityReviews.reduce(function (accumulator, currentValue) {
-                        accumulator += currentValue.rating;
-                        return accumulator;
-                    }, 0) / activity.activityReviews.length) + '</p>';
+                    popup += '<p>' + "Average Review: " + reduceFxn + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 
