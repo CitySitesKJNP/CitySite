@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Add Activity')"></head>
-<!--<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>-->
 <link rel="stylesheet" href="/css/activity-creation-map.css">
-<!--<link rel="stylesheet" href="/assets/css/styles.css">-->
 
 <body style="background: #f4cdc1;">
 
@@ -43,7 +41,8 @@
         <div class="row justify-content-center" style="margin-top: 8px;">
             <div class="col-sm-5 col-md-4 col-lg-3 offset-lg-0 d-flex flex-column align-items-center">
                 <label for="hours" class="form-label" style="font-family: Handlee, serif;font-size: 22px;">Hours of Operation</label>
-                <input th:field="*{hours}" name="hours" id="hours" class="form-control" type="text" placeholder="Enter Hours of Operation" style="width: 231px;"></div>
+                <input th:field="*{hours}" name="hours" id="hours" class="form-control" type="text" placeholder="Enter Hours of Operation" style="width: 231px;">
+            </div>
             <div class="col-sm-6 col-md-6 col-lg-5 d-flex d-lg-flex flex-column align-items-center align-items-lg-center">
                 <label for="image" class="form-label" style="font-family: Handlee, serif;font-size: 22px;">Image(s)</label>
                 <input id="image" name="urls" class="form-control" type="url" style="width: 322.656px;margin-bottom: 9px;" placeholder="Enter Image URL">
