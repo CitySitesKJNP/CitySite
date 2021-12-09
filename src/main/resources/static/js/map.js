@@ -51,9 +51,24 @@ function initAutocomplete() {
                         position: {lat: activity.latitude, lng: activity.longitude}
                     })
 
+                    // Activity Image in Popup
+
+                    var imageLink;
+
+                    if (activity.activityImages[0]) {
+                        imageLink = activity.activityImages[0].imageUrl
+                    } else {
+                        imageLink = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
+                    }
+
+                    // Activity Review in Popup
+                    // Work in Progress: If no reviews, return "No Review(s) Found"
+
+                    // Popup
+
                     popup += '<div>';
                     // First image for Activity
-                    // popup += `<img src="${}">`;
+                    popup += `<img src="${imageLink}">`;
                     popup += '<h1>' + "Name: " + activity.name + '</h1>';
                     popup += '<p>' + "Address: " + activity.address + '</p>';
                     // Average of review for Activity (1-5). Maybe use filter?
@@ -61,7 +76,10 @@ function initAutocomplete() {
                     // console.log(activity.activityReviews[0])
                     // console.log(activity.activityReviews[0] === undefined)
                     // console.log("Index = " + index);
-                    // popup += '<p>' + "Review: " + (activity.activityReviews[0] !== undefined && activity.activityReviews.length > 0) ? activity.activityReviews[0].rating : "No Reviews" + '</p>';
+                    popup += '<p>' + "Average Review: " + (activity.activityReviews[0] && activity.activityReviews.reduce(function (accumulator, currentValue) {
+                        accumulator += currentValue.rating;
+                        return accumulator;
+                    }, 0) / activity.activityReviews.length) + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 
