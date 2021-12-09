@@ -131,4 +131,15 @@ public class User {
     public void setFavoriteActivities(List<Activity> favoriteActivities) {
         this.favoriteActivities = favoriteActivities;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password +
+                '}';
+    }
 }

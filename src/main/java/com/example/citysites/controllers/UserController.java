@@ -6,12 +6,15 @@ import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityImageRepository;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +24,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private ActivityRepository activityDao;
     private ActivityImageRepository activityImageDao;
+    private Logger log = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ActivityRepository activityDao, ActivityImageRepository activityImageDao) {
         this.userDao = userDao;
@@ -41,8 +45,15 @@ public class UserController {
     public String createUser(@ModelAttribute User user) {
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
+        try{
+            userDao.save(user);
+            return "redirect:/login";
+        }
+        catch (SQLIntegrityConstraintViolationException loginError) {
+
+            return "redirect:/register";
+        }
+
     }
 
     @GetMapping("/profile")
