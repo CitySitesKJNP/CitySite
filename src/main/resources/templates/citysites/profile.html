@@ -58,9 +58,8 @@
         <li th:each="favorite, stat : ${favorites}" th:unless="${stat.index < stat.size -3}">
             <h1><span th:text="${favorite.name}"></span></h1>
             <p th:text="${favorite.description}"></p>
-            <span th:each="image, stat :${favorite.activityImages}">
-                <img th:src="${image.imageUrl}">
-            </span>
+            <img th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
+
             <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
         </li>
     </ul>
