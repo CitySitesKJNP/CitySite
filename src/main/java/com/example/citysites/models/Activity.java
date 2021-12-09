@@ -41,7 +41,7 @@ public class Activity {
     @JsonIgnore
     private List<Review> activityReviews;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name = "favorites",
             joinColumns = {@JoinColumn(name = "activity_id")},
