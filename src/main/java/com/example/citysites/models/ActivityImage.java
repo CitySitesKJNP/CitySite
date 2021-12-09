@@ -1,5 +1,6 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class ActivityImage {
     private String imageUrl;
 
     @ManyToOne
-//    @JsonManagedReference("activity_images")
+//    @JsonBackReference(value = "activity-images")
     @JoinColumn (name = "activity_id")
     private Activity activityImage;
 
