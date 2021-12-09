@@ -17,8 +17,9 @@
         <ul>
             <li th:each="favorite : ${favorites}">
                 <h1><span th:text="${favorite.name}"></span></h1>
-                <p th:text="${favorite.longitude}"></p>
-                <p th:text="${favorite.latitude}"></p>
+                <p id="lng" th:text="${favorite.longitude}"></p>
+                <p id="lat" th:text="${favorite.latitude}"></p>
+<!--                <p id="activityAddress"></p>-->
                 <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
             </li>
         </ul>
@@ -29,5 +30,21 @@
 
     <th:block th:insert="partials/partials.html :: jquery" />
     <th:block th:insert="partials/partials.html :: bootstrap-js" />
+
+    <script src="/keys.js"></script>
+    <script src="/js/geocode-mapbox-utils.js"></script>
+<!--    <script>-->
+<!--        $(document).ready(function (){-->
+<!--            var favoritesLng = document.getElementById("lng").textContent;-->
+<!--            var favoritesLat = document.getElementById("lat").textContent;-->
+
+<!--            console.log(favoritesLng);-->
+<!--            console.log(favoritesLat);-->
+
+<!--            reverseGeocode({lng: favoritesLng, lat: favoritesLat}, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {-->
+<!--                document.getElementById("activityAddress").innerText = result;-->
+<!--            })-->
+<!--        })-->
+<!--    </script>-->
 </body>
 </html>
