@@ -32,9 +32,8 @@ public class Activity {
     @Column
     private float latitude;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
-    @JsonIgnore
-//    @JsonManagedReference(value = "activity-images")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
+    @JsonManagedReference
     private List<ActivityImage> activityImages;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
