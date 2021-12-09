@@ -1,5 +1,8 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +13,11 @@ public class ActivityImage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String imageUrl;
 
     @ManyToOne
+//    @JsonBackReference(value = "activity-images")
     @JoinColumn (name = "activity_id")
     private Activity activityImage;
 

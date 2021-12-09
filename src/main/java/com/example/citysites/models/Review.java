@@ -1,5 +1,9 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,13 +22,16 @@ public class Review {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewImage")
+    @JsonIgnore
     private List<ReviewImage> reviewImages;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User userReview;
 
     @ManyToOne
+    @JsonBackReference(value = "activity-reviews")
     @JoinColumn(name = "activity_id")
     private Activity activityReview;
 

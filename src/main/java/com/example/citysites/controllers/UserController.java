@@ -1,6 +1,7 @@
 package com.example.citysites.controllers;
 
 import com.example.citysites.models.Activity;
+import com.example.citysites.models.ActivityImage;
 import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityImageRepository;
 import com.example.citysites.repositories.ActivityRepository;
@@ -47,6 +48,7 @@ public class UserController {
     @GetMapping("/profile")
     public String profilePage(Model model, Principal principal) {
         User loggedInUser = userDao.findByUsername(principal.getName());
+//        List<ActivityImage> imageList =;
         List<Activity> activityList = loggedInUser.getFavoriteActivities();
         model.addAttribute("user", loggedInUser);
         model.addAttribute("favorites", activityList);

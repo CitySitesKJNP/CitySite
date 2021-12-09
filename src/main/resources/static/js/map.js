@@ -24,6 +24,7 @@ function initAutocomplete() {
 
         var request = $.ajax({'url': '/api/map'});
         request.done(function (activities) {
+            // console.log(activities[1].activityReviews[0].rating)
             var popup = '';
             Promise.all(
                 activities.map(function (activity) {
@@ -34,10 +35,17 @@ function initAutocomplete() {
                     }))
                 })
             ).then(function (results){
+                // console.log(activities[1].activityReviews[0].rating)
+                // console.log(results[0]);
+                // console.log(activities[0].id)
+                // for (var i = 0; i <= activities.length; i++) {
+                //     console.log(activities[i]);
+                // }
                 activities.forEach(function (currentActivity, index) {
+                    // console.log(currentActivity.activityReviews[0].rating)
                     currentActivity.address = results[index];
                 })
-                activities.forEach(function (activity) {
+                activities.forEach(function (activity, index) {
                     var marker = new google.maps.Marker({
                         map: map,
                         position: {lat: activity.latitude, lng: activity.longitude}
@@ -48,8 +56,12 @@ function initAutocomplete() {
                     // popup += `<img src="${}">`;
                     popup += '<h1>' + "Name: " + activity.name + '</h1>';
                     popup += '<p>' + "Address: " + activity.address + '</p>';
-                    // Average of review for Activity (1-5)
-                    // popup += '<p>' + "Review: " +  + '</p>';
+                    // Average of review for Activity (1-5). Maybe use filter?
+                    // console.log(activity.activityReviews[0].rating)
+                    // console.log(activity.activityReviews[0])
+                    // console.log(activity.activityReviews[0] === undefined)
+                    // console.log("Index = " + index);
+                    // popup += '<p>' + "Review: " + (activity.activityReviews[0] !== undefined && activity.activityReviews.length > 0) ? activity.activityReviews[0].rating : "No Reviews" + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 

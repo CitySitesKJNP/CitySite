@@ -1,7 +1,9 @@
 package com.example.citysites.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,18 +32,16 @@ public class Activity {
     @Column
     private float latitude;
 
-    @Column
-    private long yelp_id;
-
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityImage")
     @JsonIgnore
+//    @JsonManagedReference(value = "activity-images")
     private List<ActivityImage> activityImages;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activityReview")
-    @JsonIgnore
+    @JsonManagedReference(value = "activity-reviews")
     private List<Review> activityReviews;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinTable(
             name = "favorites",
             joinColumns = {@JoinColumn(name = "activity_id")},
@@ -100,14 +100,6 @@ public class Activity {
 
     public void setLatitude(float latitude) {
         this.latitude = latitude;
-    }
-
-    public long getYelp_id() {
-        return yelp_id;
-    }
-
-    public void setYelp_id(long yelp_id) {
-        this.yelp_id = yelp_id;
     }
 
     public List<ActivityImage> getActivityImages() {
