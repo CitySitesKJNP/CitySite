@@ -20,7 +20,7 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false, length = 25)
+    @Column(nullable = false, length = 25, unique = true)
     private String username;
 
     @Column(nullable = false)
@@ -29,7 +29,7 @@ public class User {
     @Column
     private boolean isAdmin;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String profileImageUrl;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userReview")
