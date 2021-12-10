@@ -79,14 +79,14 @@ function initAutocomplete() {
                     // First image for Activity
                     popup += `<img class="popupImages" src="${imageLink}">`;
                     popup += '<h1>' + activity.name + '</h1>';
-                    popup += '<p>' + activity.address + '</p>';
+                    popup += '<p style="font-size: 18px">' + activity.address + '</p>';
                     // Average of review for Activity (1-5). Maybe use filter?
                     // console.log(activity.activityReviews[0].rating)
                     // console.log(activity.activityReviews[0])
                     // console.log(activity.activityReviews[0] === undefined)
                     // console.log("Index = " + index);
-                    popup += '<p>' + "Average Rating: " + reduceFxn + '</p>';
-                    popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
+                    popup += '<p style="font-size: 16px">' + "Average Rating: " + reduceFxn + '</p>';
+                    popup += `<a style="font-size: 15px" href="/activity/${activity.id}"><button class="buttonStyle">Details for Activity</button></a>`;
                     popup += '</div>';
 
                     var infoWindow = new google.maps.InfoWindow({
