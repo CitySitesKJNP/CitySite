@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/css/citysites.css">
 <link rel="stylesheet" href="/css/view-review-css.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="/css/button-styling.css">
 
 <body>
 
@@ -25,13 +26,14 @@
                     <div class="box"><img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
                         <h4 class="name" th:text="${review.userReview.username}"></h4>
                         <hr>
-                        <h5>Rating: </h5>
+                        <h5>Rating:</h5>
                         <h2 th:text="${review.rating} + '/5'"></h2>
+                        <h5>Description:</h5>
                         <p th:text="${review.description}" class="description"></p>
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${#authentication.principal.id == review.userReview.id}">
                                 <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
-                                    <button>Delete Post</button>
+                                    <button class="darkButtonStyle">Delete Post</button>
                                 </form>
                             </div>
                         </div>

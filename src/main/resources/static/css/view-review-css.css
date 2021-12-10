@@ -67,6 +67,7 @@
     margin-top: 15px;
     margin-bottom: 20px;
     border: solid gainsboro;
+    color: grey;
 }
 
 h1 {
@@ -75,6 +76,7 @@ h1 {
 
 h5 {
     font-size: 20px;
+    color: grey;
 }
 
 button {
