@@ -18,57 +18,119 @@
     <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
 
 <!-- User information appended to the page-->
-    <button id="hide">Edit Profile</button>
-    <div>
-        <div th:if="${user.getProfileImageUrl() != null}"><img id="profilePic" th:src="${user.profileImageUrl}"></a></div>
-        <div th:if="${user.getProfileImageUrl() == null}">Set your profile pic below</div>
 
-        <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
-        <p>Your current username is <span th:text="${user.username}"></span></p>
-        <p>The current active email address we have for you is <span th:text="${user.email}"></span></p>
+<div class="container" style="width: 100%;margin: auto auto;">
+    <div style="padding: 15px;">
+        <div class="row">
+            <div class="col-xl-4 offset-xl-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div th:if="${user.getProfileImageUrl() != null}" class="d-flex flex-column align-items-center">
+                            <img id="profilePic" th:src="${user.profileImageUrl}" class="rounded-circle" style="margin-bottom: 12px;">
+                        </div>
+                        <div th:if="${user.getProfileImageUrl() == null}" class="d-flex flex-column align-items-center">
+                            Set Your Profile Pic in the Edit Profile
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
+                <p>Your current username is <span th:text="${user.username}"></span></p>
+                <p>The current active email address we have for you is <span th:text="${user.email}"></span></p>
+                <button id="hide" class="btn btn-primary" type="button">Button</button>
+                <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
+                    <div>
+                        <label for="username"></label>
+                        <input  th:field="*{username}" name="username" id="username" type="text"  th:value="${user.username}">
+                    </div>
+                    <div>
+                        <label for="email">Change your email address</label>
+                        <input th:field="*{email}" name="email" id="email" type="text" th:value="*{email}">
+                    </div>
+                    <div>
+                        <label for="name">Change your name</label>
+                        <input th:value="*{name}" type="text" id="name" name="name">
+                    </div>
+                    <div>
+                        <label for="image"> Profile Image</label>
+                        <input th:field="*{profileImageUrl}" name="image" id="image" type="url" placeholder="Enter your image url here">
+                    </div>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Favorites</h3>
+
+            <ul>
+                <li th:each="favorite, stat : ${favorites}" th:unless="${stat.index < stat.size -3}">
+                    <h1><span th:text="${favorite.name}"></span></h1>
+                    <p th:text="${favorite.description}"></p>
+                    <img th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
+
+                    <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
+                </li>
+            </ul>
+
+            <form th:action="@{/user/favorites}" th:method="GET">
+                <button>Favorites</button>
+            </form>
+
+        </div>
     </div>
+</div>
+<!--    <button id="hide">Edit Profile</button>-->
+<!--    <div>-->
+<!--        <div th:if="${user.getProfileImageUrl() != null}">-->
+<!--            <img id="profilePic" th:src="${user.profileImageUrl}"></a></div>-->
+<!--        <div th:if="${user.getProfileImageUrl() == null}">Set your profile pic below</div>-->
+<!--        <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>-->
+<!--        <p>Your current username is <span th:text="${user.username}"></span></p>-->
+<!--        <p>The current active email address we have for you is <span th:text="${user.email}"></span></p>-->
+<!--    </div>-->
 
 <!--hidden edit form for the user to change their profile-->
-    <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
-        <div>
-            <label for="username"></label>
-            <input  th:field="*{username}" name="username" id="username" type="text"  th:value="${user.username}">
-        </div>
-        <div>
-            <label for="email">Change your email address</label>
-            <input th:field="*{email}" name="email" id="email" type="text" th:value="*{email}">
-        </div>
-        <div>
-            <label for="name">Change your name</label>
-            <input th:value="*{name}" type="text" id="name" name="name">
-        </div>
+<!--    <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">-->
+<!--        <div>-->
+<!--            <label for="username"></label>-->
+<!--            <input  th:field="*{username}" name="username" id="username" type="text"  th:value="${user.username}">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="email">Change your email address</label>-->
+<!--            <input th:field="*{email}" name="email" id="email" type="text" th:value="*{email}">-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="name">Change your name</label>-->
+<!--            <input th:value="*{name}" type="text" id="name" name="name">-->
+<!--        </div>-->
 
-        <div>
-            <label for="image"> Profile Image</label>
-            <input th:field="*{profileImageUrl}" name="image" id="image" type="url" placeholder="Enter your image url here">
-        </div>
-        <button>Submit</button>
-    </form>
+<!--        <div>-->
+<!--            <label for="image"> Profile Image</label>-->
+<!--            <input th:field="*{profileImageUrl}" name="image" id="image" type="url" placeholder="Enter your image url here">-->
+<!--        </div>-->
+<!--        <button>Submit</button>-->
+<!--    </form>-->
 
-<div>
+<!--<div>-->
 
-    <h3>Favorites</h3>
+<!--    <h3>Favorites</h3>-->
 
-    <ul>
-        <li th:each="favorite, stat : ${favorites}" th:unless="${stat.index < stat.size -3}">
-            <h1><span th:text="${favorite.name}"></span></h1>
-            <p th:text="${favorite.description}"></p>
-            <img th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
+<!--    <ul>-->
+<!--        <li th:each="favorite, stat : ${favorites}" th:unless="${stat.index < stat.size -3}">-->
+<!--            <h1><span th:text="${favorite.name}"></span></h1>-->
+<!--            <p th:text="${favorite.description}"></p>-->
+<!--            <img th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">-->
 
-            <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
-        </li>
-    </ul>
-</div>
+<!--            <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
 
 <!--    details of user input?-->
-    <form th:action="@{/user/favorites}" th:method="GET">
-        <button>Favorites</button>
-    </form>
+<!--    <form th:action="@{/user/favorites}" th:method="GET">-->
+<!--        <button>Favorites</button>-->
+<!--    </form>-->
 <!--Working on edit password logic-->
 
 <!--        <div>-->

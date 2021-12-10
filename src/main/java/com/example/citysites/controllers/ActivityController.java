@@ -26,7 +26,10 @@ public class ActivityController {
 
     @GetMapping("/activity/{id}")
     public String singleActivityDetails(@PathVariable long id, Model model) {
-        model.addAttribute("activity", activityDao.getById(id));
+        Activity activity = activityDao.getById(id);
+        List<ActivityImage> images = activity.getActivityImages();
+        model.addAttribute("activity", activity);
+        model.addAttribute("images", images);
         return "citysites/details";
     }
 

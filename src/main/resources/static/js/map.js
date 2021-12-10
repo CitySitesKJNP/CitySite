@@ -24,6 +24,7 @@ function initAutocomplete() {
 
         var request = $.ajax({'url': '/api/map'});
         request.done(function (activities) {
+            // console.log(activities[1].activityReviews[0].rating)
             var popup = '';
             Promise.all(
                 activities.map(function (activity) {
@@ -34,23 +35,57 @@ function initAutocomplete() {
                     }))
                 })
             ).then(function (results){
+                // console.log(activities[1].activityReviews[0].rating)
+                // console.log(results[0]);
+                // console.log(activities[0].id)
+                // for (var i = 0; i <= activities.length; i++) {
+                //     console.log(activities[i]);
+                // }
                 activities.forEach(function (currentActivity, index) {
+                    // console.log(currentActivity.activityReviews[0].rating)
                     currentActivity.address = results[index];
                 })
-                activities.forEach(function (activity) {
+                activities.forEach(function (activity, index) {
                     var marker = new google.maps.Marker({
                         map: map,
                         position: {lat: activity.latitude, lng: activity.longitude}
                     })
 
-                    popup += '<div>';
+                    // Activity Image in Popup
+
+                    var imageLink;
+
+                    if (activity.activityImages[0]) {
+                        imageLink = activity.activityImages[0].imageUrl
+                    } else {
+                        imageLink = "https://st3.depositphotos.com/23594922/31822/v/600/depositphotos_318221368-stock-illustration-missing-picture-page-for-website.jpg";
+                    }
+
+                    // Activity Review in Popup
+                    // Work in Progress: If no reviews, return "No Review(s) Found"
+                    var reduceFxn;
+                    if (activity.activityReviews[0]) {
+                        reduceFxn = activity.activityReviews.reduce(function (accumulator, currentValue) {
+                            accumulator += currentValue.rating;
+                            return accumulator;
+                        }, 0) / activity.activityReviews.length
+                    } else {
+                        reduceFxn = "No Review(s) Found";
+                    }
+
+                    // Popup
+
+                    popup += '<div class="popupText">';
                     // First image for Activity
-                    // popup += `<img src="${}">`;
-                    popup += '<h1>' + "Name: " + activity.name + '</h1>';
-                    popup += '<p>' + "Address: " + activity.address + '</p>';
+                    popup += `<img class="popupImages" src="${imageLink}">`;
+                    popup += '<h1>' + activity.name + '</h1>';
+                    popup += '<p>' + activity.address + '</p>';
                     // Average of review for Activity (1-5). Maybe use filter?
+                    // console.log(activity.activityReviews[0].rating)
                     // console.log(activity.activityReviews[0])
-                    // popup += '<p>' + "Review: " + activity.activityReviews.rating + '</p>';
+                    // console.log(activity.activityReviews[0] === undefined)
+                    // console.log("Index = " + index);
+                    popup += '<p>' + "Average Rating: " + reduceFxn + '</p>';
                     popup += `<a href="/activity/${activity.id}">Details for Activity</a>`;
                     popup += '</div>';
 

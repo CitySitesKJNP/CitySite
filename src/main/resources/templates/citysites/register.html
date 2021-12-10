@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Register')"></head>
-<style>
-    .invalid-feedback{
-        font-size: 14px;
-        font-weight: 600;
-        text-align: center;
-    }
-</style>
+<!--<link rel="stylesheet" href="/css/citysites.css">-->
+
 <body>
 
-    <nav th:insert="partials/partials.html :: navbar"></nav>
+<nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
-
-    <h1 class="d-flex justify-content-center" style="font-size: 3rem">Create an Account</h1>
-
-    <form th:action="@{/register}" method="POST" th:object="${user}" class="col-lg-4 offset-lg-4 col-sm-10 offset-sm-1 mb-0">
-        <div class="form-group mt-0 mb-0">
-            <label for="name"></label>
-            <input id="name" th:field="*{name}" th:value="*{name}" class="form-control p-2" placeholder="Name" style="font-size: 1rem" th:errorClass="is-invalid"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+<button onclick="goBack()" class="btn-primary"
+        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute; font-family: Handlee">
+    Back
+</button>
+<main>
+    <section class="d-block"
+             style="background: url(&quot;http://www.visitsanantonio.com/wp-content/uploads/2020/04/Alamo-SanAntonio.jpg&quot;) right / cover no-repeat;height: 658px;padding-bottom: 100px;">
+        <div class="container d-block flex-column align-items-center"
+             style="padding-bottom: 0;width: 100%;padding-right: 0.75rem;padding-left: 0.75rem;margin-right: auto;margin-left: auto;">
+            <div class="text-center d-block" style="margin-bottom: 40px;padding-top: 80px;">
+                <h1 class="text-center"
+                    style="font-family: Handlee, serif;font-size: 64.1px;color: #f4cdc1;margin-bottom: -3.8rem;margin-top: -28px;text-shadow: 1px 1px 10px #000000;">
+                    Register</h1>
+            </div>
+            <form th:action="@{/register}" method="POST" th:object="${user}" class="d-block"
+                  style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
+                <div class="d-block mb-3" style="text-align: center;">
+                    <label for="name" class="form-label d-inline-block"></label>
+                    <input id="name" th:value="*{name}" th:field="*{name}" th:errorClass="is-invalid" class="form-control d-block" placeholder="Enter Name"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
+                </div>
+                <div class="d-block mb-3" style="text-align: center;">
+                    <label for="username" class="form-label d-inline-block"></label>
+                    <input id="username" th:errorClass="is-invalid" th:field="*{username}" th:value="*{username}" class="form-control d-block" placeholder="Enter Username"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+                </div>
+                <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
+                    <label for="email" class="form-label d-inline-block"></label>
+                    <input id="email" th:field="*{email}" th:value="*{email}" th:errorClass="is-invalid" class="form-control d-block" placeholder="Enter Email"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+                </div>
+                <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
+                    <label for="password" class="form-label d-inline-block"></label>
+                    <input id="password" th:errorClass="is-invalid" type="password" th:field="*{password}" th:value="*{password}" class="form-control d-block"
+                           placeholder="Enter Password"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary d-block" type="submit"
+                            style="margin: auto; font-family: Handlee, serif;font-size: 18px;color: rgb(0,0,0);background: #f4cdc1;border-style: none;">
+                        Register
+                    </button>
+                </div>
+            </form>
         </div>
-        <div class="form-group mt-0 mb-0">
-            <label for="username"></label>
-            <input id="username" th:field="*{username}" th:value="*{username}" class="form-control p-2" placeholder="Username" style="font-size: 1rem" th:errorClass="is-invalid"/>
-            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
-        </div>
-        <div class="form-group mt-0 mb-0">
-            <label for="email"></label>
-            <input id="email" th:field="*{email}" th:value="*{email}" class="form-control p-2" placeholder="Email" style="font-size: 1rem" th:errorClass="is-invalid"/>
-            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
-        </div>
-        <div class="form-group mt-0 mb-4">
-            <label for="password"></label>
-            <input id="password" type="password" th:field="*{password}" th:value="*{password}" class="form-control p-2" placeholder="Password" style="font-size: 1rem" th:errorClass="is-invalid"/>
-            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
-        </div>
+    </section>
+</main>
+>>>>>>> main
 
-        <button type="submit" class="btn btn-primary d-flex justify-content-center" value="Sign me up!">Sign Up</button>
-    </form>
+<nav th:insert="partials/partials.html :: footer"></nav>
 
-    <nav th:insert="partials/partials.html :: footer"></nav>
-
-    <th:block th:insert="partials/partials.html :: jquery" />
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
+<th:block th:insert="partials/partials.html :: jquery"/>
+<th:block th:insert="partials/partials.html :: bootstrap-js"/>
 </body>
 </html>
