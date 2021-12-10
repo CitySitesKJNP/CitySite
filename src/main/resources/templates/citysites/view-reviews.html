@@ -30,6 +30,7 @@
                         <h2 th:text="${review.rating} + '/5'"></h2>
                         <h5>Description:</h5>
                         <p th:text="${review.description}" class="description"></p>
+                        <img th:each="image, stat :${review.reviewImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${#authentication.principal.id == review.userReview.id}">
                                 <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
