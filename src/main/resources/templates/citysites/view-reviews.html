@@ -14,47 +14,28 @@
 </button>
 
 <div>
-    <!--        other user reviews-->
-    <h2>Other Reviews:</h2>
-    <ul>
-        <!--           <li th:each="review : ${reviews}">-->
-        <!--               <img th:src="${review.userReview.profileImageUrl}">-->
-        <!--               <h4 th:text="${review.userReview.username}"></h4>-->
-        <!--               <span th:text="${review.rating}"></span>-->
-        <!--               <p th:text="${review.description}"></p>-->
-        <!--               <div sec:authorize="isAuthenticated()">-->
-        <!--                   <div th:if="${#authentication.principal.id == review.userReview.id}">-->
-        <!--                       <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">-->
-        <!--                           <button>Delete Post</button>-->
-        <!--                       </form>-->
-        <!--                   </div>-->
-        <!--               </div>-->
-        <!--           </li>-->
-        <!--        </ul>-->
-        <!--    </div>-->
-
-        <section class="features-boxed">
-            <div class="container">
-                <div class="intro">
-                    <h2 class="text-center">Reviews</h2>
-                </div>
-                <div class="row justify-content-center features">
-                    <div th:each="review : ${reviews}" class="col-sm-6 col-md-5 col-lg-4 item">
-                        <div class="box"><img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
-                            <h4 class="name" th:text="${review.userReview.username}"></h4>
-                            <h2 th:text="${review.rating}"></h2>
-                            <p th:text="${review.description}" class="description"></p>
-                            <div sec:authorize="isAuthenticated()">
-                                <div th:if="${#authentication.principal.id == review.userReview.id}">
-                                    <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
-                                        <button>Delete Post</button>
-                                    </form>
-                                </div>
+    <section class="features-boxed">
+        <div class="container">
+            <div class="intro">
+                <h2 class="text-center">Reviews</h2>
+            </div>
+            <div class="row justify-content-center features">
+                <div th:each="review : ${reviews}" class="col-sm-6 col-md-5 col-lg-4 item">
+                    <div class="box"><img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
+                        <h4 class="name" th:text="${review.userReview.username}"></h4>
+                        <h2 th:text="${review.rating}"></h2>
+                        <p th:text="${review.description}" class="description"></p>
+                        <div sec:authorize="isAuthenticated()">
+                            <div th:if="${#authentication.principal.id == review.userReview.id}">
+                                <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
+                                    <button>Delete Post</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 </div>
 </section>
 
