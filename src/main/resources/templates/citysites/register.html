@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Register')"></head>
-
+<style>
+    .invalid-feedback{
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+    }
+</style>
 <body>
 
     <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -13,19 +19,23 @@
     <form th:action="@{/register}" method="POST" th:object="${user}" class="col-lg-4 offset-lg-4 col-sm-10 offset-sm-1 mb-0">
         <div class="form-group mt-0 mb-0">
             <label for="name"></label>
-            <input id="name" th:field="*{name}" class="form-control p-2" placeholder="Name" style="font-size: 1rem" th:errorClass="is-invalid"/>
+            <input id="name" th:field="*{name}" th:value="*{name}" class="form-control p-2" placeholder="Name" style="font-size: 1rem" th:errorClass="is-invalid"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
         </div>
         <div class="form-group mt-0 mb-0">
             <label for="username"></label>
-            <input id="username" th:field="*{username}" class="form-control p-2" placeholder="Username" style="font-size: 1rem"/>
+            <input id="username" th:field="*{username}" th:value="*{username}" class="form-control p-2" placeholder="Username" style="font-size: 1rem" th:errorClass="is-invalid"/>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
         </div>
         <div class="form-group mt-0 mb-0">
             <label for="email"></label>
-            <input id="email" th:field="*{email}" class="form-control p-2" placeholder="Email" style="font-size: 1rem"/>
+            <input id="email" th:field="*{email}" th:value="*{email}" class="form-control p-2" placeholder="Email" style="font-size: 1rem" th:errorClass="is-invalid"/>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
         </div>
         <div class="form-group mt-0 mb-4">
             <label for="password"></label>
-            <input id="password" type="password" th:field="*{password}" class="form-control p-2" placeholder="Password" style="font-size: 1rem"/>
+            <input id="password" type="password" th:field="*{password}" th:value="*{password}" class="form-control p-2" placeholder="Password" style="font-size: 1rem" th:errorClass="is-invalid"/>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
         </div>
 
         <button type="submit" class="btn btn-primary d-flex justify-content-center" value="Sign me up!">Sign Up</button>
