@@ -1,0 +1,33 @@
+/*Light Button Styling*/
+
+.buttonStyle {
+    background: #f7d7cc;
+    border-style: none;
+    border-radius: 10px;
+    color: rgb(0,0,0);
+    margin-right: 10px;
+}
+/*Dark Button Styling*/
+
+.darkButtonStyle {
+    font-size: 18px;
+    font-family: Handlee, serif;
+    border-style: none;
+    background: #000000;
+    color: #f4cdc1;
+}
+/*Back Button Styling*/
+
+.backButtonStyle {
+    margin: 11px;
+    background: black;
+    color: #f4cdc1;
+    border: none;
+    border-radius: .25rem;
+    position: absolute
+}
+
+
+.buttonStyle {
+    font-size: 22px;
+}

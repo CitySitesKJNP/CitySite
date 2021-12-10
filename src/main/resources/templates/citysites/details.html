@@ -6,6 +6,7 @@
         display: none;
     }
 </style>
+<link rel="stylesheet" href="/css/button-styling.css">
 <body>
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -35,13 +36,13 @@
             <p th:text="${activity.description}"></p>
             <div sec:authorize="isAuthenticated()">
                 <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-                    <button type="submit">Favorite</button>
+                    <button type="submit" class="darkButtonStyle">Favorite</button>
                 </form>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <button id="hide">Edit activity</button>
+                <button id="hide" class="darkButtonStyle">Edit activity</button>
                 <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="darkButtonStyle">Delete</button>
                 </form>
             </div>
         </div>
@@ -62,14 +63,14 @@
                 <div>
                     <label for="image">Add More Image(s)</label>
                     <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
-                    <button type="button" id="create-an-element">Add Another Image?</button>
+                    <button type="button" id="create-an-element" class="darkButtonStyle">Add Another Image?</button>
                 </div>
                 <button>Submit</button>
 
             </form>
         </div>
-        <a th:href="@{'/reviews/' + ${activity.id}}"><button>See All Reviews</button></a>
-        <a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>
+        <a th:href="@{'/reviews/' + ${activity.id}}"><button class="darkButtonStyle">See All Reviews</button></a>
+        <a th:href="@{'/reviews/create/' + ${activity.id}}"><button class="darkButtonStyle" type="submit">Add a Review</button></a>
     </div>
 
 <div>

@@ -4,6 +4,7 @@
 
 <body>
 <link rel="stylesheet" href="/css/citysites.css">
+<link rel="stylesheet" href="/css/button-styling.css">
 <style>
     .invisible {
         display: none
@@ -38,10 +39,10 @@
                 <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
                 <p>Your current username is <span th:text="${user.username}"></span></p>
                 <p>The current active email address we have for you is <span th:text="${user.email}"></span></p>
-                <button id="hide" class="btn btn-primary" type="button">Button</button>
+                <button id="hide" class="btn darkButtonStyle" type="button">Edit Profile</button>
                 <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
                     <div>
-                        <label for="username"></label>
+                        <label for="username">Change your username</label>
                         <input  th:field="*{username}" name="username" id="username" type="text"  th:value="${user.username}">
                     </div>
                     <div>
@@ -56,7 +57,7 @@
                         <label for="image"> Profile Image</label>
                         <input th:field="*{profileImageUrl}" name="image" id="image" type="url" placeholder="Enter your image url here">
                     </div>
-                    <button>Submit</button>
+                    <button type="submit" class="darkButtonStyle">Submit</button>
                 </form>
             </div>
         </div>
@@ -69,12 +70,15 @@
                     <p th:text="${favorite.description}"></p>
                     <img th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
 
-                    <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
+<!--                    <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>-->
+                    <form th:action="@{'/activity/' + ${favorite.id}}">
+                        <button type="submit" class="btn darkButtonStyle">See Activity</button>
+                    </form>
                 </li>
             </ul>
 
             <form th:action="@{/user/favorites}" th:method="GET">
-                <button>Favorites</button>
+                <button type="submit" class="btn darkButtonStyle">Favorites</button>
             </form>
 
         </div>

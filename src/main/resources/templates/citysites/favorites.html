@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Favorites')"></head>
+<link rel="stylesheet" href="/css/button-styling.css">
 
 <body style="background: #f4cdc1;">
 
@@ -27,7 +28,9 @@
             <div th:each="favorite : ${favorites}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center" style="margin: 0px;padding: 10px;">
                 <h3 class="text-center"><span th:text="${favorite.name}"></span></h3>
                 <img class="img-fluid" th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl} ">
-                <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>
+                <form th:action="@{'/activity/' + ${favorite.id}}">
+                    <button class="darkButtonStyle">See Activity</button>
+                </form>
             </div>
         </div>
 
