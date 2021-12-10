@@ -23,14 +23,35 @@
             </div>
             <div class="row justify-content-center features">
                 <div th:each="review : ${reviews}" class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box"><img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
-                        <h4 class="name" th:text="${review.userReview.username}"></h4>
+                    <div class="box">
+                        <img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
+                        <h3 class="name" th:text="${review.userReview.username}"></h3>
                         <hr>
-                        <h5>Rating:</h5>
-                        <h2 th:text="${review.rating} + '/5'"></h2>
-                        <h5>Description:</h5>
+                        <h3>Rating:</h3>
+                        <h4 th:text="${review.rating} + '/5'"></h4>
+                        <h3>Description:</h3>
                         <p th:text="${review.description}" class="description"></p>
-                        <img th:each="image, stat :${review.reviewImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">
+
+
+                        <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+                            <div class="carousel-inner">
+                                <img th:each="image, stat :${review.reviewImages}" th:src="${image.imageUrl}" class="carousel-item active w-100 d-block">
+<!--                                    <img class=""   alt="Slide Image">-->
+<!--                                </img>-->
+                            </div>
+                            <div>
+                                <a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a>
+                            </div>
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
+                            </ol>
+                        </div>
+
+<!--                        <img th:each="image, stat :${review.reviewImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}">-->
+
+
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${#authentication.principal.id == review.userReview.id}">
                                 <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
