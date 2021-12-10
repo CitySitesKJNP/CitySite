@@ -8,11 +8,15 @@ import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
@@ -24,7 +28,6 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
     private ActivityRepository activityDao;
     private ActivityImageRepository activityImageDao;
-    private Logger log = LoggerFactory.getLogger(UserController.class);
 
     public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, ActivityRepository activityDao, ActivityImageRepository activityImageDao) {
         this.userDao = userDao;
@@ -33,26 +36,30 @@ public class UserController {
         this.activityImageDao = activityImageDao;
     }
 
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
+
+    }
+
 
     @GetMapping("/register")
-    public String registrationPage(Model model) {
-        model.addAttribute("user", new User());
+    public String registrationPage(@ModelAttribute User user, Model model) {
+        model.addAttribute("user", user);
         return "citysites/register";
     }
 
 //    PostMapping for Register
     @PostMapping("/register")
-    public String createUser(@ModelAttribute User user) {
+    public String createUser(@Valid User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "citysites/register";
+        }
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
-        try{
             userDao.save(user);
             return "redirect:/login";
-        }
-        catch (SQLIntegrityConstraintViolationException loginError) {
-
-            return "redirect:/register";
-        }
 
     }
 
