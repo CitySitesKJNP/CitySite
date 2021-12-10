@@ -52,15 +52,15 @@
             <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">
         </div>
         <div>
-            <label for="description">Change your email address</label>
+            <label for="description">Edit Description</label>
             <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">
         </div>
         <div>
-            <label for="hours">Edit Existing hou</label>
-            <input th:value="*{hours}" type="text" id="hours" name="hours">
+            <label for="hours">Edit Existing Hours</label>
+            <input th:field="*{hours}" th:value="*{hours}" type="text" id="hours" name="hours">
         </div>
         <div>
-            <label for="image">Image(s)</label>
+            <label for="image">Add More Image(s)</label>
             <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
             <button type="button" id="create-an-element">Add Another Image?</button>
         </div>
