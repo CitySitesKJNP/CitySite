@@ -1,7 +1,13 @@
 package com.example.citysites.models;
 
+import com.sun.istack.NotNull;
+import jdk.jfr.Name;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,15 +21,21 @@ public class User {
     private long id;
 
     @Column(nullable = false)
+    @NotBlank(message= "Enter your name")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message= "Enter your email address")
+    @Email(message= "Please enter your email address")
     private String email;
 
     @Column(nullable = false, length = 25, unique = true)
+    @NotBlank(message= "Enter your username")
     private String username;
 
     @Column(nullable = false)
+    @NotBlank(message= "Enter your password")
+    @Length(min=6, message= "Password must be at least 6 characters in length")
     private String password;
 
     @Column
@@ -130,5 +142,16 @@ public class User {
 
     public void setFavoriteActivities(List<Activity> favoriteActivities) {
         this.favoriteActivities = favoriteActivities;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password +
+                '}';
     }
 }

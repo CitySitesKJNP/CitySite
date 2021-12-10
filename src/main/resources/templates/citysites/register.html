@@ -2,7 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Register')"></head>
 <!--<link rel="stylesheet" href="/css/citysites.css">-->
-
+<style>
+    .invalid-feedback{
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+    }
+</style>
 <body>
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -25,24 +31,28 @@
                   style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
                 <div class="d-block mb-3" style="text-align: center;">
                     <label for="name" class="form-label d-inline-block"></label>
-                    <input id="name" th:field="*{name}" class="form-control d-block" placeholder="Enter Name"
+                    <input id="name" th:value="*{name}" th:field="*{name}" th:errorClass="is-invalid" class="form-control d-block" placeholder="Enter Name"
                            style="text-align: center;font-family: Handlee, serif;width: 100%;;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
                 </div>
                 <div class="d-block mb-3" style="text-align: center;">
                     <label for="username" class="form-label d-inline-block"></label>
-                    <input id="username" th:field="*{username}" class="form-control d-block" placeholder="Enter Username"
+                    <input id="username" th:errorClass="is-invalid" th:field="*{username}" th:value="*{username}" class="form-control d-block" placeholder="Enter Username"
                            style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
                 </div>
                 <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
                     <label for="email" class="form-label d-inline-block"></label>
-                    <input id="email" th:field="*{email}" class="form-control d-block" placeholder="Enter Email"
+                    <input id="email" th:field="*{email}" th:value="*{email}" th:errorClass="is-invalid" class="form-control d-block" placeholder="Enter Email"
                            style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
                 </div>
                 <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
                     <label for="password" class="form-label d-inline-block"></label>
-                    <input id="password" type="password" th:field="*{password}" class="form-control d-block"
+                    <input id="password" th:errorClass="is-invalid" type="password" th:field="*{password}" th:value="*{password}" class="form-control d-block"
                            placeholder="Enter Password"
                            style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
                 </div>
                 <div class="mb-3">
                     <button class="btn btn-primary d-block" type="submit"
@@ -54,6 +64,7 @@
         </div>
     </section>
 </main>
+>>>>>>> main
 
 <nav th:insert="partials/partials.html :: footer"></nav>
 
