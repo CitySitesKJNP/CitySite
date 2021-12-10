@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head th:insert="partials/partials.html :: head('Login')"></head>
-<link rel="stylesheet" href="/assets/bootstrap/css/login.css">
 
 <body>
   <nav th:insert="partials/partials.html :: navbar"></nav>
@@ -13,14 +12,14 @@
         <div class="text-center d-block" style="margin-bottom: 40px;padding-top: 80px;">
           <h1 class="text-center" style="font-family: Handlee, serif;font-size: 64.1px;color: #f4cdc1;margin-bottom: 1.2rem;">Login</h1>
         </div>
-        <form th:action="@{/login}" method="post" class="d-block" style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
+        <form th:action="@{/login}" method="POST" class="d-block" style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
           <div class="d-block mb-3" style="text-align: center;">
             <label for="username" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;">Username</label>
-            <input id="username" class="form-control d-block" type="text" placeholder="Username" style="text-align: center;font-family: Handlee, serif;width: 100%;padding-top: 0.375rem;padding-right: 0.75rem;padding-bottom: 0.375rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
+            <input id="username" name="username" class="form-control d-block" type="text" placeholder="Username" style="text-align: center;font-family: Handlee, serif;width: 100%;padding-top: 0.375rem;padding-right: 0.75rem;padding-bottom: 0.375rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
           </div>
           <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
             <label for="password" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;">Password</label>
-            <input id="password" class="form-control d-block" type="password" name="password" placeholder="Password" style="text-align: center;font-family: Handlee, serif;border: 5px solid #f4cdc1;width: 100%;padding-top: 0.375rem;padding-bottom: 0.375rem;padding-right: 0.75rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;">
+            <input id="password" name="password" class="form-control d-block" type="password" placeholder="Password" style="text-align: center;font-family: Handlee, serif;border: 5px solid #f4cdc1;width: 100%;padding-top: 0.375rem;padding-bottom: 0.375rem;padding-right: 0.75rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;">
           </div>
           <div class="mb-3">
             <button class="btn btn-primary d-block w-100" type="submit" style="font-family: Handlee, serif;font-size: 18px;color: rgb(0,0,0);background: #f4cdc1;border-style: none;">Log In</button>

@@ -197,19 +197,19 @@ body {
 }
 
 /*=====REGISTER PAGE=====*/
-#create-account {
-    border: solid black;
-    width: 400px;
-    /*height: 100px;*/
-    margin: auto;
-    background-color: black;
-}
+/*#create-account {*/
+/*    border: solid black;*/
+/*    width: 400px;*/
+/*    !*height: 100px;*!*/
+/*    margin: auto;*/
+/*    background-color: black;*/
+/*}*/
 
-.form-group {
-    width: 400px;
-    margin: auto;
-}
+/*.form-group {*/
+/*    width: 400px;*/
+/*    margin: auto;*/
+/*}*/
 
-#submit-button {
-    margin: auto;
-}
+/*#submit-button {*/
+/*    margin: auto;*/
+/*}*/
