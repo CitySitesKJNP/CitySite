@@ -48,29 +48,17 @@
         <div class="container d-lg-flex justify-content-lg-center align-items-lg-start" style="margin-bottom: 54px;height: 77px;">
             <div class="row">
                 <div class="col">
-                    <h3 class="d-lg-flex">Most Famous Places</h3>
-                    <h4 style="opacity: 0.44;">Recommended&nbsp;</h4>
+                    <h3 class="d-lg-flex">Community Created Activities</h3>
+                    <h4 style="opacity: 0.44;">Most Recent</h4>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4" style="border-style: none;">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="/assets/img/dallas.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
-                        <h5>Dallas</h5>
-                        <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="/assets/img/sana.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
-                        <h5>San Antonio</h5>
-                        <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img src="/assets/img/hou.jpeg" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
-                        <h5>Houston</h5>
-                        <p class="lead mb-0" style="height: 85px;">This theme will look great on any device, no matter the size!</p>
+                <div class="col-lg-4" style="border-style: none;" th:each="activity, stat : ${activities}" th:unless="${stat.index < stat.size -3}">
+                    <div class="mx-auto features-icons-item mb-5 mb-lg-0 mb-lg-3"><img th:each="image, stat : ${activity.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl}" style="width: 262px;height: 148px;margin-bottom: 10px;border-radius: 10px;">
+                        <h5 th:text="${activity.name}"></h5>
+                        <p class="lead mb-0" style="height: 85px;" th:text="${activity.description}"></p>
                     </div>
                 </div>
             </div>
