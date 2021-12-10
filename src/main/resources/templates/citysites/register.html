@@ -11,36 +11,49 @@
         style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute; font-family: Handlee">
     Back
 </button>
-    <main>
-        <section class="d-block" style="background: url(&quot;http://www.visitsanantonio.com/wp-content/uploads/2020/04/Alamo-SanAntonio.jpg&quot;) right / cover no-repeat;height: 658px;padding-bottom: 100px;">
-            <div class="container d-block flex-column align-items-center" style="padding-bottom: 0;width: 100%;padding-right: 0.75rem;padding-left: 0.75rem;margin-right: auto;margin-left: auto;">
-                <div class="text-center d-block" style="margin-bottom: 40px;padding-top: 80px;">
-                    <h1 class="text-center" style="font-family: Handlee, serif;font-size: 64.1px;color: #f4cdc1;margin-bottom: -3.8rem;margin-top: -28px;text-shadow: 1px 1px 10px #000000;">Register</h1>
-                </div>
-                <form th:action="@{/register}" method="POST" th:object="${user}" class="d-block" style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
-                    <div class="d-block mb-3" style="text-align: center;">
-                        <label for="name" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;background: rgb(0,0,0);border-radius: 10px;text-shadow: 0px 0px 11px #000000;">Name</label>
-                        <input id="name" th:field="*{name}" class="form-control d-block" placeholder="Enter Name" style="text-align: center;font-family: Handlee, serif;width: 100%;padding-top: 0.375rem;padding-right: 0.75rem;padding-bottom: 0.375rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
-                    </div>
-                    <div class="d-block mb-3" style="text-align: center;">
-                        <label for="username" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;background: rgb(0,0,0);border-radius: 10px;text-shadow: 2px 1px 11px #000000;">Username</label>
-                        <input id="username" th:field="*{username}" class="form-control d-block" placeholder="Enter Username" style="text-align: center;font-family: Handlee, serif;width: 100%;padding-top: 0.375rem;padding-right: 0.75rem;padding-bottom: 0.375rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
-                    </div>
-                    <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
-                        <label for="email" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;text-shadow: 7px 7px 11px #000000;background: #000000;border-radius: 10px;">Email</label>
-                        <input id="email" th:field="*{email}" class="form-control d-block" placeholder="Enter Email" style="text-align: center;font-family: Handlee, serif;border: 5px solid #f4cdc1;width: 100%;padding-top: 0.375rem;padding-bottom: 0.375rem;padding-right: 0.75rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;">
-                    </div>
-                    <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
-                        <label for="password" class="form-label d-inline-block" style="border-style: none;font-family: Handlee, serif;font-size: 25px;color: #f4cdc1;margin-bottom: 0.5rem;text-shadow: 11px 4px 11px #000000;background: #000000;border-radius: 10px;">Password</label>
-                        <input id="password" type="password" th:field="*{password}" class="form-control d-block" placeholder="Enter Password" style="text-align: center;font-family: Handlee, serif;border: 5px solid #f4cdc1;width: 100%;padding-top: 0.375rem;padding-bottom: 0.375rem;padding-right: 0.75rem;padding-left: 0.75rem;font-size: 1rem;border-radius: 0.25rem;">
-                    </div>
-                    <div class="mb-3">
-                        <button class="btn btn-primary d-block w-100" type="submit" style="font-family: Handlee, serif;font-size: 18px;color: rgb(0,0,0);background: #f4cdc1;border-style: none;">Register</button>
-                    </div>
-                </form>
+<main>
+    <section class="d-block"
+             style="background: url(&quot;http://www.visitsanantonio.com/wp-content/uploads/2020/04/Alamo-SanAntonio.jpg&quot;) right / cover no-repeat;height: 658px;padding-bottom: 100px;">
+        <div class="container d-block flex-column align-items-center"
+             style="padding-bottom: 0;width: 100%;padding-right: 0.75rem;padding-left: 0.75rem;margin-right: auto;margin-left: auto;">
+            <div class="text-center d-block" style="margin-bottom: 40px;padding-top: 80px;">
+                <h1 class="text-center"
+                    style="font-family: Handlee, serif;font-size: 64.1px;color: #f4cdc1;margin-bottom: -3.8rem;margin-top: -28px;text-shadow: 1px 1px 10px #000000;">
+                    Register</h1>
             </div>
-        </section>
-    </main>
+            <form th:action="@{/register}" method="POST" th:object="${user}" class="d-block"
+                  style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
+                <div class="d-block mb-3" style="text-align: center;">
+                    <label for="name" class="form-label d-inline-block"></label>
+                    <input id="name" th:field="*{name}" class="form-control d-block" placeholder="Enter Name"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1 ;">
+                </div>
+                <div class="d-block mb-3" style="text-align: center;">
+                    <label for="username" class="form-label d-inline-block"></label>
+                    <input id="username" th:field="*{username}" class="form-control d-block" placeholder="Enter Username"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                </div>
+                <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
+                    <label for="email" class="form-label d-inline-block"></label>
+                    <input id="email" th:field="*{email}" class="form-control d-block" placeholder="Enter Email"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                </div>
+                <div class="text-center d-block mb-3" style="margin-bottom: 1rem;">
+                    <label for="password" class="form-label d-inline-block"></label>
+                    <input id="password" type="password" th:field="*{password}" class="form-control d-block"
+                           placeholder="Enter Password"
+                           style="text-align: center;font-family: Handlee, serif;width: 100%;font-size: 1.5rem;border-radius: 0.25rem;border: 5px solid #f4cdc1;">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-primary d-block" type="submit"
+                            style="margin: auto; font-family: Handlee, serif;font-size: 18px;color: rgb(0,0,0);background: #f4cdc1;border-style: none;">
+                        Register
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
 
 <nav th:insert="partials/partials.html :: footer"></nav>
 
