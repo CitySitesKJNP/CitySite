@@ -30,7 +30,11 @@
     <h1> <span th:text="${activity.name}"></span></h1>
     <p th:text="${activity.hours}"></p>
     <p th:text="${activity.description}"></p>
-<!--    <img id="images" th:src="${activity.getActivityImages()}">-->
+    <ul>
+        <li th:each="image, stat : ${images}">
+            <img  th:src="${image.imageUrl}">
+        </li>
+    </ul>
     <p id="activityAddress"></p>
     <div sec:authorize="isAuthenticated()">
         <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
