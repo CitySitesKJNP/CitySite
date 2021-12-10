@@ -75,9 +75,9 @@ function initAutocomplete() {
 
                     // Popup
 
-                    popup += '<div>';
+                    popup += '<div class="popupText">';
                     // First image for Activity
-                    popup += `<img src="${imageLink}">`;
+                    popup += `<img class="popupImages" src="${imageLink}">`;
                     popup += '<h1>' + activity.name + '</h1>';
                     popup += '<p>' + activity.address + '</p>';
                     // Average of review for Activity (1-5). Maybe use filter?

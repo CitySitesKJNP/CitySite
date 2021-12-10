@@ -2,6 +2,15 @@ body {
     height: 100%;
 }
 
+.popupImages {
+    height: 150px;
+}
+
+.popupText {
+    font-family: Handlee, serif;
+    color: black;
+}
+
 /*----SEARCH BOX STYLING----*/
 
 /* Always set the map height explicitly to define the size of the div
