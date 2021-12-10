@@ -12,7 +12,7 @@
 
     <div class="row justify-content-center" style="margin-top: 29px;">
         <div class="col-xl-5 offset-xl-0">
-            <h1 class="text-center" style="font-family: Handlee, serif;font-size: 47px;font-weight: bold;">Create an Activity</h1>
+            <h1 class="text-center" style="font-size: 47px;font-weight: bold;">Create an Activity</h1>
         </div>
     </div>
 
@@ -28,30 +28,34 @@
             <input th:field="*{latitude}" name="latitude" id="latitude" type="hidden">
             <input th:field="*{longitude}" name="longitude" id="longitude" type="hidden">
         </div>
+
         <div class="row justify-content-center">
-            <div class="col-10 col-sm-9 col-md-5 col-lg-6 offset-sm-0 offset-md-0 offset-lg-0">
-                <div id="map" style="height: 314px;margin-top: 9px; width: auto"></div>
-            </div>
-            <div class="col-11 col-sm-10 col-md-5 col-lg-5 d-flex flex-column align-items-center">
-                <label for="name" class="form-label" style="font-size: 22px;font-family: Handlee, serif;">Name</label>
-                <input th:field="*{name}" name="name" id="name" class="form-control" type="text" placeholder="Enter Name of Activity" style="text-align: center;">
-                <label for="description" class="form-label" style="font-size: 22px;font-family: Handlee, serif;">Description</label>
-                <textarea th:field="*{description}" name="description" id="description" class="form-control" style="height: 211px;text-align: center;" placeholder="Enter Description of Activity..."></textarea>
+            <div class="col-11 col-sm-11 col-md-11 col-lg-10 offset-sm-0 offset-md-0 offset-lg-0">
+                <div id="map" style="height: 240px;margin-top: 9px; width: 100%"></div>
             </div>
         </div>
+
         <div class="row justify-content-center" style="margin-top: 8px;">
-            <div class="col-sm-5 col-md-4 col-lg-3 offset-lg-0 d-flex flex-column align-items-center">
-                <label for="hours" class="form-label" style="font-family: Handlee, serif;font-size: 22px;">Hours of Operation</label>
-                <input th:field="*{hours}" name="hours" id="hours" class="form-control" type="text" placeholder="Enter Hours of Operation" style="width: 231px;">
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-5 d-flex d-lg-flex flex-column align-items-center align-items-lg-center">
-                <label for="image" class="form-label" style="font-family: Handlee, serif;font-size: 22px;">Image(s)</label>
-                <input id="image" name="urls" class="form-control" type="url" style="width: 322.656px;margin-bottom: 9px;" placeholder="Enter Image URL">
+            <div class="col-11 col-sm-10 col-md-8 col-lg-8 offset-lg-0 d-flex flex-column align-items-center">
+                <label for="name" class="form-label">Name of Activity</label>
+                <input th:field="*{name}" name="name" id="name" class="form-control" type="text" placeholder="Enter Name of Activity" style="text-align: center;width: 100%;">
+
+                <label for="hours" class="form-label">Hours of Operation</label>
+                <input th:field="*{hours}" name="hours" id="hours" class="form-control" type="text" placeholder="Enter Hours of Operation" style="width: 100%;text-align: center;">
+
+                <label for="description" class="form-label">Description</label>
+                <textarea th:field="*{description}" name="description" id="description" class="form-control" style="height: 150px;text-align: center;" placeholder="Enter Description of Activity..."></textarea>
+
+                <label for="image" class="form-label">Image(s)</label>
+                <input id="image" name="urls" class="form-control" type="url" style="width: 100%;margin-bottom: 9px;text-align: center;" placeholder="Enter Image URL">
+
                 <button id="create-an-element" class="btn darkButtonStyle" type="button">Add Another Image?</button>
             </div>
         </div>
-        <div class="row justify-content-center" style="margin-top: 8px;">
-                <button class="btn darkButtonStyle" type="submit">Create Activity</button>
+
+        <div class="row justify-content-center" style="margin-top: 8px;margin-bottom: 10px;">
+            <div class="col-lg-5 d-flex justify-content-center">
+                <button class="btn btn-primary darkButtonStyle" type="submit">Create Activity</button>
             </div>
         </div>
     </form>
