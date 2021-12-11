@@ -29,14 +29,14 @@
             <h2 id="title" class="text-center" style="font-size: 50px;"><span th:text="${activity.name}"></span></h2>
             <div sec:authorize="isAuthenticated()" style="float: right">
                 <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-                    <button type="submit" class="darkButtonStyle">Favorite</button>
+                    <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
                 </form>
             </div>
             <a th:href="@{'/reviews/create/' + ${activity.id}}">
-                <button class="darkButtonStyle" type="submit">Add a Review</button>
+                <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
             </a>
             <a th:href="@{'/reviews/' + ${activity.id}}">
-                <button class="darkButtonStyle">See All Reviews</button>
+                <button class="btn btn-primary darkButtonStyle mt-2">See All Reviews</button>
             </a>
         </div>
         <div class="row justify-content-center">
@@ -58,10 +58,10 @@
 
                     <!--                =====EDIT BUTTON=====-->
                     <div sec:authorize="isAuthenticated()">
-                        <button id="hide" class="darkButtonStyle">Edit activity</button>
+                        <button id="hide" class="btn btn-primary darkButtonStyle">Edit activity</button>
                         <!--                =====DELETE BUTTON=====-->
                         <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
-                            <button type="submit" class="darkButtonStyle">Delete</button>
+                            <button type="submit" class="btn btn-primary darkButtonStyle">Delete</button>
                         </form>
                     </div>
                 </div>
@@ -85,9 +85,9 @@
                     <div>
                         <label for="image" class="form-label">Add More Image(s):</label>
                         <input class="form-control" id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
-                        <button type="button" id="create-an-element" class="darkButtonStyle pt-2">Add Another Image?</button>
+                        <button type="button" id="create-an-element" class="btn btn-primary darkButtonStyle pt-2">Add Another Image?</button>
                     </div>
-                    <button class="darkButtonStyle mt-2">Submit</button>
+                    <button class="btn btn-primary darkButtonStyle mt-2">Submit</button>
                 </form>
             </div>
         </div>
@@ -95,55 +95,7 @@
 
 </div>
 
-<div>
-    <!--    <h1> <span th:text="${activity.name}"></span></h1>-->
-    <!--    <p th:text="${activity.hours}"></p>-->
-    <!--    <p th:text="${activity.description}"></p>-->
-    <!--    <ul>-->
-    <!--        <li th:each="image, stat : ${images}">-->
-    <!--            <img  th:src="${image.imageUrl}">-->
-    <!--        </li>-->
-    <!--    </ul>-->
-    <!--    <p id="activityAddress"></p>-->
-    <!--    <div sec:authorize="isAuthenticated()">-->
-    <!--        <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">-->
-    <!--            <button type="submit">Favorite</button>-->
-    <!--        </form>-->
-    <!--    </div>-->
-    <!--</div>-->
-    <!--    <div sec:authorize="isAuthenticated()">-->
-    <!--        <button id="hide">Edit activity</button>-->
-    <!--        <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">-->
-    <!--            <button type="submit">Delete</button>-->
-    <!--        </form>-->
-    <!--    </div>-->
-
-    <!--<div>-->
-    <!--    <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">-->
-    <!--        <div>-->
-    <!--            <label for="name"></label>-->
-    <!--            <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <label for="description">Edit Description</label>-->
-    <!--            <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <label for="hours">Edit Existing Hours</label>-->
-    <!--            <input th:field="*{hours}" th:value="*{hours}" type="text" id="hours" name="hours">-->
-    <!--        </div>-->
-    <!--        <div>-->
-    <!--            <label for="image">Add More Image(s)</label>-->
-    <!--            <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">-->
-    <!--            <button type="button" id="create-an-element">Add Another Image?</button>-->
-    <!--        </div>-->
-    <!--        <button>Submit</button>-->
-
-    <!--    </form>-->
-</div>
-
-
-<!--<nav th:insert="partials/partials.html :: footer"></nav>-->
+<nav th:insert="partials/partials.html :: footer"></nav>
 
 <th:block th:insert="partials/partials.html :: bootstrap-js"/>
 <th:block th:insert="partials/partials.html :: jquery"/>
