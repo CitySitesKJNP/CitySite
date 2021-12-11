@@ -44,6 +44,11 @@ public class Review {
     public Review() {
     }
 
+    public Review(int rating, String description) {
+        this.rating = rating;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }

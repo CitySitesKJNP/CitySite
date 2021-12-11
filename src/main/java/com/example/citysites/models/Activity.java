@@ -27,10 +27,10 @@ public class Activity {
     private String description;
 
     @Column
-    private float longitude;
+    private double longitude;
 
     @Column
-    private float latitude;
+    private double latitude;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
     @JsonManagedReference
@@ -51,6 +51,24 @@ public class Activity {
 
 
     public Activity() {
+    }
+
+    public Activity(String name, String hours, String description, double longitude, double latitude) {
+        this.name = name;
+        this.hours = hours;
+        this.description = description;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public Activity(String name, String hours, String description, double longitude, double latitude, List<ActivityImage> activityImages, List<Review> activityReviews) {
+        this.name = name;
+        this.hours = hours;
+        this.description = description;
+        this.longitude = longitude;
+        this.latitude = latitude;
+        this.activityImages = activityImages;
+        this.activityReviews = activityReviews;
     }
 
     public long getId() {
@@ -85,7 +103,7 @@ public class Activity {
         this.description = description;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
@@ -93,7 +111,7 @@ public class Activity {
         this.longitude = logitude;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
