@@ -1,0 +1,11 @@
+body {
+    background-color: #f4cdc1;
+}
+
+#info {
+    font-size: 30px;
+}
+
+#title {
+    text-decoration: underline overline dotted red;
+}
