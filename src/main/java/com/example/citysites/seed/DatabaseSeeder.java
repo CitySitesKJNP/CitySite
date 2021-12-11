@@ -35,12 +35,11 @@ public class DatabaseSeeder implements CommandLineRunner {
 
     private void seedActivities() {
         List<Activity> activities = Arrays.asList(
-//                String name, String hours, String description, float longitude, float latitude, List<ActivityImage > activityImages, List< Review > activityReviews
-                new Activity("San Antonio Zoo", "12PM - 9PM", "The Zoo in San Antonio! See animals and hang outdoors.", -98.4736266427417, 29.462558526605523),
-                new Activity("Skyview Dormatory", "N/A", "Event center and school.", -98.47184539303268, 29.467097270775575),
-                new Activity("McNay Art Museum", "10AM - 6PM", "Works include, but are not limited to, European and American masters.",-98.457504143826, 29.48751749694531),
-                new Activity("Jack White Park Trailhead", "6AM - 7:30PM", "Wonderful park with central views of the city. Near the San Antonio Zoo.", -98.42415546833644, 29.453738594798708),
-                new Activity("San Antonio River Walk", "24/7", "The riverwalk in San Antonio.", -98.48472249236681, 29.425164567079456)
+                new Activity("San Antonio Zoo", "12PM - 9PM", "The Zoo in San Antonio! See animals and hang outdoors.", -98.4736266427417F, 29.462558526605523F),
+                new Activity("Skyview Dormatory", "N/A", "Event center and school.", -98.47184539303268F, 29.467097270775575F),
+                new Activity("McNay Art Museum", "10AM - 6PM", "Works include, but are not limited to, European and American masters.",-98.457504143826F, 29.48751749694531F),
+                new Activity("Jack White Park Trailhead", "6AM - 7:30PM", "Wonderful park with central views of the city. Near the San Antonio Zoo.", -98.42415546833644F, 29.453738594798708F),
+                new Activity("San Antonio River Walk", "24/7", "The riverwalk in San Antonio.", -98.48472249236681F, 29.425164567079456F)
         );
 
         activityDao.saveAll(activities);
