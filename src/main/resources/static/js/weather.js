@@ -15,11 +15,11 @@ $.get("https://api.openweathermap.org/data/2.5/onecall", {
         }
 
         $("#weather-cards").append(
-            '<div class="card col-6 col-sm-3 col-md-2 col-lg-2" style="background: black; margin: 5px; height: 145px">' +
+            '<div class="card" style="background: black; border-radius: 0; width: 175px; padding: 0;">' +
             '<div class="card-header d-flex justify-content-center" style="color: #f4cdc1">' + displayDay + '</div>' +
-            '<div class="card-body d-flex justify-content-center">' +
-                '<p class="card-text">' + '<img src="http://openweathermap.org/img/wn/' + dailyWeather.weather[0].icon + '@2x.png"/>' + '</p>' +
-                '<p class="card-text" style="color: #f4cdc1">' + dailyWeather.temp.min + "°F" + " - " + dailyWeather.temp.max + "°F" + '</p>' +
+            '<div class="card-body d-flex justify-content-center" style="padding: 0; height: 75px;">' +
+                '<p class="card-text" style="margin-bottom: 5px;height: 75px;">' + '<img style="height: 75px;" src="http://openweathermap.org/img/wn/' + dailyWeather.weather[0].icon + '@2x.png"/>' + '</p>' +
+                '<div class="card-text" style="color: #f4cdc1; height: 75px;">' + dailyWeather.temp.min + "°F" + " - " + dailyWeather.temp.max + "°F" + '</div>' +
             '</div>' +
             '</div>');
     });

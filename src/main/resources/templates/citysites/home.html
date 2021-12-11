@@ -4,58 +4,59 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <link rel="stylesheet" href="/css/citysites.css">
 <link rel="stylesheet" href="/css/button-styling.css">
+<link rel="stylesheet" href="/css/home-css.css">
 
 <body style="background-color: #f4cdc1">
 
-    <nav th:insert="partials/partials.html :: navbar"></nav>
+<nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
+<button onclick="goBack()" class="btn-primary"
+        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute; icon-size: 0.5;">Back
+</button>
 
-    <div class="row justify-content-center" style="margin-top: 29px;">
-        <div class="col-xl-5 offset-xl-0">
-            <h1 class="text-center" style="font-family: Handlee, serif;font-size: 47px;font-weight: bold;">Find an Activity</h1>
-        </div>
+<div class="row justify-content-center" style="margin-top: 29px;">
+    <div class="col-xl-5 offset-xl-0">
+        <h1 class="text-center" style="font-size: 47px;font-weight: bold;">Find an Activity</h1>
     </div>
+</div>
+<div class="row">
 
-<!--    searchbar?-->
-<!--    <div style="border: 1px solid blue;">-->
-<!--        <div class="gcse-searchbox"></div>-->
-<!--    </div>-->
-
-    <!--        Map-->
-<!--    <div ></div>-->
-    <div class="row" style="margin-top: 23px;">
-        <div class="col-lg-10 offset-lg-1 d-flex justify-content-center">
-            <div id="map" style="height: 600px;width: 100%;"></div>
-        </div>
+<!--    =====MAP=====-->
+<!--<div class="col-10" style="margin-top: 23px; margin-left: 0; padding: 0;">-->
+    <div class="col-md-12 col-lg-10 col-xl-10 d-flex justify-content-center">
+        <div id="map" style="height: 600px;width: 100%;"></div>
     </div>
+<!--</div>-->
+    <!--    =====WEATHER CARDS=====-->
+    <div class="col-md-12 col-lg-2 col-xl-2 d-flex flex-wrap justify-content-around" id="weather-cards"></div>
+</div>
+<!--=====SEARCH BAR=====-->
 
-<!--search bar probs-->
+<input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Search Box"
+        th:value="${userInput}"
+/>
 
-    <input
-            id="pac-input"
-            class="controls"
-            type="text"
-            placeholder="Search Box"
-            th:value="${userInput}"
-    />
 
-    <div class="row d-flex flex-wrap justify-content-around" id="weather-cards"></div>
 
-    <th:block th:insert="partials/partials.html :: jquery" />
+<th:block th:insert="partials/partials.html :: jquery"/>
 
-    <script src="/keys.js"></script>
-    <script src="/js/geocode-mapbox-utils.js"></script>
-    <script src="/js/weather.js"></script>
-    <script src="/js/map.js"></script>
+<script src="/keys.js"></script>
+<script src="/js/geocode-mapbox-utils.js"></script>
+<script src="/js/weather.js"></script>
+<script src="/js/map.js"></script>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 <!--                                      DEPLOY KEY-->
 <!--    <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
 <!--                                          MAIN KEY-->
-    <script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>
+<script src="https://maps.googleapis.com/maps/api/js?address=SanAntonio&key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly"
+        async></script>
 
-    <nav th:insert="partials/partials.html :: footer"></nav>
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
+<nav th:insert="partials/partials.html :: footer"></nav>
+<th:block th:insert="partials/partials.html :: bootstrap-js"/>
 </body>
 </html>
