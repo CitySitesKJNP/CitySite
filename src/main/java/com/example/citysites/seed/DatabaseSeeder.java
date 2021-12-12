@@ -3,6 +3,7 @@ package com.example.citysites.seed;
 import com.example.citysites.models.Activity;
 import com.example.citysites.models.ActivityImage;
 import com.example.citysites.models.Review;
+import com.example.citysites.models.User;
 import com.example.citysites.repositories.ActivityImageRepository;
 import com.example.citysites.repositories.ActivityRepository;
 import com.example.citysites.repositories.ReviewRepository;
@@ -33,7 +34,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         this.activityImageDao = activityImageDao;
     }
 
-    private void seedActivities() {
+    private List<Activity> seedActivities() {
         List<Activity> activities = Arrays.asList(
                 new Activity("San Antonio Zoo", "12PM - 9PM", "The Zoo in San Antonio! See animals and hang outdoors.", -98.4736266427417F, 29.462558526605523F),
                 new Activity("Skyview Dormatory", "N/A", "Event center and school.", -98.47184539303268F, 29.467097270775575F),
@@ -43,21 +44,29 @@ public class DatabaseSeeder implements CommandLineRunner {
         );
 
         activityDao.saveAll(activities);
+
+        return activities;
     }
 
-//    private void seedActivityImages() {
-//        List<ActivityImage> activityImages1 = Arrays.asList(
-//                new ActivityImage("https://nbc16.com/resources/media/b5bae286-9c42-40ee-8999-b762d3f6330c-large16x9_Timothy_Uma.jpg?1588184557311"),
-//                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipO8zD6bcQPOqM8zAzIU7v5CgO33xOvvB63ZHr1y=w426-h240-k-no"),
-//                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipM72Dp1ULfvluW9PK8vsWSJzBfJKL4n7gVY9IYz=w408-h272-k-no"),
-//                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipNNjLvEmSkXUHkyEvRHGYQWXdpsEOiRnoGbwkED=w408-h302-k-no"),
-//                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipM_fKAOTNBioHAEwM-ZtGNwjrEqGGIl-Z8imQo=w408-h306-k-no")
-//        );
-//
-//        activityImageDao.saveAll(activityImages1);
-//    }
+    private void seedActivityImages(List<Activity> activities) {
+        List<ActivityImage> activityImages1 = Arrays.asList(
+                new ActivityImage("https://nbc16.com/resources/media/b5bae286-9c42-40ee-8999-b762d3f6330c-large16x9_Timothy_Uma.jpg?1588184557311"),
+                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipO8zD6bcQPOqM8zAzIU7v5CgO33xOvvB63ZHr1y=w426-h240-k-no"),
+                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipM72Dp1ULfvluW9PK8vsWSJzBfJKL4n7gVY9IYz=w408-h272-k-no"),
+                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipNNjLvEmSkXUHkyEvRHGYQWXdpsEOiRnoGbwkED=w408-h302-k-no"),
+                new ActivityImage("https://lh5.googleusercontent.com/p/AF1QipM_fKAOTNBioHAEwM-ZtGNwjrEqGGIl-Z8imQo=w408-h306-k-no")
+        );
 
-//    private void seedActivityReviews() {
+        Random r = new Random();
+        for (ActivityImage image : activityImages1) {
+            Activity activity = activities.get(r.nextInt(activities.size()));
+            image.setActivity(activity);
+        }
+
+        activityImageDao.saveAll(activityImages1);
+    }
+
+//    private List<Review> seedActivityReviews(List<Activity> activities, List<User> users) {
 //        List<Review> activityReviews1 = Arrays.asList(
 //                new Review(1, "This zoo is okay. I like the San Diego Zoo better."),
 //                new Review(2, "I went to school here and it was not amazing. I got my degree, but I would not attend again."),
@@ -66,7 +75,26 @@ public class DatabaseSeeder implements CommandLineRunner {
 //                new Review(5 ,"I LOVE THE RIVER WALK! I cannot stop going here, it is SO MUCH FUN! YAY!")
 //        );
 //
+//        Random r = new Random();
+//        for (Review review :activityReviews1) {
+//            Activity activity = activities.get(r.nextInt(activities.size()));
+//            review.setActivityReview(activity);
+//        }
 //        reviewDao.saveAll(activityReviews1);
+//
+//        return activityReviews1;
+//    }
+
+//    private List<User> seedUsers(List<Review> reviews) {
+//        List<User> users = Arrays.asList(
+//                new User(),
+//                new User(),
+//                new User(),
+//                new User(),
+//                new User()
+//        );
+
+//        for ()
 //    }
 
 
@@ -79,12 +107,14 @@ public class DatabaseSeeder implements CommandLineRunner {
         }
         log.info("Deleting posts...");
         activityDao.deleteAll();
+        log.info("Deleting images...");
+        activityImageDao.deleteAll();
         log.info("Seeding activites...");
-        seedActivities();
-//        log.info("Seeding images...");
-//        seedActivityImages();
+        List<Activity> activities = seedActivities();
+        log.info("Seeding images...");
+        seedActivityImages(activities);
 //        log.info("Seeding reviews...");
-//        seedActivityReviews();
+//        seedActivityReviews(activities);
         log.info("Finished running seeders!");
     }
 }

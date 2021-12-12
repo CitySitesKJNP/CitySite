@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:insert="partials/partials.html :: head('Favorites')"></head>
 
 <body>
@@ -28,6 +28,15 @@
             <form th:action="@{'/activity/' + ${favorite.id}}">
                 <button class="darkButtonStyle">See Activity</button>
             </form>
+            <div sec:authorize="isAuthenticated()">
+                <div th:each="userFav, stat : ${favorite.userFavorites}" th:unless="${stat.index > 0}">
+                    <div th:if="${#authentication.principal.id == userFav.id}">
+                        <form th:action="@{'/activity/' + ${favorite.id} + '/favorite/' + ${userFav.id}}" th:method="POST">
+                            <button class="darkButtonStyle">Remove from Favorites</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
