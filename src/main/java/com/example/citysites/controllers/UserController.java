@@ -132,14 +132,19 @@ public class UserController {
 
     @PostMapping("/activity/{activity_id}/favorite/{user_id}")
     public String favoriteDelete(@PathVariable long activity_id, @PathVariable long user_id){
-        User user = userDao.getById(user_id);
-        List<Activity> favoriteActivities = user.getFavoriteActivities();
+//        User user = userDao.getById(user_id);
+//        List<Activity> favoriteActivities = user.getFavoriteActivities();
+        Activity activity = activityDao.getById(activity_id);
+        List<User> userFavorites = activity.getUserFavorites();
+        userFavorites.removeIf(user1 -> user1.getId() == user_id);
+//        favoriteActivities.removeIf(activity1 -> activity1.getId() == activity_id);
 
-        favoriteActivities.removeIf(activity1 -> activity1.getId() == activity_id);
 
-        user.setFavoriteActivities(favoriteActivities);
 
-        userDao.save(user);
+//        user.setFavoriteActivities(favoriteActivities);
+        activity.setUserFavorites(userFavorites);
+//        userDao.save(user);
+        activityDao.save(activity);
         return "redirect:/user/favorites";
     }
 
