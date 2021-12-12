@@ -7,10 +7,10 @@ h1 {
 
 body {
     background-color: #f4cdc1;
-    position: relative;
+    /*position: relative;*/
 }
 
 html, body {
-    overflow: auto;
+    /*overflow: auto;*/
     min-height: 100vh;
 }

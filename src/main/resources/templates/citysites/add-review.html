@@ -1,3 +1,5 @@
+Add-review html
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -54,38 +56,6 @@
                 </form>
             </div>
         </div>
-
-<button onclick="goBack()" class="btn-primary backButtonStyle">Back</button>
-
-<h1>Add a review</h1>
-
-<div class="row justify-content-center">
-
-    <div class="col-5">
-
-<!--    <h3>*ENTER ACTIVITY BEING REVIEWED HERE*</h3>-->
-        <form th:method="POST" th:action="@{'/reviews/create/' + ${activity.id}}" th:object="${review}">
-            <label for="rating">Choose a Rating (1-5)</label>
-            <select th:field="*{rating}" id="rating" name="rating">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-                <option value="5">Five</option>
-            </select>
-
-            <label for="description" class="form-label">Description:</label>
-            <textarea th:field="*{description}" name="content" id="description" cols="40" rows="5" class="form-control" placeholder="Please Enter Your Review... "></textarea>
-
-            <label for="image" class="form-label">Image(s)</label>
-            <input id="image" name="urls" type="url" class="form-control" placeholder="Please Enter an Image URL...">
-            <button type="button" id="create-an-element" class="btn btn-primary darkButtonStyle">Add Another Image?</button>
-
-            <div class="row">
-                <button type="submit" class="btn btn-primary darkButtonStyle">Submit Review</button>
-            </div>
-        </form>
-
     </div>
 </div>
 
