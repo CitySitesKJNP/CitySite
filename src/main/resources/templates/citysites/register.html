@@ -14,17 +14,14 @@
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<button onclick="goBack()" class="btn-primary"
-        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute;">
-    Back
-</button>
+<button onclick="goBack()" class="btn btn-primary backButtonStyle">Back</button>
+
 <main>
-    <section class="d-block"
-             style="background: url(&quot;http://www.visitsanantonio.com/wp-content/uploads/2020/04/Fiesta-Mural-SanAntonio.jpg&quot;) right / cover no-repeat;height: 658px;">
+    <section class="d-block" style="background: url(&quot;http://www.visitsanantonio.com/wp-content/uploads/2020/04/Fiesta-Mural-SanAntonio.jpg&quot;) right / cover no-repeat;height: 700px;">
         <div class="container d-block flex-column align-items-center"
              style="padding-bottom: 0;width: 100%;padding-right: 0.75rem;padding-left: 0.75rem;margin-right: auto;margin-left: auto;">
-            <div class="text-center d-block">
-                <h1 class="text-center" style="color: #f4cdc1"><strong>Register</strong></h1>
+            <div class="text-center d-block" style="padding-top: 10px;">
+                <h1 class="text-center" style="color: #f4cdc1">Register</h1>
             </div>
             <form th:action="@{/register}" method="POST" th:object="${user}" class="d-block"
                   style="width: auto;height: 306px;margin: auto;margin-top: -1px;border-style: none;max-width: 500px;padding: 40px;">
