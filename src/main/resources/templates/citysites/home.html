@@ -10,9 +10,7 @@
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<button onclick="goBack()" class="btn-primary"
-        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute; icon-size: 0.5;">Back
-</button>
+<button onclick="goBack()" class="btn btn-primary backButtonStyle">Back</button>
 
 <div class="row justify-content-center" style="margin-top: 29px;">
     <div class="col-xl-5 offset-xl-0">
@@ -23,12 +21,12 @@
 
 <!--    =====MAP=====-->
 <!--<div class="col-10" style="margin-top: 23px; margin-left: 0; padding: 0;">-->
-    <div class="col-md-12 col-lg-10 col-xl-10 d-flex justify-content-center">
+    <div class="col-md-12 col-lg-10 col-xl-11 d-flex justify-content-center" style="padding: 0px 0px;">
         <div id="map" style="height: 600px;width: 100%;"></div>
     </div>
 <!--</div>-->
     <!--    =====WEATHER CARDS=====-->
-    <div class="col-md-12 col-lg-2 col-xl-2 d-flex flex-wrap justify-content-around" id="weather-cards"></div>
+    <div class="col-md-12 col-lg-2 col-xl-1 d-flex flex-wrap justify-content-around" id="weather-cards" style="padding: 0px 0px"></div>
 </div>
 <!--=====SEARCH BAR=====-->
 

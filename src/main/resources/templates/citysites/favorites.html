@@ -1,23 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Favorites')"></head>
-<link rel="stylesheet" href="/css/button-styling.css">
-<link rel="stylesheet" href="/css/main.css">
+
 <body>
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<button onclick="goBack()" class="btn-primary"
-        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back
-</button>
+<button onclick="goBack()" class="btn btn-primary backButtonStyle">Back</button>
 
 <div class="container">
 
-    <div class="row" style="margin-top: 21px;">
-        <div class="col">
-            <h1 class="text-center">Favorites</h1>
-        </div>
-    </div>
+    <h1 class="text-center">Favorites</h1>
 
     <div class="row d-flex flex-row flex-wrap">
         <!--            <li th:each="favorite : ${favorites}">-->
