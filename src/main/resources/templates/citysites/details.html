@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:insert="partials/partials.html :: head('CitySites')"></head>
+<link rel="stylesheet" href="/css/details-css.css">
+
 <style>
     .invisible {
         display: none;
     }
 </style>
-<link rel="stylesheet" href="/css/button-styling.css">
-<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="/css/details-css.css">
+
 <body>
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
 
-<button onclick="goBack()" class="btn-primary"
-        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back
-</button>
+<button onclick="goBack()" class="btn btn-primary backButtonStyle">Back</button>
 
-<div class="row justify-content-center" style="margin-top: 29px;">
-    <div class="col-xl-5 offset-xl-0">
-        <h1 class="text-center">Activity Details</h1>
-    </div>
-</div>
+<h1 class="text-center">Activity Details</h1>
 
 <div class="container">
     <div style="margin-top: 21px;">
         <div class="col">
-            <h2 id="title" class="text-center" style="font-size: 50px;"><span th:text="${activity.name}"></span></h2>
+            <h2 id="title" class="text-center" style="font-size: 35px;"><span th:text="${activity.name}"></span></h2>
             <div sec:authorize="isAuthenticated()" style="float: right">
                 <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
                     <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
