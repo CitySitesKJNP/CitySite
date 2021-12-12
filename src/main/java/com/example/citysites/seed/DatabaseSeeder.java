@@ -107,6 +107,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         }
         log.info("Deleting posts...");
         activityDao.deleteAll();
+        log.info("Deleting images...");
+        activityImageDao.deleteAll();
         log.info("Seeding activites...");
         List<Activity> activities = seedActivities();
         log.info("Seeding images...");
