@@ -2,134 +2,105 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head th:insert="partials/partials.html :: head('CitySites')"></head>
 <style>
-    .invisible{
+    .invisible {
         display: none;
     }
 </style>
 <link rel="stylesheet" href="/css/button-styling.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/details-css.css">
 <body>
 
 <nav th:insert="partials/partials.html :: navbar"></nav>
 
+<button onclick="goBack()" class="btn-primary"
+        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back
+</button>
+
 <div class="row justify-content-center" style="margin-top: 29px;">
     <div class="col-xl-5 offset-xl-0">
-        <h1 class="text-center" style="font-family: Handlee, serif;font-size: 47px;font-weight: bold;">Activity Details</h1>
+        <h1 class="text-center">Activity Details</h1>
     </div>
 </div>
 
-<!--    Under Construction-->
-
-<!--<a th:href="@{'/reviews/create/' + ${activity.id}}"><button type="submit">Add a Review</button></a>-->
-
-<!--    Needs to go to /reviews/{id}-->
-<!--<a th:href="@{'/reviews/' + ${activity.id}}"><button>See All Reviews</button></a>-->
-
-    <div class="container">
-        <div class="row" style="margin-top: 21px;">
-            <div class="col">
-                <h1 class="text-center" style="font-family: Handlee, serif;font-weight: bold;font-size: 47.88px;"> <span th:text="${activity.name}"></span></h1>
-            </div>
-        </div>
-        <div class="row d-flex flex-row flex-wrap">
-            <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center" style="margin: 0px;padding: 10px;">
-                <img class="img-fluid" th:src="${image.imageUrl}">
-            </div>
-        </div>
-    </div>
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-9 col-lg-3 text-center">
-            <p th:text="${activity.hours}"></p>
-            <p th:text="${activity.description}"></p>
-            <div sec:authorize="isAuthenticated()">
+<div class="container">
+    <div style="margin-top: 21px;">
+        <div class="col">
+            <h2 id="title" class="text-center" style="font-size: 50px;"><span th:text="${activity.name}"></span></h2>
+            <div sec:authorize="isAuthenticated()" style="float: right">
                 <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-                    <button type="submit" class="darkButtonStyle">Favorite</button>
+                    <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
                 </form>
             </div>
-            <div sec:authorize="isAuthenticated()">
-                <button id="hide" class="darkButtonStyle">Edit activity</button>
-                <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
-                    <button type="submit" class="darkButtonStyle">Delete</button>
-                </form>
-            </div>
+            <a th:href="@{'/reviews/create/' + ${activity.id}}">
+                <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
+            </a>
+            <a th:href="@{'/reviews/' + ${activity.id}}">
+                <button class="btn btn-primary darkButtonStyle mt-2">See All Reviews</button>
+            </a>
         </div>
-        <div class="col-md-9 col-lg-4">
-            <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">
-                <div>
-                    <label for="name"></label>
-                    <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-6 d-flex flex-row flex-wrap" style="height: auto; padding: 0;">
+                <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center"
+                     style="margin: 0px;padding: 10px;">
+                    <img class="img-fluid" th:src="${image.imageUrl}">
                 </div>
-                <div>
-                    <label for="description">Edit Description</label>
-                    <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">
-                </div>
-                <div>
-                    <label for="hours">Edit Existing Hours</label>
-                    <input th:field="*{hours}" th:value="*{hours}" type="text" id="hours" name="hours">
-                </div>
-                <div>
-                    <label for="image">Add More Image(s)</label>
-                    <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
-                    <button type="button" id="create-an-element" class="darkButtonStyle">Add Another Image?</button>
-                </div>
-                <button>Submit</button>
+            </div>
 
-            </form>
+            <div class="col-sm-8 col-md-4 col-lg-4 col-xl-4 text-center" style="height: auto;">
+                <div class="text-center" id="info">
+                    <p style="font-size: 20px">Hours: </p>
+                    <p th:text="${activity.hours}"></p>
+                    <hr>
+                    <p style="font-size: 20px">Description: </p>
+                    <p th:text="${activity.description}"></p>
+                    <hr>
+
+                    <!--                =====EDIT BUTTON=====-->
+                    <div sec:authorize="isAuthenticated()">
+                        <button id="hide" class="btn btn-primary darkButtonStyle">Edit activity</button>
+                        <!--                =====DELETE BUTTON=====-->
+                        <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">
+                            <button type="submit" class="btn btn-primary darkButtonStyle">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <!--            =====EDIT FUNCTIONALITY=====-->
+
+                <form class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST"
+                      th:object="${activity}">
+                    <div>
+                        <label for="name" class="form-label">Edit Activity Name:</label>
+                        <input class="form-control" th:field="*{name}" name="name" id="name" type="text" th:value="${name}">
+                    </div>
+                    <div>
+                        <label for="hours" class="form-label">Edit Existing Hours:</label>
+                        <input class="form-control" th:field="*{hours}" th:value="*{hours}" type="text" id="hours" name="hours">
+                    </div>
+                    <div>
+                        <label for="description" class="form-label">Edit Description:</label>
+                        <input class="form-control" th:field="*{description}" name="description" id="description" type="text"
+                               th:value="*{description}" cols="30" rows="10">
+                    </div>
+                    <div>
+                        <label for="image" class="form-label">Add More Image(s):</label>
+                        <input class="form-control" id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
+                        <button type="button" id="create-an-element" class="btn btn-primary darkButtonStyle pt-2 mt-1">Add Another
+                            Image?
+                        </button>
+                    </div>
+                    <button class="btn btn-primary darkButtonStyle mt-2">Submit</button>
+                </form>
+            </div>
         </div>
-        <a th:href="@{'/reviews/' + ${activity.id}}"><button class="darkButtonStyle">See All Reviews</button></a>
-        <a th:href="@{'/reviews/create/' + ${activity.id}}"><button class="darkButtonStyle" type="submit">Add a Review</button></a>
     </div>
 
-<div>
-<!--    <h1> <span th:text="${activity.name}"></span></h1>-->
-<!--    <p th:text="${activity.hours}"></p>-->
-<!--    <p th:text="${activity.description}"></p>-->
-<!--    <ul>-->
-<!--        <li th:each="image, stat : ${images}">-->
-<!--            <img  th:src="${image.imageUrl}">-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--    <p id="activityAddress"></p>-->
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--        <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">-->
-<!--            <button type="submit">Favorite</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
-<!--    <div sec:authorize="isAuthenticated()">-->
-<!--        <button id="hide">Edit activity</button>-->
-<!--        <form th:action="@{'/activity/' + ${activity.id} + '/delete'}" th:method="POST">-->
-<!--            <button type="submit">Delete</button>-->
-<!--        </form>-->
-<!--    </div>-->
-
-<!--<div>-->
-<!--    <form  class="invisible" th:action="@{'/activity/' + ${activity.id}}" id="edit" th:method="POST" th:object="${activity}">-->
-<!--        <div>-->
-<!--            <label for="name"></label>-->
-<!--            <input  th:field="*{name}" name="name" id="name" type="text"  th:value="${name}">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label for="description">Edit Description</label>-->
-<!--            <input th:field="*{description}" name="description" id="description" type="text" th:value="*{description}">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label for="hours">Edit Existing Hours</label>-->
-<!--            <input th:field="*{hours}" th:value="*{hours}" type="text" id="hours" name="hours">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label for="image">Add More Image(s)</label>-->
-<!--            <input id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">-->
-<!--            <button type="button" id="create-an-element">Add Another Image?</button>-->
-<!--        </div>-->
-<!--        <button>Submit</button>-->
-
-<!--    </form>-->
 </div>
 
-<button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
+<nav th:insert="partials/partials.html :: footer"></nav>
 
-<th:block th:insert="partials/partials.html :: bootstrap-js" />
-<th:block th:insert="partials/partials.html :: jquery" />
+<th:block th:insert="partials/partials.html :: bootstrap-js"/>
+<th:block th:insert="partials/partials.html :: jquery"/>
 
 <script src="/keys.js"></script>
 <script src="/js/geocode-mapbox-utils.js"></script>
@@ -138,12 +109,12 @@
     var activityId = [[${activity.id}]];
 
     var request = $.ajax({'url': '/api/activity/' + activityId});
-    request.done(function (activity){
+    request.done(function (activity) {
         reverseGeocode({lng: activity.longitude, lat: activity.latitude}, MAPBOX_API_TOKEN_PERSONAL).then(function (result) {
             document.getElementById("activityAddress").innerText = result;
         })
     })
-    $('#hide').click(function(event) {
+    $('#hide').click(function (event) {
         event.preventDefault();
         $('#edit').toggleClass('invisible');
     });

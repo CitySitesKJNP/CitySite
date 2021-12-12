@@ -18,7 +18,7 @@ public class Review {
     @Column(nullable = false)
     private int rating;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reviewImage")

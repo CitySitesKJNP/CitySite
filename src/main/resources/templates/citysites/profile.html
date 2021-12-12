@@ -11,74 +11,91 @@
     }
 </style>
 
-    <nav th:insert="partials/partials.html :: navbar"></nav>
+<nav th:insert="partials/partials.html :: navbar"></nav>
 
-    <button onclick="goBack()" class="btn-primary" style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back</button>
+<button onclick="goBack()" class="btn-primary"
+        style="margin: 11px; background: black; color: #f4cdc1; border: none; border-radius: .25rem; position: absolute">Back
+</button>
 
-    <div class="row justify-content-center" style="margin-top: 29px;">
-        <div class="col-xl-5 offset-xl-0">
-            <h1 class="text-center" style="font-family: Handlee, serif;font-size: 47px;font-weight: bold;">Profile</h1>
-        </div>
+<div class="row justify-content-center" style="margin-top: 29px;">
+    <div class="col-xl-5 offset-xl-0">
+        <h1 class="text-center" style="font-size: 47px;font-weight: bold;">Profile</h1>
     </div>
+</div>
 
 <!-- User information appended to the page-->
 
-<div class="container" style="width: 100%;margin: auto auto;">
+<div class="container" style="margin: auto auto;">
     <div style="padding: 15px;">
-        <div class="row">
-            <div class="col-xl-4 offset-xl-2">
-                <div class="card" style="border:0px;padding:0px;">
-                    <div class="card-body" style="padding: 0px; border: 0px;">
-                        <div style="background: #f4cdc1; border: 0px; padding: 0px;" th:if="${user.getProfileImageUrl() != null}" class="d-flex flex-column align-items-center">
-                            <img id="profilePic" th:src="${user.profileImageUrl}" class="rounded-circle" style="margin-bottom: 12px;">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 offset-xl-2">
+                <div class="card" style="border: none; padding:0px; background: none;">
+                    <div class="card-body" style="padding: 0px; border: 0px; height: 150px;">
+                        <div style="background: none; border: none; padding: 0px; height: 125px;"
+                             th:if="${user.getProfileImageUrl() != null}" class="d-flex flex-column align-items-center">
+                            <img id="profilePic" th:src="${user.profileImageUrl}" class="rounded-circle"
+                                 style="margin-bottom: 12px; height: 100%;width: auto;">
                         </div>
-                        <div th:if="${user.getProfileImageUrl() == null}" class="d-flex flex-column align-items-center">
+                        <div th:if="${user.getProfileImageUrl() == null}"
+                             class="d-flex flex-column align-items-center justify-content-center">
                             Set Your Profile Pic in the Edit Profile
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-5">
-                <p>Hey <span th:text="${user.name}"></span>, Welcome back!</p>
-                <p>Username: <span th:text="${user.username}"></span></p>
-                <p>Email: <span th:text="${user.email}"></span></p>
-                <button id="hide" class="btn darkButtonStyle" type="button">Edit Profile</button>
-                <form  class="invisible" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
-                    <div>
-                        <label for="username">Change your username</label>
-                        <input  th:field="*{username}" name="username" id="username" type="text"  th:value="${user.username}">
-                    </div>
-                    <div>
-                        <label for="email">Change your email address</label>
-                        <input th:field="*{email}" name="email" id="email" type="text" th:value="*{email}">
-                    </div>
-                    <div>
-                        <label for="name">Change your name</label>
-                        <input th:value="*{name}" type="text" id="name" name="name">
-                    </div>
-                    <div>
-                        <label for="image"> Profile Image</label>
-                        <input th:field="*{profileImageUrl}" name="image" id="image" type="url" placeholder="Enter your image url here">
-                    </div>
-                    <button type="submit" class="darkButtonStyle">Submit</button>
-                </form>
+            <div class="col-sm-6 col-md-5 col-lg-4 col-xl-5 d-flex flex-column justify-content-center">
+                <h3>Hey <span th:text="${user.name}"></span>, Welcome back!</h3>
+                <h3>Username: <span th:text="${user.username}"></span></h3>
+                <h3>Email: <span th:text="${user.email}"></span></h3>
+            </div>
+            <div class="row justify-content-center mt-2">
+                <div class="col-sm-8 col-md-6 col-lg-4 col-xl-4 text-center">
+                    <button id="hide" class="btn darkButtonStyle" type="button">Edit Profile</button>
+                    <form class="invisible mt-2 mb-2" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
+
+                        <label for="username" class="form-label">Change your username</label>
+                        <input th:field="*{username}" name="username" id="username" type="text" class="form-control"
+                               th:value="${user.username}">
+
+                        <label for="email" class="form-label">Change your email address</label>
+                        <input th:field="*{email}" name="email" id="email" type="text" class="form-control" th:value="*{email}">
+
+                        <label for="name" class="form-label">Change your name</label>
+                        <input th:value="*{name}" type="text" id="name" name="name" class="form-control">
+
+                        <label for="image" class="form-label"> Profile Image</label>
+                        <input th:field="*{profileImageUrl}" name="image" id="image" type="url" class="form-control"
+                               placeholder="Enter your image url here">
+
+                        <button type="submit" class="darkButtonStyle mt-2">Submit</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <div class="row d-flex flex-row flex-wrap">
-            <h3>Most recent Favorites</h3>
-            <div th:each="favorite : ${favorites}" class="col-sm-6 col-lg-3 d-flex flex-column align-items-center" style="margin: 0px;padding: 10px;">
+        <div class="row text-center">
+            <div class="col">
+                <h3>Most Recent Favorites</h3>
+            </div>
+        </div>
+        <div class="row d-flex flex-row flex-wrap ">
+
+
+            <div th:each="favorite, stat : ${favorites}" th:unless="${stat.index > 2}"
+                 class="col-sm-6 col-md-4 col-lg-4 d-flex flex-column align-items-center" style="padding: 10px;">
                 <h3 class="text-center"><span th:text="${favorite.name}"></span></h3>
-                <img class="img-fluid" th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 1}" th:src="${image.imageUrl} ">
+                <img class="img-fluid" th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 0}"
+                     th:src="${image.imageUrl} ">
                 <form th:action="@{'/activity/' + ${favorite.id}}">
-                    <button class="darkButtonStyle">See Activity</button>
+                    <button class="btn btn-primary mt-2 darkButtonStyle">See Activity</button>
                 </form>
             </div>
-            <div class="col-sm-6 col-lg-3 d-flex flex-column align-items-center">
+
+
+        </div>
+        <div class="row text-center">
             <form th:action="@{/user/favorites}" th:method="GET">
                 <button type="submit" class="btn darkButtonStyle">See More favorites</button>
             </form>
-            </div>
-
         </div>
     </div>
 </div>
@@ -143,15 +160,14 @@
 
 <nav th:insert="partials/partials.html :: footer"></nav>
 
-    <th:block th:insert="partials/partials.html :: jquery" />
-    <th:block th:insert="partials/partials.html :: bootstrap-js" />
-    <script>
-        $('#hide').click(function(event) {
-            event.preventDefault();
-            $('#edit').toggleClass('invisible');
-        });
-    </script>
-
+<th:block th:insert="partials/partials.html :: jquery"/>
+<th:block th:insert="partials/partials.html :: bootstrap-js"/>
+<script>
+    $('#hide').click(function (event) {
+        event.preventDefault();
+        $('#edit').toggleClass('invisible');
+    });
+</script>
 
 
 </body>
