@@ -1,0 +1,13 @@
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-center {
+    /*color: #0a53be;*/
+}
+
+#rating {
+    align-items: flex-start;
+}

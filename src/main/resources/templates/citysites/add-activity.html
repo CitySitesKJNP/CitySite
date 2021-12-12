@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:insert="partials/partials.html :: head('Add Activity')"></head>
 <link rel="stylesheet" href="/css/activity-creation-map.css">
+<link rel="stylesheet" href="/css/button-styling.css">
+<link rel="stylesheet" href="/css/main.css">
 
 <body style="background: #f4cdc1;">
 
@@ -57,9 +59,11 @@
     </div>
 </form>
 
+<nav th:insert="partials/partials.html :: footer"></nav>
 
 <th:block th:insert="partials/partials.html :: jquery"/>
 <th:block th:insert="partials/partials.html :: bootstrap-js"/>
+
 <script src="/js/add-inputs.js"></script>
 <script src="/js/activity-creation-map.js"></script>
 
@@ -68,8 +72,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVEsV2nzoERURDW6R8-xPgTIjFOvdaCjw&callback=initAutocomplete&libraries=places&v=weekly" async></script>
 <!--                                          MAIN KEY-->
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRtNE8amCYAwBhK-MZ3PXH-jt8yctJHoI&callback=initAutocomplete&libraries=places&v=weekly" async></script>-->
-
-<nav th:insert="partials/partials.html :: footer"></nav>
 
 </body>
 </html>
