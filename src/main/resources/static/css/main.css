@@ -1,8 +1,15 @@
 h1 {
     font-size: 47px;
     font-weight: bold;
+    margin-top: 29px;
+    text-align: center;
 }
 
 body {
     background-color: #f4cdc1;
+}
+
+html, body {
+    overflow: auto;
+    min-height: 100vh;
 }
