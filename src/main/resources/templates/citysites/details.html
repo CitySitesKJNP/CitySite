@@ -19,19 +19,19 @@
 
 <div class="container">
     <div style="margin-top: 21px;">
-        <div class="col">
+        <div class="row">
             <h2 id="title" class="text-center" style="font-size: 35px;"><span th:text="${activity.name}"></span></h2>
             <div sec:authorize="isAuthenticated()" style="float: right">
                 <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
                     <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
                 </form>
             </div>
-            <a th:href="@{'/reviews/create/' + ${activity.id}}">
+            <form th:action="@{'/reviews/create/' + ${activity.id}}">
                 <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
-            </a>
-            <a th:href="@{'/reviews/' + ${activity.id}}">
+            </form>
+            <form th:action="@{'/reviews/' + ${activity.id}}">
                 <button class="btn btn-primary darkButtonStyle mt-2">See All Reviews</button>
-            </a>
+            </form>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-6 d-flex flex-row flex-wrap" style="height: auto; padding: 0;">

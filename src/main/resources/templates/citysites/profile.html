@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-5 col-lg-4 col-xl-5 d-flex flex-column justify-content-center">
-                <h3>Hey <span th:text="${user.name}"></span>, Welcome back!</h3>
+                <h3>Hey <span th:text="${user.name}"></span>-welcome back!</h3>
                 <h3>Username: <span th:text="${user.username}"></span></h3>
                 <h3>Email: <span th:text="${user.email}"></span></h3>
             </div>
             <div class="row justify-content-center mt-2">
                 <div class="col-sm-8 col-md-6 col-lg-4 col-xl-4 text-center">
-                    <button id="hide" class="btn darkButtonStyle" type="button">Edit Profile</button>
+                    <button id="hide" class="btn btn-primary darkButtonStyle" type="button">Edit Profile</button>
                     <form class="invisible mt-2 mb-2" th:action="@{/profile}" id="edit" th:method="POST" th:object="${user}">
 
                         <label for="username" class="form-label">Change your username</label>
@@ -56,7 +56,7 @@
                         <label for="image" class="form-label"> Profile Image</label>
                         <input th:field="*{profileImageUrl}" name="image" id="image" type="url" class="form-control" placeholder="Enter your image url here">
 
-                        <button type="submit" class="darkButtonStyle mt-2">Submit</button>
+                        <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Submit</button>
                     </form>
                 </div>
             </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="row text-center">
             <form th:action="@{/user/favorites}" th:method="GET">
-                <button type="submit" class="btn darkButtonStyle">See More favorites</button>
+                <button type="submit" class="btn btn-primary darkButtonStyle">See More favorites</button>
             </form>
         </div>
     </div>
