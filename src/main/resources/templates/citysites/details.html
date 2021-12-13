@@ -22,9 +22,11 @@
         <div class="col">
             <h2 id="title" class="text-center" style="font-size: 35px;"><span th:text="${activity.name}"></span></h2>
             <div sec:authorize="isAuthenticated()" style="float: right">
-                <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-                    <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
-                </form>
+                <div th:if="${!#lists.contains(favorites, activity)}">
+                    <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
+                        <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
+                    </form>
+                </div>
             </div>
             <a th:href="@{'/reviews/create/' + ${activity.id}}">
                 <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
