@@ -24,13 +24,10 @@
             <div class="col-sm-6 col-md-5 col-lg-4 col-xl-4 offset-xl-2">
                 <div class="card" style="border: none; padding:0px; background: none;">
                     <div class="card-body" style="padding: 0px; border: 0px; height: 150px;">
-                        <div style="background: none; border: none; padding: 0px; height: 125px;"
-                             th:if="${user.getProfileImageUrl() != null}" class="d-flex flex-column align-items-center">
-                            <img id="profilePic" th:src="${user.profileImageUrl}" class="rounded-circle"
-                                 style="margin-bottom: 12px; height: 100%;width: auto;">
+                        <div style="background: none; border: none; padding: 0px; height: 125px;" th:if="${user.getProfileImageUrl() != null}" class="d-flex flex-column align-items-center">
+                            <img id="profilePic" th:src="${user.profileImageUrl}" class="rounded-circle" style="margin-bottom: 12px; height: 100%;width: auto;">
                         </div>
-                        <div th:if="${user.getProfileImageUrl() == null}"
-                             class="d-flex flex-column align-items-center justify-content-center">
+                        <div th:if="${user.getProfileImageUrl() == null}" class="d-flex flex-column align-items-center justify-content-center">
                             Set Your Profile Pic in the Edit Profile
                         </div>
                     </div>
@@ -57,8 +54,7 @@
                         <input th:value="*{name}" type="text" id="name" name="name" class="form-control">
 
                         <label for="image" class="form-label"> Profile Image</label>
-                        <input th:field="*{profileImageUrl}" name="image" id="image" type="url" class="form-control"
-                               placeholder="Enter your image url here">
+                        <input th:field="*{profileImageUrl}" name="image" id="image" type="url" class="form-control" placeholder="Enter your image url here">
 
                         <button type="submit" class="darkButtonStyle mt-2">Submit</button>
                     </form>
@@ -73,11 +69,9 @@
         <div class="row d-flex flex-row flex-wrap ">
 
 
-            <div th:each="favorite, stat : ${favorites}" th:unless="${stat.index > 2}"
-                 class="col-sm-6 col-md-4 col-lg-4 d-flex flex-column align-items-center" style="padding: 10px;">
+            <div th:each="favorite, stat : ${favorites}" th:unless="${stat.index > 2}" class="col-sm-6 col-md-4 col-lg-4 d-flex flex-column align-items-center" style="padding: 10px;">
                 <h3 class="text-center"><span th:text="${favorite.name}"></span></h3>
-                <img class="img-fluid" th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 0}"
-                     th:src="${image.imageUrl} ">
+                <img class="img-fluid" th:each="image, stat :${favorite.activityImages}" th:unless="${stat.index > 0}" th:src="${image.imageUrl} ">
                 <form th:action="@{'/activity/' + ${favorite.id}}">
                     <button class="btn btn-primary mt-2 darkButtonStyle">See Activity</button>
                 </form>
