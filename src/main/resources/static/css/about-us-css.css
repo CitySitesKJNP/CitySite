@@ -91,11 +91,19 @@
 
 .team-boxed .social a {
     color: inherit;
-    margin: 0 10px;
+    margin: 0 15px;
     display: inline-block;
     opacity: 0.7;
 }
 
 .team-boxed .social a:hover {
     opacity: 1;
+}
+
+.codeup {
+    filter: grayscale(1);
+    height: 54px;
+    width: 52px;
+    opacity: 65%;
+    margin-bottom: 20px;
 }
