@@ -35,8 +35,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-6 d-flex flex-row flex-wrap" style="height: auto; padding: 0;">
-                <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center"
-                     style="margin: 0px;padding: 10px;">
+                <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center" style="margin: 0px;padding: 10px;">
                     <img class="img-fluid" th:src="${image.imageUrl}">
                 </div>
             </div>
@@ -73,15 +72,12 @@
                     </div>
                     <div>
                         <label for="description" class="form-label">Edit Description:</label>
-                        <input class="form-control" th:field="*{description}" name="description" id="description" type="text"
-                               th:value="*{description}" cols="30" rows="10">
+                        <input class="form-control" th:field="*{description}" name="description" id="description" type="text" th:value="*{description}" cols="30" rows="10">
                     </div>
                     <div>
                         <label for="image" class="form-label">Add More Image(s):</label>
                         <input class="form-control" id="image" name="urls" type="url" placeholder="Please Enter an Image URL...">
-                        <button type="button" id="create-an-element" class="btn btn-primary darkButtonStyle pt-2 mt-1">Add Another
-                            Image?
-                        </button>
+                        <button type="button" id="create-an-element" class="btn btn-primary darkButtonStyle pt-2 mt-1">Add Another Image</button>
                     </div>
                     <button class="btn btn-primary darkButtonStyle mt-2">Submit</button>
                 </form>
