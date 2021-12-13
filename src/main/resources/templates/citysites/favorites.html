@@ -29,12 +29,10 @@
                 <button class="darkButtonStyle">See Activity</button>
             </form>
             <div sec:authorize="isAuthenticated()">
-                <div th:each="userFav, stat : ${favorite.userFavorites}" th:unless="${stat.index > 0}">
-                    <div th:if="${#authentication.principal.id == userFav.id}">
-                        <form th:action="@{'/activity/' + ${favorite.id} + '/favorite/' + ${userFav.id}}" th:method="POST">
+                    <div th:if="${#authentication.principal.id == user.id}">
+                        <form th:action="@{'/activity/' + ${favorite.id} + '/favorite/' + ${user.id}}" th:method="POST">
                             <button class="darkButtonStyle">Remove from Favorites</button>
                         </form>
-                    </div>
                 </div>
             </div>
         </div>
