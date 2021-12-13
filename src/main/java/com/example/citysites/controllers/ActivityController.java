@@ -25,7 +25,12 @@ public class ActivityController {
     }
 
     @GetMapping("/activity/{id}")
-    public String singleActivityDetails(@PathVariable long id, Model model) {
+    public String singleActivityDetails(@PathVariable long id, Model model, Principal principal) {
+        if (principal != null) {
+            User user = userDao.findByUsername(principal.getName());
+            model.addAttribute("favorites", user.getFavoriteActivities());
+        }
+
         Activity activity = activityDao.getById(id);
         List<ActivityImage> images = activity.getActivityImages();
         model.addAttribute("activity", activity);
