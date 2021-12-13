@@ -48,7 +48,7 @@
             <label for="image" class="form-label">Image(s)</label>
             <input id="image" name="urls" class="form-control" type="url" style="width: 100%;margin-bottom: 9px;text-align: center;" placeholder="Enter Image URL">
 
-            <button id="create-an-element" class="btn darkButtonStyle" type="button">Add Another Image?</button>
+            <button id="create-an-element" class="btn darkButtonStyle" type="button">Add Another Image</button>
         </div>
     </div>
 
@@ -59,7 +59,17 @@
     </div>
 </form>
 
-<nav th:insert="partials/partials.html :: footer"></nav>
+<!--======================FOOTER=======================-->
+<nav th:fragment="footer" class="footer-light footer-expand-md" style="background: #000000;">
+    <div class="container-fluid m-0 p-0" style="position: relative; bottom: 0; width: 100%;">
+        <div class="card text-center" style="background: #000000;">
+            <div class="card-body">
+                <h3 class="card-title" style="color: rgb(244,205,193); font-family: Handlee, serif;">CitySites</h3>
+                <a th:href="@{/about-us}" class="btn" style="color: rgb(244,205,193); font-size: 22px;">About us</a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 <th:block th:insert="partials/partials.html :: jquery"/>
 <th:block th:insert="partials/partials.html :: bootstrap-js"/>
