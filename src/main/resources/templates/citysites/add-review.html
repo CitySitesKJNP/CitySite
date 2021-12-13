@@ -18,7 +18,12 @@
     <div class="col-xl-5 offset-xl-0">
         <h1 class="text-center">Add a review</h1>
 
-        <!--    <h3>*ENTER ACTIVITY BEING REVIEWED HERE*</h3>-->
+        <div>
+            <div th:if="${activity.getActivityImages() != null}" th:each="image, stat : ${activity.activityImages}" th:unless="${stat.index > 0}">
+                <img th:src="${image.imageUrl}">
+            </div>
+            <h3 th:text="${activity.name}"></h3>
+        </div>
 
         <div class="row justify-content-center" style="margin-top: 8px;">
             <div class="col-11 col-sm-10 col-md-8 col-lg-8 offset-lg-0 d-flex flex-column align-items-center">
