@@ -17,14 +17,14 @@
         <div class="container">
 
             <div class="row justify-content-center features">
-                <div th:each="review : ${reviews}" class="col-sm-6 col-md-5 col-lg-4 item">
+                <div th:each="review : ${reviews}" class="col-sm-6 col-md-4 col-lg-3 item">
                     <div class="box">
-                        <img class="img-fluid" th:src="${review.userReview.profileImageUrl}">
-                        <h3 class="name" th:text="${review.userReview.username}"></h3>
+                        <img class="img-fluid rounded-circle" th:src="${review.userReview.profileImageUrl}" style="height: 80px">
+                        <h3 class="name mt-2" th:text="${review.userReview.username}"></h3>
                         <hr>
-                        <h3>Rating:</h3>
-                        <h4 th:text="${review.rating} + '/5'"></h4>
-                        <h3>Description:</h3>
+                        <h4>Rating:</h4>
+                        <h5 th:text="${review.rating} + '/5'"></h5>
+                        <h4>Description:</h4>
                         <p th:text="${review.description}" class="description"></p>
 
 
@@ -56,7 +56,7 @@
                         <div sec:authorize="isAuthenticated()">
                             <div th:if="${#authentication.principal.id == review.userReview.id}">
                                 <form th:action="@{'/review/' + ${review.id} + '/delete/' + ${activity.id}}" th:method="POST">
-                                    <button class="darkButtonStyle">Delete Post</button>
+                                    <button class=" mt-2 btn btn-primary darkButtonStyle">Delete Post</button>
                                 </form>
                             </div>
                         </div>

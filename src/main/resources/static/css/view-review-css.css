@@ -18,7 +18,7 @@
     .features-boxed h2 {
         margin-bottom: 25px;
         padding-top: 25px;
-        font-size: 24px;
+        /*font-size: 24px;*/
     }
 }
 
@@ -48,7 +48,7 @@
 }
 
 .features-boxed .item .icon {
-    font-size: 60px;
+    /*font-size: 60px;*/
     color: #1485ee;
     margin-top: 20px;
     margin-bottom: 35px;
@@ -56,14 +56,14 @@
 
 .features-boxed .item .name {
     font-weight: bold;
-    font-size: 18px;
+    /*font-size: 18px;*/
     margin-bottom: 8px;
     margin-top: 0;
     color: inherit;
 }
 
 .features-boxed .item .description {
-    font-size: 15px;
+    /*font-size: 15px;*/
     margin-top: 15px;
     margin-bottom: 20px;
     border: solid gainsboro;
@@ -71,7 +71,7 @@
 }
 
 h5 {
-    font-size: 20px;
+    /*font-size: 20px;*/
     color: grey;
 }
 
