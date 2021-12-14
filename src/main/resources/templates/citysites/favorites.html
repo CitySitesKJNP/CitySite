@@ -13,13 +13,11 @@
     <h1 class="text-center">Favorites</h1>
 
     <div class="row d-flex flex-row flex-wrap">
-        <!--            <li th:each="favorite : ${favorites}">-->
-        <!--                <h1><span th:text="${favorite.name}"></span></h1>-->
-        <!--                <p id="lng" th:text="${favorite.longitude}"></p>-->
-        <!--                <p id="lat" th:text="${favorite.latitude}"></p>-->
-        <!--                <p id="activityAddress"></p>-->
-        <!--                <a th:href="@{'/activity/' + ${favorite.id}}">See Activity</a>-->
-        <!--            </li>-->
+
+        <div th:if="${favorites.isEmpty()}" class="d-flex flex-column align-items-center justify-content-center mt-2">
+            <p style="font-size: 20px">You don't have any favorites! Check out our home page <a th:href="'/home'">here</a> to find an activity!</p>
+        </div>
+
         <div th:each="favorite : ${favorites}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center"
              style="margin: 0px;padding: 10px;">
             <h3 class="text-center"><span th:text="${favorite.name}"></span></h3>
