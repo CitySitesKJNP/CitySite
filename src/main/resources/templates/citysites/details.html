@@ -21,23 +21,32 @@
     <div style="margin-top: 21px;">
         <div class="row">
             <h2 id="title" class="text-center" style="font-size: 35px;"><span th:text="${activity.name}"></span></h2>
-            <div sec:authorize="isAuthenticated()" style="float: right">
-                <div th:if="${!#lists.contains(favorites, activity)}">
-                    <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
-                        <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
-                    </form>
+            <div class="d-flex flex-column">
+                <div sec:authorize="isAuthenticated()" class="row text-center">
+                    <div th:if="${!#lists.contains(favorites, activity)}">
+                        <form th:action="@{'/activity/' + ${activity.id} + '/favorite'}" th:method="POST">
+                            <button type="submit" class="btn btn-primary darkButtonStyle mt-2">Favorite</button>
+                        </form>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-8 col-md-6 col-lg-4 offset-sm-2 offset-md-3 offset-lg-4 d-inline-flex justify-content-center">
+                        <form th:action="@{'/reviews/create/' + ${activity.id}}">
+                            <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
+                        </form>
+                        <form th:action="@{'/reviews/' + ${activity.id}}" class="">
+                            <button class="btn btn-primary darkButtonStyle mt-2" style="margin-left: 25px">See All Reviews</button>
+                        </form>
+                    </div>
+
+                </div>
+
             </div>
-            <form th:action="@{'/reviews/create/' + ${activity.id}}">
-                <button class="btn btn-primary darkButtonStyle mt-2" type="submit">Add a Review</button>
-            </form>
-            <form th:action="@{'/reviews/' + ${activity.id}}">
-                <button class="btn btn-primary darkButtonStyle mt-2">See All Reviews</button>
-            </form>
+
         </div>
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-lg-6 d-flex flex-row flex-wrap" style="height: auto; padding: 0;">
-                <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-4 d-flex flex-column align-items-center" style="margin: 0px;padding: 10px;">
+        <div class="row justify-content-center mt-2">
+            <div class="col-md-12 col-lg-4 d-flex flex-row flex-wrap" style="padding: 0;">
+                <div th:each="image, stat : ${images}" class="col-sm-6 col-lg-6 d-flex flex-column" style="margin: 0px;padding: 10px;">
                     <img class="img-fluid" th:src="${image.imageUrl}">
                 </div>
             </div>
