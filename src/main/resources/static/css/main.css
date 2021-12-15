@@ -11,6 +11,6 @@ body {
 }
 
 html, body {
-    /*overflow: auto;*/
+    overflow: auto;
     min-height: 100vh;
 }
