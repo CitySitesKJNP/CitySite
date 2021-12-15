@@ -5,8 +5,8 @@
 <nav th:insert="partials/partials.html :: navbar"></nav>
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
-        <h1>Page not found!!</h1>
-        <img src="https://media.makeameme.org/created/i-cant-find-eze3rf.jpg" alt="">
+        <h1>Page not found!</h1>
+<!--        <img src="https://media.makeameme.org/created/i-cant-find-eze3rf.jpg" alt="">-->
     </div>
     <div th:case="'Forbidden'">
         <h1>You don't have permission to view this page.</h1>
