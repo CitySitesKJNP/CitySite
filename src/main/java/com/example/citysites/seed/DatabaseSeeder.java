@@ -2,8 +2,6 @@
 //
 //import com.example.citysites.models.Activity;
 //import com.example.citysites.models.ActivityImage;
-//import com.example.citysites.models.Review;
-//import com.example.citysites.models.User;
 //import com.example.citysites.repositories.ActivityImageRepository;
 //import com.example.citysites.repositories.ActivityRepository;
 //import com.example.citysites.repositories.ReviewRepository;
@@ -13,7 +11,6 @@
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.stereotype.Component;
 //
-//import java.util.ArrayList;
 //import java.util.Arrays;
 //import java.util.List;
 //import java.util.Random;
@@ -66,39 +63,6 @@
 //        activityImageDao.saveAll(activityImages1);
 //    }
 //
-////    private List<Review> seedActivityReviews(List<Activity> activities, List<User> users) {
-////        List<Review> activityReviews1 = Arrays.asList(
-////                new Review(1, "This zoo is okay. I like the San Diego Zoo better."),
-////                new Review(2, "I went to school here and it was not amazing. I got my degree, but I would not attend again."),
-////                new Review(3 , "I love the art selection here. I wish the staff was kinder, but I enjoyed the content."),
-////                new Review(4, "Great trail! I have hiked, camped, and chilled out here. I truly loved it."),
-////                new Review(5 ,"I LOVE THE RIVER WALK! I cannot stop going here, it is SO MUCH FUN! YAY!")
-////        );
-////
-////        Random r = new Random();
-////        for (Review review :activityReviews1) {
-////            Activity activity = activities.get(r.nextInt(activities.size()));
-////            review.setActivityReview(activity);
-////        }
-////        reviewDao.saveAll(activityReviews1);
-////
-////        return activityReviews1;
-////    }
-//
-////    private List<User> seedUsers(List<Review> reviews) {
-////        List<User> users = Arrays.asList(
-////                new User(),
-////                new User(),
-////                new User(),
-////                new User(),
-////                new User()
-////        );
-//
-////        for ()
-////    }
-//
-//
-//
 //    @Override
 //    public void run(String... strings) throws Exception {
 //        if (! environment.equals("development")) {
@@ -113,8 +77,6 @@
 //        List<Activity> activities = seedActivities();
 //        log.info("Seeding images...");
 //        seedActivityImages(activities);
-////        log.info("Seeding reviews...");
-////        seedActivityReviews(activities);
 //        log.info("Finished running seeders!");
 //    }
 //}
